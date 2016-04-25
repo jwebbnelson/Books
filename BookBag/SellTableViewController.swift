@@ -18,6 +18,7 @@ class SellTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -30,6 +31,13 @@ class SellTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        print(navigationController?.navigationBar.frame.size.height)
+        print(tableView.tableHeaderView?.frame.size.height)
+        print(tableView.frame.size.height)
+        
+    }
 
     // MARK: - Table view data source
 
@@ -40,19 +48,29 @@ class SellTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return 6
     }
-
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("basicCell", forIndexPath: indexPath) as! BasicSellTableViewCell
         
-        cell.setDetails(labelArray[indexPath.row], prompt: promptArray[indexPath.row])
-        cell.entryTextField.delegate = self
-        return cell
+        if indexPath.row != 5 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("basicCell", forIndexPath: indexPath) as! BasicSellTableViewCell
+            
+            cell.setDetails(labelArray[indexPath.row], prompt: promptArray[indexPath.row])
+            cell.entryTextField.delegate = self
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("extraCell", forIndexPath: indexPath) as! ExtraSellTableViewCell
+            
+            return cell
+        }
     }
     
-
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - (tableView.tableHeaderView?.frame.size.height)!)/6
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

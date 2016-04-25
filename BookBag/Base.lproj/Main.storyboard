@@ -116,12 +116,55 @@
                                     <outlet property="entryTextField" destination="9pG-97-8gF" id="a7j-lz-zZj"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicCell" id="UZw-pd-REx" customClass="BasicSellTableViewCell" customModule="BookBag" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="200" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="extraCell" rowHeight="138" id="UZw-pd-REx" customClass="ExtraSellTableViewCell" customModule="BookBag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="200" width="600" height="138"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UZw-pd-REx" id="Ihg-Sl-u6X">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="138"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="umU-4n-p2F">
+                                            <rect key="frame" x="8" y="8" width="584" height="122"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ekj-Zy-DXT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="292" height="122"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-RM-3S2">
+                                                            <rect key="frame" x="128" y="0.0" width="37" height="73"/>
+                                                            <state key="normal" title="ICON"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsL-YI-tSR">
+                                                            <rect key="frame" x="125" y="73" width="42" height="50"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bWE-jF-Qn9">
+                                                    <rect key="frame" x="292" y="0.0" width="292" height="122"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C03-9v-Lqf">
+                                                            <rect key="frame" x="128" y="0.0" width="37" height="73"/>
+                                                            <state key="normal" title="ICON"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oy-2v-uJ1">
+                                                            <rect key="frame" x="125" y="73" width="42" height="50"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="umU-4n-p2F" firstAttribute="top" secondItem="Ihg-Sl-u6X" secondAttribute="topMargin" id="RN5-yH-r16"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="umU-4n-p2F" secondAttribute="trailing" id="efu-6p-VFw"/>
+                                        <constraint firstItem="umU-4n-p2F" firstAttribute="leading" secondItem="Ihg-Sl-u6X" secondAttribute="leadingMargin" id="qRo-e2-4zh"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="umU-4n-p2F" secondAttribute="bottom" id="tHp-5G-95Z"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

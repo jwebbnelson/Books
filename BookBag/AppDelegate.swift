@@ -17,11 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        BookController.submitTextbookForApproval { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
+   
         return true
     }
 
