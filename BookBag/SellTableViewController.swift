@@ -7,24 +7,40 @@
 //
 
 import UIKit
+import CoreLocation
 
 class SellTableViewController: UITableViewController {
 
     
     let labelArray = ["Title", "Author", "Edition", "Location", "Price"]
     let promptArray = ["Name of Textbook", "John, Smith", "Version #", "Zipcode", "$$$"]
+    var isbn: String?
+    var author: String?
+    var edition: String?
+    var location: CLLocation?
+    var price: Double?
     
-
+    @IBOutlet weak var tableHeadView: UIView!
+    var nextButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableHeadView.frame.size.height = view.frame.size.height/7
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override var inputAccessoryView: UIView {
+        return nextButton
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,9 +49,6 @@ class SellTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        print(navigationController?.navigationBar.frame.size.height)
-        print(tableView.tableHeaderView?.frame.size.height)
-        print(tableView.frame.size.height)
         
     }
 
@@ -69,7 +82,7 @@ class SellTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - (tableView.tableHeaderView?.frame.size.height)!)/6
+        return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/8
     }
     /*
     // Override to support conditional editing of the table view.
@@ -123,6 +136,18 @@ extension SellTableViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField.placeholder == "Zipcode" {
+            LocationController.convertStringToLocation(textField.text ?? "", completion: { (placemark) in
+                if let location = placemark?.locality, let state = placemark?.administrativeArea {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        textField.text = "\(location), \(state)"
+                    })
+                }
+            })
+        }
     }
     
     

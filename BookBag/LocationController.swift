@@ -12,19 +12,19 @@ import CoreLocation
 
 class LocationController {
     
-    static func convertStringToLocation(address:String, completion:(location:CLLocation?) -> Void) {
+    static func convertStringToLocation(address:String, completion:(placemark:CLPlacemark?) -> Void) {
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemark, error) in
             if let _ = error {
-                completion(location: nil)
+                completion(placemark: nil)
                 return
             }
             if placemark?.count > 0 {
                 let placement = placemark?.first
-                completion(location: placement?.location)
+                completion(placemark: placement)
             } else {
-                completion(location: nil)
+                completion(placemark: nil)
             }
         }
         
