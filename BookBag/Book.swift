@@ -20,14 +20,14 @@ class Book {
 //    var image: UIImage
     var recordID: String
 
-    init(title:String, author:String, edition:String, location:CLLocation, price:Double,  recordID:String) {
+    init(title:String, author:String, edition:String, location:CLLocation, price:Double) {
         self.title = title
         self.author = author
         self.location = location
         self.edition = edition
         self.price = price
 //        self.image = image
-        self.recordID = recordID
+        self.recordID = ""
     }
     
     

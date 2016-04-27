@@ -207,11 +207,11 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bWE-jF-Qn9">
                                                     <rect key="frame" x="299" y="0.0" width="286" height="126"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C03-9v-Lqf">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C03-9v-Lqf">
                                                             <rect key="frame" x="124" y="0.0" width="37" height="61"/>
                                                             <state key="normal" title="ICON"/>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NOTES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oy-2v-uJ1" userLabel="NOTES">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOTES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oy-2v-uJ1" userLabel="NOTES">
                                                             <rect key="frame" x="115" y="66" width="55" height="61"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -229,6 +229,35 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="umU-4n-p2F" secondAttribute="bottom" constant="-4" id="tHp-5G-95Z"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nextCell" rowHeight="47" id="9yV-15-tlT" customClass="NextTableViewCell" customModule="BookBag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="338" width="600" height="47"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9yV-15-tlT" id="DVZ-tz-bOy">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5J-jX-XqV">
+                                            <rect key="frame" x="8" y="8" width="584" height="31"/>
+                                            <color key="backgroundColor" red="0.090196078431372548" green="0.40392156862745099" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="NEXT">
+                                                <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="nextButtonTapped:" destination="9yV-15-tlT" eventType="touchUpInside" id="MhE-ru-9De"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="J5J-jX-XqV" firstAttribute="trailing" secondItem="DVZ-tz-bOy" secondAttribute="trailingMargin" id="4O1-bx-CjP"/>
+                                        <constraint firstItem="J5J-jX-XqV" firstAttribute="bottom" secondItem="DVZ-tz-bOy" secondAttribute="bottomMargin" id="A2K-4o-qOH"/>
+                                        <constraint firstItem="J5J-jX-XqV" firstAttribute="top" secondItem="DVZ-tz-bOy" secondAttribute="topMargin" id="gxe-fx-t2o"/>
+                                        <constraint firstItem="J5J-jX-XqV" firstAttribute="leading" secondItem="DVZ-tz-bOy" secondAttribute="leadingMargin" id="u6p-x6-ued"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nextButton" destination="J5J-jX-XqV" id="jK2-99-qKb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

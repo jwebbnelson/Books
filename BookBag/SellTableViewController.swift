@@ -9,6 +9,14 @@
 import UIKit
 import CoreLocation
 
+enum SellTextFields: String {
+    case Title = "Name of Textbook"
+    case Author = "John, Smith"
+    case Edition = "Version #"
+    case Location = "Zipcode"
+    case Price = "$$$"
+}
+
 class SellTableViewController: UITableViewController {
 
     
@@ -19,9 +27,9 @@ class SellTableViewController: UITableViewController {
     var edition: String?
     var location: CLLocation?
     var price: Double?
+    var notes: String?
     
     @IBOutlet weak var tableHeadView: UIView!
-    var nextButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +42,6 @@ class SellTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-    override var inputAccessoryView: UIView {
-        return nextButton
-    }
-    
-    override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,21 +60,26 @@ class SellTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return 7
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if indexPath.row != 5 {
+        switch indexPath.row {
+        case 5:
+            let cell = tableView.dequeueReusableCellWithIdentifier("extraCell", forIndexPath: indexPath) as! ExtraSellTableViewCell
+            
+            return cell
+
+        case 6:
+            let cell = tableView.dequeueReusableCellWithIdentifier("nextCell", forIndexPath: indexPath) as! NextTableViewCell
+            cell.delegate = self
+            return cell
+        default:
             let cell = tableView.dequeueReusableCellWithIdentifier("basicCell", forIndexPath: indexPath) as! BasicSellTableViewCell
             
             cell.setDetails(labelArray[indexPath.row], prompt: promptArray[indexPath.row])
             cell.entryTextField.delegate = self
-            
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("extraCell", forIndexPath: indexPath) as! ExtraSellTableViewCell
             
             return cell
         }
@@ -132,26 +136,86 @@ class SellTableViewController: UITableViewController {
 }
 
 extension SellTableViewController: UITextFieldDelegate {
-   
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+      
+        switch  textField.placeholder! {
+        case SellTextFields.Title.rawValue:
+            textField.keyboardType = UIKeyboardType.Default
+        case SellTextFields.Author.rawValue:
+            textField.keyboardType = UIKeyboardType.Default
+        case SellTextFields.Edition.rawValue:
+            textField.keyboardType = UIKeyboardType.Default
+        case SellTextFields.Location.rawValue:
+            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+        case SellTextFields.Price.rawValue:
+            price = NSNumberFormatter().numberFromString(textField.text ?? "")?.doubleValue
+            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+        default:
+            return
+        }
+        
+    }
+    
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        
         return true
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        if textField.placeholder == "Zipcode" {
-            LocationController.convertStringToLocation(textField.text ?? "", completion: { (placemark) in
-                if let location = placemark?.locality, let state = placemark?.administrativeArea {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        textField.text = "\(location), \(state)"
-                    })
+       
+        switch  textField.placeholder! {
+        case SellTextFields.Title.rawValue:
+            title = textField.text
+        case SellTextFields.Author.rawValue:
+            author = textField.text
+        case SellTextFields.Edition.rawValue:
+            edition = textField.text
+        case SellTextFields.Location.rawValue:
+            if textField.text?.characters.count == 5 {
+                LocationController.convertStringToLocation(textField.text ?? "", completion: { (placemark) in
+                    if let location = placemark?.locality, let state = placemark?.administrativeArea {
+                        self.location = placemark?.location
+                        dispatch_async(dispatch_get_main_queue(), {
+                            UIView.animateWithDuration(2, animations: {
+                                textField.text = "\(location), \(state)"
+                                textField.textColor = UIColor.blackColor()
+                            })
+                        })
+                    }
+                })
+            } else {
+                textField.textColor = UIColor.redColor()
+            }
+        case SellTextFields.Price.rawValue:
+            price = NSNumberFormatter().numberFromString(textField.text ?? "")?.doubleValue
+            if var text = textField.text {
+                text = text.stringByReplacingOccurrencesOfString("$", withString: "")
+                textField.text = "$\(text)"
+            }
+        default:
+            return
+        }
+        
+        
+    }
+}
+
+extension SellTableViewController: SellButtonDelegate {
+    func sellButtonTapped() {
+        view.endEditing(true)
+        if let author = author, let title = title, let edition = edition, let price = price, let location = location {
+            BookController.submitTextbookForApproval(author, title: title, isbn: "02830280", edition: edition, price: price, notes: notes, location: location, completion: { (error) in
+                if let error = error {
+                    print("ERROR SAVING TEXTBOOK")
+                } else {
+                    print("TEXTBOOK SAVED SUCCESSFULLY")
                 }
             })
         }
     }
-    
-    
-    
 }
 
 
