@@ -11,18 +11,14 @@ import UIKit
 class HomeTableViewController: UITableViewController {
     
     var records: [Book]?
+    var searchController: UISearchController!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        BookController.queryBooks("") { (book) in
-            self.records = book
-            print(self.records?.count)
-            dispatch_async(dispatch_get_main_queue(), { 
-                self.tableView.reloadData()
-            })
-        }
+        
+        setUpSearchController()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -106,3 +102,28 @@ class HomeTableViewController: UITableViewController {
      */
     
 }
+
+
+extension HomeTableViewController: UISearchResultsUpdating, UISearchControllerDelegate {
+    func setUpSearchController() {
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("resultsController")
+        searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.searchBar.placeholder = "Search book title or author"
+        searchController.searchBar.searchBarStyle = .Minimal
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if let searchTerm = searchController.searchBar.text where searchController.searchBar.text?.characters.count > 0 {
+            
+        }
+    }
+    
+    
+    
+}
+

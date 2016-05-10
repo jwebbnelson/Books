@@ -29,12 +29,14 @@ class SellTableViewController: UITableViewController {
     var price: Double?
     var notes: String?
     
+    
     @IBOutlet weak var tableHeadView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableHeadView.frame.size.height = view.frame.size.height/7
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -154,7 +156,6 @@ extension SellTableViewController: UITextFieldDelegate {
         default:
             return
         }
-        
     }
     
     
@@ -198,8 +199,6 @@ extension SellTableViewController: UITextFieldDelegate {
         default:
             return
         }
-        
-        
     }
 }
 
@@ -209,7 +208,7 @@ extension SellTableViewController: SellButtonDelegate {
         if let author = author, let title = title, let edition = edition, let price = price, let location = location {
             BookController.submitTextbookForApproval(author, title: title, isbn: "02830280", edition: edition, price: price, notes: notes, location: location, completion: { (error) in
                 if let error = error {
-                    print("ERROR SAVING TEXTBOOK")
+                    print("ERROR SAVING TEXTBOOK \(error.localizedDescription)")
                 } else {
                     print("TEXTBOOK SAVED SUCCESSFULLY")
                 }
