@@ -13,9 +13,9 @@
 		8393D1C11CCC5D81000E7923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8393D1BF1CCC5D81000E7923 /* LaunchScreen.storyboard */; };
 		8393D1CC1CCC5D81000E7923 /* BookBagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393D1CB1CCC5D81000E7923 /* BookBagTests.swift */; };
 		8393D1D71CCC5D81000E7923 /* BookBagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393D1D61CCC5D81000E7923 /* BookBagUITests.swift */; };
+		83A5C0B71D0E9BDF00F51D2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83A5C0B61D0E9BDF00F51D2C /* GoogleService-Info.plist */; };
 		83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */; };
 		83A9D39D1CD16D480020E687 /* NextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */; };
-		83BD93691CCEAE3800E56534 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BD93681CCEAE3800E56534 /* CloudKit.framework */; };
 		83BD936D1CCEB83300E56534 /* BookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD936C1CCEB83300E56534 /* BookController.swift */; };
 		83BD936F1CCEB87800E56534 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD936E1CCEB87800E56534 /* LocationController.swift */; };
 		83BD93711CCEC3F700E56534 /* BasicSellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93701CCEC3F700E56534 /* BasicSellTableViewCell.swift */; };
@@ -54,10 +54,10 @@
 		8393D1D21CCC5D81000E7923 /* BookBagUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookBagUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8393D1D61CCC5D81000E7923 /* BookBagUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBagUITests.swift; sourceTree = "<group>"; };
 		8393D1D81CCC5D81000E7923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83A5C0B61D0E9BDF00F51D2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextTableViewCell.swift; sourceTree = "<group>"; };
 		83BD93671CCEAE1600E56534 /* BookBag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = BookBag.entitlements; path = BookBag/BookBag.entitlements; sourceTree = "<group>"; };
-		83BD93681CCEAE3800E56534 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		83BD936C1CCEB83300E56534 /* BookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookController.swift; sourceTree = "<group>"; };
 		83BD936E1CCEB87800E56534 /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		83BD93701CCEC3F700E56534 /* BasicSellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSellTableViewCell.swift; sourceTree = "<group>"; };
@@ -71,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83BD93691CCEAE3800E56534 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				83BD93671CCEAE1600E56534 /* BookBag.entitlements */,
-				83BD93681CCEAE3800E56534 /* CloudKit.framework */,
+				83A5C0B61D0E9BDF00F51D2C /* GoogleService-Info.plist */,
 				8393D1B51CCC5D81000E7923 /* BookBag */,
 				8393D1CA1CCC5D81000E7923 /* BookBagTests */,
 				8393D1D51CCC5D81000E7923 /* BookBagUITests */,
@@ -149,6 +148,16 @@
 			path = BookBagUITests;
 			sourceTree = "<group>";
 		};
+		83A5C0B51D0E96E200F51D2C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				83BD93701CCEC3F700E56534 /* BasicSellTableViewCell.swift */,
+				83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */,
+				83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		83A9D39B1CD053360020E687 /* HOME */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,9 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				83BD93721CCECA8A00E56534 /* SellTableViewController.swift */,
-				83BD93701CCEC3F700E56534 /* BasicSellTableViewCell.swift */,
-				83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */,
-				83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */,
+				83A5C0B51D0E96E200F51D2C /* Cells */,
 			);
 			name = SELL;
 			sourceTree = "<group>";
@@ -238,8 +245,11 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = N9YM4MAB27;
 						SystemCapabilities = {
-							com.apple.iCloud = {
+							com.apple.Push = {
 								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
 							};
 						};
 					};
@@ -279,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8393D1C11CCC5D81000E7923 /* LaunchScreen.storyboard in Resources */,
+				83A5C0B71D0E9BDF00F51D2C /* GoogleService-Info.plist in Resources */,
 				8393D1BE1CCC5D81000E7923 /* Assets.xcassets in Resources */,
 				8393D1BC1CCC5D81000E7923 /* Main.storyboard in Resources */,
 			);
@@ -457,7 +468,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = BookBag/BookBag.entitlements;
 				INFOPLIST_FILE = BookBag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JWN.BookBag;
@@ -469,7 +479,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = BookBag/BookBag.entitlements;
 				INFOPLIST_FILE = BookBag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JWN.BookBag;
