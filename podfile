@@ -12,8 +12,8 @@ pod 'Firebase/Auth'
 pod 'Firebase/AppIndexing'
 pod 'Firebase/RemoteConfig'
 pod 'Firebase/Storage'
-pod 'Firebase/Invites'
-pod 'Firebase/DynamicLinks'
+#pod 'Firebase/Invites'
+#pod 'Firebase/DynamicLinks'
 end
 
 target 'BookBagTests' do
