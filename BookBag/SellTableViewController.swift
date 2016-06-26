@@ -28,6 +28,7 @@ class SellTableViewController: UITableViewController {
     var location: CLLocation?
     var price: Double?
     var notes: String?
+    var image: UIImage?
     
     @IBOutlet weak var tableHeadView: UIView!
     @IBOutlet var notesView: UIView!
@@ -239,11 +240,16 @@ extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerD
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        self.image = image
+    }
+    
     func notesPressed() {
         presentNotesView()
     }
-    
-    
 }
 
 extension SellTableViewController {
