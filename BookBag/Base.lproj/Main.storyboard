@@ -108,6 +108,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCD-VK-aeD">
                                                     <rect key="frame" x="390" y="0.0" width="194" height="21"/>
                                                     <state key="normal" title="SCAN"/>
+                                                    <connections>
+                                                        <segue destination="3gd-c2-DiH" kind="presentation" id="9Ds-8b-WS3"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -193,7 +196,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ekj-Zy-DXT">
                                                     <rect key="frame" x="0.0" y="0.0" width="299" height="126"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-RM-3S2">
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-RM-3S2">
                                                             <rect key="frame" x="131" y="0.0" width="37" height="61"/>
                                                             <state key="normal" title="ICON"/>
                                                             <connections>
@@ -336,6 +339,37 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="2464" y="-556"/>
+        </scene>
+        <!--Scan View Controller-->
+        <scene sceneID="ncI-5B-Wtn">
+            <objects>
+                <viewController id="3gd-c2-DiH" customClass="ScanViewController" customModule="BookBag" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2vz-pG-Ri7"/>
+                        <viewControllerLayoutGuide type="bottom" id="X1k-As-ooj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oTc-rf-hrf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgm-u1-ITu" userLabel="X">
+                                <rect key="frame" x="20" y="550" width="30" height="30"/>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="cancelTapped:" destination="3gd-c2-DiH" eventType="touchUpInside" id="r6v-oi-OGV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="Pgm-u1-ITu" secondAttribute="leading" id="VyQ-wr-1rQ"/>
+                            <constraint firstItem="X1k-As-ooj" firstAttribute="top" secondItem="Pgm-u1-ITu" secondAttribute="bottom" constant="20" id="w2W-4q-wIc"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cnH-da-NdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3138" y="-556"/>
         </scene>
         <!--Item-->
         <scene sceneID="Bby-3U-eoB">
