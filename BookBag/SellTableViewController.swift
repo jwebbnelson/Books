@@ -222,9 +222,21 @@ extension SellTableViewController: SellButtonDelegate {
     }
 }
 
-extension SellTableViewController: ExtraButtonsDelgate {
+extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func photosPressed() {
-        print("Photos")
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        let alert = UIAlertController(title: "Add Photo", message: "Take a picture of your textbook", preferredStyle: .ActionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            alert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (_) in
+                imagePicker.sourceType = .Camera
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func notesPressed() {
