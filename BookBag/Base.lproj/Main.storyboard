@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Home Table View Controller-->
@@ -277,10 +278,62 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="SELL" id="9UA-Db-sIh"/>
                     <connections>
+                        <outlet property="notesTextView" destination="eZI-s0-pnT" id="ikz-NO-Lu8"/>
+                        <outlet property="notesView" destination="dWi-Pb-y4S" id="JQW-9n-iQz"/>
                         <outlet property="tableHeadView" destination="vEQ-Oq-YUL" id="bPF-aV-EDZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4jc-Ra-tcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="dWi-Pb-y4S">
+                    <rect key="frame" x="0.0" y="0.0" width="550" height="329"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1X-bK-uAB">
+                            <rect key="frame" x="8" y="8" width="30" height="30"/>
+                            <state key="normal" title="X"/>
+                            <connections>
+                                <action selector="cancelNotes:" destination="tQK-OM-obc" eventType="touchUpInside" id="fsw-cC-8wW"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IO4-mH-9gO">
+                            <rect key="frame" x="0.0" y="274" width="550" height="55"/>
+                            <color key="backgroundColor" red="0.090196078430000007" green="0.4039215686" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="SAVE">
+                                <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="saveNotes:" destination="tQK-OM-obc" eventType="touchUpInside" id="gft-Z3-bs8"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOTES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVT-Fg-vxD">
+                            <rect key="frame" x="247.5" y="12" width="55" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter notes here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eZI-s0-pnT">
+                            <rect key="frame" x="8" y="46" width="534" height="220"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="IO4-mH-9gO" firstAttribute="top" secondItem="eZI-s0-pnT" secondAttribute="bottom" constant="8" id="01e-HU-gUz"/>
+                        <constraint firstItem="cVT-Fg-vxD" firstAttribute="centerY" secondItem="H1X-bK-uAB" secondAttribute="centerY" id="BrT-Af-UOn"/>
+                        <constraint firstAttribute="trailing" secondItem="IO4-mH-9gO" secondAttribute="trailing" id="DVa-Ta-s3R"/>
+                        <constraint firstAttribute="trailing" secondItem="eZI-s0-pnT" secondAttribute="trailing" constant="8" id="E4d-b7-vXa"/>
+                        <constraint firstItem="eZI-s0-pnT" firstAttribute="top" secondItem="cVT-Fg-vxD" secondAttribute="bottom" constant="13" id="EMj-er-2yj"/>
+                        <constraint firstItem="cVT-Fg-vxD" firstAttribute="centerX" secondItem="dWi-Pb-y4S" secondAttribute="centerX" id="QCd-7Y-nOl"/>
+                        <constraint firstItem="IO4-mH-9gO" firstAttribute="leading" secondItem="dWi-Pb-y4S" secondAttribute="leading" id="S74-Mb-RAd"/>
+                        <constraint firstItem="H1X-bK-uAB" firstAttribute="leading" secondItem="dWi-Pb-y4S" secondAttribute="leading" constant="8" id="UoD-8n-S2q"/>
+                        <constraint firstAttribute="bottom" secondItem="IO4-mH-9gO" secondAttribute="bottom" id="WnP-fp-wmZ"/>
+                        <constraint firstItem="IO4-mH-9gO" firstAttribute="height" secondItem="dWi-Pb-y4S" secondAttribute="height" multiplier="1/6" id="a7q-BN-NJ9"/>
+                        <constraint firstItem="eZI-s0-pnT" firstAttribute="leading" secondItem="dWi-Pb-y4S" secondAttribute="leading" constant="8" id="bgT-7x-biE"/>
+                        <constraint firstItem="H1X-bK-uAB" firstAttribute="top" secondItem="dWi-Pb-y4S" secondAttribute="top" constant="8" id="rad-Kg-24J"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="2464" y="-556"/>
         </scene>

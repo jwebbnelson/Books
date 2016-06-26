@@ -30,11 +30,15 @@ class SellTableViewController: UITableViewController {
     var notes: String?
     
     @IBOutlet weak var tableHeadView: UIView!
+    @IBOutlet var notesView: UIView!
+    let blur = UIVisualEffectView()
+    @IBOutlet weak var notesTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableHeadView.frame.size.height = view.frame.size.height/7
+        setUpNotesView()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -224,7 +228,42 @@ extension SellTableViewController: ExtraButtonsDelgate {
     }
     
     func notesPressed() {
-        print("NotesPressed")
+        presentNotesView()
+    }
+    
+    
+}
+
+extension SellTableViewController {
+    
+    func setUpNotesView() {
+        notesView.frame.size.height = view.frame.size.height/2
+        notesView.frame.size.width = view.frame.size.width - 20
+        notesView.center.x = view.center.x
+        notesView.center.y = view.center.y - view.frame.size.height/6
+    }
+    
+    func presentNotesView() {
+        blur.frame = view.frame
+        let blurStyle = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        blur.effect = blurStyle
+        view.addSubview(blur)
+        blur.contentView.addSubview(notesView)
+    }
+    
+    func dismissNotesView() {
+        blur.removeFromSuperview()
+        notesView.removeFromSuperview()
+        
+    }
+    
+    @IBAction func saveNotes(sender: AnyObject) {
+        notes = notesTextView.text
+        dismissNotesView()
+    }
+    
+    @IBAction func cancelNotes(sender: AnyObject) {
+        dismissNotesView()
     }
 }
 
