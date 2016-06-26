@@ -12,7 +12,6 @@ class HomeTableViewController: UITableViewController {
     
     var records: [Book]?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
