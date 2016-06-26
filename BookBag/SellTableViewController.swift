@@ -68,7 +68,7 @@ class SellTableViewController: UITableViewController {
         switch indexPath.row {
         case 5:
             let cell = tableView.dequeueReusableCellWithIdentifier("extraCell", forIndexPath: indexPath) as! ExtraSellTableViewCell
-            
+            cell.delegate = self
             return cell
 
         case 6:
@@ -215,6 +215,16 @@ extension SellTableViewController: SellButtonDelegate {
                 }
             })
         }
+    }
+}
+
+extension SellTableViewController: ExtraButtonsDelgate {
+    func photosPressed() {
+        print("Photos")
+    }
+    
+    func notesPressed() {
+        print("NotesPressed")
     }
 }
 
