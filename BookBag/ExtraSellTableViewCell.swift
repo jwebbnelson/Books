@@ -10,6 +10,11 @@ import UIKit
 
 class ExtraSellTableViewCell: UITableViewCell {
 
+    weak var delegate: ExtraButtonsDelgate?
+    
+    @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var notesButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +26,16 @@ class ExtraSellTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func photoButtonTapped(sender: AnyObject) {
+        delegate?.photosPressed()
+    }
+    
+    @IBAction func notesButtonTapped(sender: AnyObject) {
+        delegate?.notesPressed()
+    }
+}
+
+protocol ExtraButtonsDelgate: class {
+    func photosPressed()
+    func notesPressed()
 }
