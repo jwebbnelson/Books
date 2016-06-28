@@ -164,9 +164,26 @@ extension SellTableViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
+        switch  textField.placeholder! {
+        case SellTextFields.Title.rawValue:
+            setNextResponder(1)
+        case SellTextFields.Author.rawValue:
+            setNextResponder(2)
+        case SellTextFields.Edition.rawValue:
+            setNextResponder(3)
+        case SellTextFields.Location.rawValue:
+            setNextResponder(4)
+        case SellTextFields.Price.rawValue:
+            setNextResponder(5)
+        default:
+            return true
+        }
         return true
+    }
+    
+    func setNextResponder(nextRow:Int) {
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: nextRow, inSection: 0)) as? BasicSellTableViewCell
+        cell?.entryTextField.becomeFirstResponder()
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -203,7 +220,6 @@ extension SellTableViewController: UITextFieldDelegate {
         default:
             return
         }
-        
         
     }
 }
@@ -274,7 +290,6 @@ extension SellTableViewController {
         }) { (success) in
             
         }
-        
     }
     
     func dismissNotesView() {
