@@ -297,6 +297,7 @@ extension SellTableViewController {
         notesBackground.removeFromSuperview()
         notesView.removeFromSuperview()
         resetNotesAnimation()
+        notesTextView.resignFirstResponder()
     }
     
     func resetNotesAnimation() {
@@ -318,6 +319,12 @@ extension SellTableViewController: UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {
         if textView.text == "Enter notes here..." {
             textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text != "Enter notes here..." {
+            notes = notesTextView.text
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import CloudKit
+import CoreLocation
 
 class Book {
     
@@ -31,17 +31,6 @@ class Book {
     }
     
     
-    init?(record:CKRecord) {
-        guard let title = record["Title"] as? String, let author = record["Author"] as? String, let edition = record["Edition"] as? String, let location = record["Location"] as? CLLocation, let price = record["Price"] as? Double else {
-            return nil
-        }
-        self.title = title
-        self.author = author
-        self.edition = edition
-        self.location = location
-        self.recordID = record.recordID.recordName
-        self.price = price
-    }
     
 }
 
