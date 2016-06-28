@@ -284,6 +284,7 @@
                         <outlet property="notesTextView" destination="eZI-s0-pnT" id="ikz-NO-Lu8"/>
                         <outlet property="notesView" destination="dWi-Pb-y4S" id="JQW-9n-iQz"/>
                         <outlet property="tableHeadView" destination="vEQ-Oq-YUL" id="bPF-aV-EDZ"/>
+                        <segue destination="RaK-Vg-cpW" kind="show" identifier="SellReviewSegue" id="tzC-Nm-c5x"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4jc-Ra-tcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -342,6 +343,34 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="2464" y="-556"/>
+        </scene>
+        <!--Sell Review Table View Controller-->
+        <scene sceneID="JkV-Su-u0q">
+            <objects>
+                <tableViewController id="RaK-Vg-cpW" customClass="SellReviewTableViewController" customModule="BookBag" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="B3I-XA-fIz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MJP-3v-92A">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MJP-3v-92A" id="DQB-Kl-zJo">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="RaK-Vg-cpW" id="0Zs-mD-xhw"/>
+                            <outlet property="delegate" destination="RaK-Vg-cpW" id="drq-JP-3Bx"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pc3-eZ-sbF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3097" y="-556"/>
         </scene>
         <!--Scan View Controller-->
         <scene sceneID="ncI-5B-Wtn">

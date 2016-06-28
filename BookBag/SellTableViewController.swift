@@ -236,6 +236,7 @@ extension SellTableViewController: SellButtonDelegate {
                 }
             })
         }
+        performSegueWithIdentifier("SellReviewSegue", sender: nil)
     }
 }
 
