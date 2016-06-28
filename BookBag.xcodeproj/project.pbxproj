@@ -109,6 +109,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		833B81291D22905400E37423 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				83BD93771CCEE76400E56534 /* Book.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		8393D1AA1CCC5D81000E7923 = {
 			isa = PBXGroup;
 			children = (
@@ -140,7 +148,8 @@
 				8393D1B61CCC5D81000E7923 /* AppDelegate.swift */,
 				83A9D39B1CD053360020E687 /* HOME */,
 				83BD93761CCED26100E56534 /* SELL */,
-				83BD93771CCEE76400E56534 /* Book.swift */,
+				833B81271D1FE3D700E37423 /* ScanViewController.swift */,
+				833B81291D22905400E37423 /* Model */,
 				83A5C0B81D15122200F51D2C /* FirebaseController.swift */,
 				83BD936C1CCEB83300E56534 /* BookController.swift */,
 				83BD936E1CCEB87800E56534 /* LocationController.swift */,
@@ -191,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				83BD93721CCECA8A00E56534 /* SellTableViewController.swift */,
-				833B81271D1FE3D700E37423 /* ScanViewController.swift */,
 				83A5C0B51D0E96E200F51D2C /* Cells */,
 			);
 			name = SELL;

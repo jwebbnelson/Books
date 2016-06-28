@@ -32,7 +32,7 @@ class SellTableViewController: UITableViewController {
     
     @IBOutlet weak var tableHeadView: UIView!
     @IBOutlet var notesView: UIView!
-    let blur = UIVisualEffectView()
+    let notesBackground = UIView()
     @IBOutlet weak var notesTextView: UITextView!
     
     override func viewDidLoad() {
@@ -150,7 +150,7 @@ extension SellTableViewController: UITextFieldDelegate {
         case SellTextFields.Author.rawValue:
             textField.keyboardType = UIKeyboardType.Default
         case SellTextFields.Edition.rawValue:
-            textField.keyboardType = UIKeyboardType.Default
+            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         case SellTextFields.Location.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         case SellTextFields.Price.rawValue:
@@ -255,22 +255,23 @@ extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerD
 extension SellTableViewController {
     
     func setUpNotesView() {
-        notesView.frame.size.height = view.frame.size.height/2
+        notesView.frame.size.height = view.frame.size.height/3
         notesView.frame.size.width = view.frame.size.width - 20
         notesView.center.x = view.center.x
-        notesView.center.y = view.center.y - view.frame.size.height/6
+        notesView.center.y = view.center.y - (view.frame.height * 0.4) + (navigationController?.navigationBar.frame.height)!
     }
     
     func presentNotesView() {
-        blur.frame = view.frame
-        let blurStyle = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        blur.effect = blurStyle
-        view.addSubview(blur)
-        blur.contentView.addSubview(notesView)
+        notesBackground.frame = view.frame
+        notesBackground.backgroundColor = UIColor.blackColor()
+        notesBackground.alpha = 0.4
+        view.addSubview(notesBackground)
+        view.addSubview(notesView)
+        notesTextView.becomeFirstResponder()
     }
     
     func dismissNotesView() {
-        blur.removeFromSuperview()
+        notesBackground.removeFromSuperview()
         notesView.removeFromSuperview()
         
     }

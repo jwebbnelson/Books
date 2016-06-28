@@ -97,7 +97,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter #" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zLx-fx-s7v">
                                                     <rect key="frame" x="0.0" y="2" width="194" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdb-bi-bd8">
                                                     <rect key="frame" x="195" y="0.0" width="194" height="21"/>
@@ -196,7 +196,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ekj-Zy-DXT">
                                                     <rect key="frame" x="0.0" y="0.0" width="299" height="126"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-RM-3S2">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-RM-3S2">
                                                             <rect key="frame" x="131" y="0.0" width="37" height="61"/>
                                                             <state key="normal" title="ICON"/>
                                                             <connections>
@@ -299,7 +299,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IO4-mH-9gO">
-                            <rect key="frame" x="0.0" y="274" width="550" height="55"/>
+                            <rect key="frame" x="0.0" y="263" width="550" height="66"/>
                             <color key="backgroundColor" red="0.090196078430000007" green="0.4039215686" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="SAVE">
                                 <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -315,7 +315,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter notes here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eZI-s0-pnT">
-                            <rect key="frame" x="8" y="46" width="534" height="220"/>
+                            <rect key="frame" x="8" y="46" width="534" height="209"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -332,7 +332,7 @@
                         <constraint firstItem="IO4-mH-9gO" firstAttribute="leading" secondItem="dWi-Pb-y4S" secondAttribute="leading" id="S74-Mb-RAd"/>
                         <constraint firstItem="H1X-bK-uAB" firstAttribute="leading" secondItem="dWi-Pb-y4S" secondAttribute="leading" constant="8" id="UoD-8n-S2q"/>
                         <constraint firstAttribute="bottom" secondItem="IO4-mH-9gO" secondAttribute="bottom" id="WnP-fp-wmZ"/>
-                        <constraint firstItem="IO4-mH-9gO" firstAttribute="height" secondItem="dWi-Pb-y4S" secondAttribute="height" multiplier="1/6" id="a7q-BN-NJ9"/>
+                        <constraint firstItem="IO4-mH-9gO" firstAttribute="height" secondItem="dWi-Pb-y4S" secondAttribute="height" multiplier="1/5" id="a7q-BN-NJ9"/>
                         <constraint firstItem="eZI-s0-pnT" firstAttribute="leading" secondItem="dWi-Pb-y4S" secondAttribute="leading" constant="8" id="bgT-7x-biE"/>
                         <constraint firstItem="H1X-bK-uAB" firstAttribute="top" secondItem="dWi-Pb-y4S" secondAttribute="top" constant="8" id="rad-Kg-24J"/>
                     </constraints>
@@ -369,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cnH-da-NdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3138" y="-556"/>
+            <point key="canvasLocation" x="2464" y="220"/>
         </scene>
         <!--Item-->
         <scene sceneID="Bby-3U-eoB">
