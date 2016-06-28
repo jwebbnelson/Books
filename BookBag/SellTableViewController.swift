@@ -258,7 +258,8 @@ extension SellTableViewController {
         notesView.frame.size.height = view.frame.size.height/3
         notesView.frame.size.width = view.frame.size.width - 20
         notesView.center.x = view.center.x
-        notesView.center.y = view.center.y - (view.frame.height * 0.4) + (navigationController?.navigationBar.frame.height)!
+        notesView.center.y = view.center.y - (view.frame.height * 0.35) + (navigationController?.navigationBar.frame.height)!
+        resetNotesAnimation()
     }
     
     func presentNotesView() {
@@ -267,13 +268,24 @@ extension SellTableViewController {
         notesBackground.alpha = 0.4
         view.addSubview(notesBackground)
         view.addSubview(notesView)
-        notesTextView.becomeFirstResponder()
+        UIView.animateWithDuration(0.4, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+            self.notesView.transform = CGAffineTransformIdentity
+            self.notesView.alpha = 1
+        }) { (success) in
+            
+        }
+        
     }
     
     func dismissNotesView() {
         notesBackground.removeFromSuperview()
         notesView.removeFromSuperview()
-        
+        resetNotesAnimation()
+    }
+    
+    func resetNotesAnimation() {
+        notesView.transform = CGAffineTransformMakeScale(0, 0)
+        notesView.alpha = 0
     }
     
     @IBAction func saveNotes(sender: AnyObject) {
@@ -283,6 +295,14 @@ extension SellTableViewController {
     
     @IBAction func cancelNotes(sender: AnyObject) {
         dismissNotesView()
+    }
+}
+
+extension SellTableViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.text == "Enter notes here..." {
+            textView.text = ""
+        }
     }
 }
 
