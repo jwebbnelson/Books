@@ -10,29 +10,57 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class Book {
+class Book: Equatable {
+    
+    private let kTitle = "title"
+    private let kAuthor = "author"
+    private let kEdition = "edition"
+    private let kPrice = "price"
+    private let kLocation = "location"
+    private let kImage = "image"
+    private let kNotes = "notes"
     
     var title: String
     var author: String
-    var edition: String
-    var location: CLLocation
+    var edition: String?
+//    var location: CLLocation
     var price: Double
 //    var image: UIImage
-    var recordID: String
+    var notes: String?
+    var uID: String
+    
+    var jsonValue: [String: AnyObject] {
+    
+        var json: [String: AnyObject] = [kTitle: title, kAuthor: author, kPrice: price, kLocation:kLocation]
+    
+        if let edition = edition {
+            json[kEdition] = edition
+        }
+        
+        if let notes = notes {
+            json[kNotes] = notes
+        }
+        
+        return json
+    }
+    
 
-    init(title:String, author:String, edition:String, location:CLLocation, price:Double) {
+    init(title:String, author:String, edition:String?, location:CLLocation = CLLocation(), price:Double) {
         self.title = title
         self.author = author
-        self.location = location
+//        self.location = location
         self.edition = edition
         self.price = price
 //        self.image = image
-        self.recordID = ""
+        self.uID = ""
     }
-    
-    
-    
 }
+
+
+func == (lhs:Book, rhs:Book) -> Bool {
+    return  (lhs.title == rhs.title) && (lhs.uID == rhs.uID)
+}
+
 
 
 

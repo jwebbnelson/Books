@@ -174,7 +174,7 @@ extension SellTableViewController: UITextFieldDelegate {
         case SellTextFields.Location.rawValue:
             setNextResponder(4)
         case SellTextFields.Price.rawValue:
-            setNextResponder(5)
+            textField.resignFirstResponder()
         default:
             return true
         }
@@ -227,16 +227,17 @@ extension SellTableViewController: UITextFieldDelegate {
 extension SellTableViewController: SellButtonDelegate {
     func sellButtonTapped() {
         view.endEditing(true)
-        if let author = author, let title = title, let edition = edition, let price = price, let location = location {
-            BookController.submitTextbookForApproval(author, title: title, isbn: "02830280", edition: edition, price: price, notes: notes, completion: { (error) in
+        
+        if let title = title, let author = author, price = price {
+            BookController.submitTextbookForApproval(author, title: title, isbn: "01920284", edition: edition, price: price ?? 0, notes: notes) { (error) in
                 if let error = error {
-                    print("ERROR SAVING TEXTBOOK")
+                    print(error.description)
                 } else {
-                    print("TEXTBOOK SAVED SUCCESSFULLY")
+                    print("TEXTBOOK SAVED")
                 }
-            })
+            }
+            performSegueWithIdentifier("SellReviewSegue", sender: nil)
         }
-        performSegueWithIdentifier("SellReviewSegue", sender: nil)
     }
 }
 
