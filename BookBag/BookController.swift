@@ -14,12 +14,12 @@ class BookController {
     // Buying
     static func queryBooks(searchString:String?, completion:(book:[Book]?) -> Void){
         
-        FirebaseController.bookBase.observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, childKey) in
+        
+        FirebaseController.bookBase.queryOrderedByChild("title").queryEqualToValue(searchString).observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, childKey) in
+            
             if let bookDictionaries = snapshot.value as? [String: AnyObject] {
-                print(bookDictionaries)
                 
                 let books = bookDictionaries.flatMap({Book(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
-                
                 completion(book: books)
             } else {
                 completion(book: nil)

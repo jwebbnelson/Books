@@ -40,7 +40,6 @@ class HomeTableViewController: UITableViewController {
         return bookArray?.count ?? 0
     }
     
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
         
@@ -105,9 +104,9 @@ extension HomeTableViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         BookController.queryBooks(searchController.searchBar.text) { (book) in
-            if let books = book {
-                if let resultsController = searchController.searchResultsController as? HomeTableViewController {
-                    resultsController.tableView.tableHeaderView = UIView()
+            if let resultsController = searchController.searchResultsController as? HomeTableViewController {
+                resultsController.tableView.tableHeaderView = UIView()
+                if let books = book {
                     resultsController.bookArray = books
                     dispatch_async(dispatch_get_main_queue(), {
                         resultsController.tableView.reloadData()
