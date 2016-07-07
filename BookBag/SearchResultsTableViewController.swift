@@ -10,6 +10,8 @@ import UIKit
 
 class SearchResultsTableViewController: UITableViewController {
 
+    var books: [Book]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,24 +30,25 @@ class SearchResultsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return books?.count ?? 0
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("searchResultsCell", forIndexPath: indexPath) as! SearchResultsTableViewCell
 
-        // Configure the cell...
+        if let books = books {
+            cell.textLabel?.text = books[indexPath.row].title
+            cell.detailTextLabel?.text = books[indexPath.row].author
+        }
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

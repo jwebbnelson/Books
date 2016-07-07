@@ -8,10 +8,38 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
+        <!--Search Results Table View Controller-->
+        <scene sceneID="Lqo-AO-Fdk">
+            <objects>
+                <tableViewController storyboardIdentifier="searchTVC" id="ANJ-en-Vr0" customClass="SearchResultsTableViewController" customModule="BookBag" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sld-dC-g7A">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultsCell" id="wNf-JB-xwB" customClass="SearchResultsTableViewCell" customModule="BookBag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wNf-JB-xwB" id="p8T-xJ-uX9">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ANJ-en-Vr0" id="wKD-q3-JjY"/>
+                            <outlet property="delegate" destination="ANJ-en-Vr0" id="eh5-VM-QLW"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E9T-yq-cGR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2463" y="-1961"/>
+        </scene>
         <!--Home Table View Controller-->
         <scene sceneID="p43-NW-WTe">
             <objects>
-                <tableViewController storyboardIdentifier="searchTVC" id="CBw-tT-Wvp" customClass="HomeTableViewController" customModule="BookBag" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="CBw-tT-Wvp" customClass="HomeTableViewController" customModule="BookBag" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cUg-5w-15a">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

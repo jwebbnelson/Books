@@ -42,11 +42,7 @@ class HomeTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
-        
-        if let books = bookArray {
-            cell.textLabel?.text = books[indexPath.row].title
-            cell.detailTextLabel?.text = books[indexPath.row].author
-        }
+    
         
         return cell
     }
@@ -104,10 +100,9 @@ extension HomeTableViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         BookController.queryBooks(searchController.searchBar.text) { (book) in
-            if let resultsController = searchController.searchResultsController as? HomeTableViewController {
-                resultsController.tableView.tableHeaderView = UIView()
+            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
                 if let books = book {
-                    resultsController.bookArray = books
+                    resultsController.books = books
                     dispatch_async(dispatch_get_main_queue(), {
                         resultsController.tableView.reloadData()
                     })
