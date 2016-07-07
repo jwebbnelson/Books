@@ -28,6 +28,7 @@ class BookController {
     }
     
     static func searchAmazonBooks() {
+        
     }
     
     // Selling
@@ -41,8 +42,7 @@ class BookController {
                 print("Saved REF: \(ref)")
                 completion(error: nil)
             }
-        }
-        
+        }   
     }
     
     // Bidding

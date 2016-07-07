@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		52561C28D37694B5C5F89BB6 /* Pods_BookBag.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DA737179B5D07F6163B73B /* Pods_BookBag.framework */; };
+		831EFE1B1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EFE1A1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift */; };
+		831EFE1E1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EFE1D1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift */; };
 		833B81281D1FE3D700E37423 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833B81271D1FE3D700E37423 /* ScanViewController.swift */; };
 		8393D1B71CCC5D81000E7923 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393D1B61CCC5D81000E7923 /* AppDelegate.swift */; };
 		8393D1BC1CCC5D81000E7923 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8393D1BA1CCC5D81000E7923 /* Main.storyboard */; };
@@ -51,6 +53,8 @@
 /* Begin PBXFileReference section */
 		4ACCAE5850EF07BC983D7C95 /* Pods-BookBag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookBag.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookBag/Pods-BookBag.release.xcconfig"; sourceTree = "<group>"; };
 		69DA737179B5D07F6163B73B /* Pods_BookBag.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookBag.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		831EFE1A1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailTableViewController.swift; sourceTree = "<group>"; };
+		831EFE1D1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailTableViewCell.swift; sourceTree = "<group>"; };
 		833B81271D1FE3D700E37423 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		8393D1B31CCC5D81000E7923 /* BookBag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookBag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8393D1B61CCC5D81000E7923 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,23 @@
 				4ACCAE5850EF07BC983D7C95 /* Pods-BookBag.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		831EFE1C1D2F1C5300BC6C59 /* BookDetail */ = {
+			isa = PBXGroup;
+			children = (
+				831EFE1A1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift */,
+				831EFE1F1D2F1C8300BC6C59 /* Cells */,
+			);
+			name = BookDetail;
+			sourceTree = "<group>";
+		};
+		831EFE1F1D2F1C8300BC6C59 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				831EFE1D1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		833B81291D22905400E37423 /* Model */ = {
@@ -199,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */,
+				831EFE1C1D2F1C5300BC6C59 /* BookDetail */,
 			);
 			name = HOME;
 			sourceTree = "<group>";
@@ -425,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831EFE1E1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift in Sources */,
 				83A5C0B91D15122200F51D2C /* FirebaseController.swift in Sources */,
 				83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */,
 				8393D1B71CCC5D81000E7923 /* AppDelegate.swift in Sources */,
@@ -436,6 +459,7 @@
 				83ECE2901D229DBA00C5824C /* Bid.swift in Sources */,
 				83ECE28D1D229ABE00C5824C /* SellReviewTableViewController.swift in Sources */,
 				83BD93751CCED25900E56534 /* ExtraSellTableViewCell.swift in Sources */,
+				831EFE1B1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift in Sources */,
 				83BD93731CCECA8A00E56534 /* SellTableViewController.swift in Sources */,
 				83ECE2941D22A00E00C5824C /* UserController.swift in Sources */,
 				83BD936D1CCEB83300E56534 /* BookController.swift in Sources */,
