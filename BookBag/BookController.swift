@@ -12,7 +12,7 @@ import Firebase
 class BookController {
     
     // Buying
-    static func queryBooks(searchString:String, completion:(book:[Book]?) -> Void){
+    static func queryBooks(searchString:String?, completion:(book:[Book]?) -> Void){
         
         FirebaseController.bookBase.observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, childKey) in
             if let bookDictionaries = snapshot.value as? [String: AnyObject] {

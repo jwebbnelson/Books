@@ -10,17 +10,13 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
-    var records: [Book]?
+    var bookArray: [Book]?
+    var searchController: UISearchController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        BookController.queryBooks("") { (book) in
-            self.records = book
-            dispatch_async(dispatch_get_main_queue(), { 
-                self.tableView.reloadData()
-            })
-        }
+        setUpSearchController()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -41,18 +37,17 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return records?.count ?? 0
+        return bookArray?.count ?? 0
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
         
-        if let records = records {
-            cell.textLabel?.text = records[indexPath.row].title
-            cell.detailTextLabel?.text = records[indexPath.row].author
+        if let books = bookArray {
+            cell.textLabel?.text = books[indexPath.row].title
+            cell.detailTextLabel?.text = books[indexPath.row].author
         }
-        
         
         return cell
     }
@@ -104,3 +99,35 @@ class HomeTableViewController: UITableViewController {
      */
     
 }
+
+extension HomeTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        BookController.queryBooks(searchController.searchBar.text) { (book) in
+            if let books = book {
+                if let resultsController = searchController.searchResultsController as? HomeTableViewController {
+                    resultsController.tableView.tableHeaderView = UIView()
+                    resultsController.bookArray = books
+                    dispatch_async(dispatch_get_main_queue(), {
+                        resultsController.tableView.reloadData()
+                    })
+                }
+            }
+        }
+    }
+    
+    func setUpSearchController() {
+        
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("searchTVC")
+        
+        searchController = UISearchController(searchResultsController: resultsController)
+        searchController?.searchResultsUpdater = self
+        searchController?.hidesNavigationBarDuringPresentation = true
+        searchController?.searchBar.placeholder = "Search Books by Title..."
+        tableView.tableHeaderView = searchController?.searchBar
+        definesPresentationContext = true
+    }
+}
+
+
