@@ -27,7 +27,7 @@ class Book: Equatable {
     var price: Double
 //    var image: UIImage
     var notes: String?
-    var uID: String
+    var uID: String?
     
     var jsonValue: [String: AnyObject] {
     
@@ -53,6 +53,23 @@ class Book: Equatable {
         self.price = price
 //        self.image = image
         self.uID = ""
+    }
+    
+    
+    init?(json:[String:AnyObject], identifier:String) {
+        guard let title = json[kTitle] as? String,
+        let author = json[kAuthor] as? String,
+        let edition = json[kEdition] as? String,
+        let price = json[kPrice] as? Double else { return nil }
+        
+        self.title = title
+        self.author = author
+        self.edition = edition
+        self.price = price
+        
+        self.notes = json[kNotes] as? String
+        
+        self.uID = identifier
     }
 }
 

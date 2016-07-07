@@ -17,7 +17,6 @@ class HomeTableViewController: UITableViewController {
         
         BookController.queryBooks("") { (book) in
             self.records = book
-            print(self.records?.count)
             dispatch_async(dispatch_get_main_queue(), { 
                 self.tableView.reloadData()
             })
