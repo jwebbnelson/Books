@@ -10,9 +10,13 @@ import UIKit
 
 class BookDetailTableViewController: UITableViewController {
 
+    @IBOutlet weak var tableViewHeaderView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableViewHeaderView.frame.size.height = tableView.frame.size.height/3
+       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -43,6 +47,13 @@ class BookDetailTableViewController: UITableViewController {
         return cell
     }
  
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Details"
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
 
     /*
     // Override to support conditional editing of the table view.
