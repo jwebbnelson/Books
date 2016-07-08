@@ -19,6 +19,7 @@ class Book: Equatable {
     private let kLocation = "location"
     private let kImage = "image"
     private let kNotes = "notes"
+    private let kISBN = "isbn"
     
     var title: String
     var author: String
@@ -27,11 +28,12 @@ class Book: Equatable {
     var price: Double
 //    var image: UIImage
     var notes: String?
+    var isbn: Double
     var uID: String?
     
     var jsonValue: [String: AnyObject] {
     
-        var json: [String: AnyObject] = [kTitle: title, kAuthor: author, kPrice: price, kLocation:kLocation]
+        var json: [String: AnyObject] = [kTitle: title, kAuthor: author, kPrice: price, kLocation:kLocation, kISBN: isbn]
     
         if let edition = edition {
             json[kEdition] = edition
@@ -45,13 +47,14 @@ class Book: Equatable {
     }
     
 
-    init(title:String, author:String, edition:String?, location:CLLocation = CLLocation(), price:Double) {
+    init(title:String, author:String, edition:String?, location:CLLocation = CLLocation(), price:Double, isbn: Double) {
         self.title = title
         self.author = author
 //        self.location = location
         self.edition = edition
         self.price = price
 //        self.image = image
+        self.isbn = isbn
         self.uID = ""
     }
     
@@ -60,12 +63,14 @@ class Book: Equatable {
         guard let title = json[kTitle] as? String,
         let author = json[kAuthor] as? String,
         let edition = json[kEdition] as? String,
-        let price = json[kPrice] as? Double else { return nil }
+        let price = json[kPrice] as? Double,
+        let isbn = json[kISBN] as? Double else { return nil }
         
         self.title = title
         self.author = author
         self.edition = edition
         self.price = price
+        self.isbn = isbn
         
         self.notes = json[kNotes] as? String
         
@@ -75,7 +80,7 @@ class Book: Equatable {
 
 
 func == (lhs:Book, rhs:Book) -> Bool {
-    return  (lhs.title == rhs.title) && (lhs.uID == rhs.uID)
+    return  (lhs.isbn == rhs.isbn) && (lhs.uID == rhs.uID)
 }
 
 
