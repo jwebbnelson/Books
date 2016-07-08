@@ -32,9 +32,9 @@ class BookController {
     }
     
     // Selling
-    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(error:NSError?) -> Void) {
+    static func submitTextbookForApproval(author: String, title:String, isbn: Double, edition:String?, price:Double, notes:String?, completion:(error:NSError?) -> Void) {
         
-        let book = Book(title: title, author: author, edition: edition, price: price)
+        let book = Book(title: title, author: author, edition: edition, price: price, isbn: isbn, notes:notes)
         FirebaseController.bookBase.childByAutoId().setValue(book.jsonValue) { (error, ref) in
             if let error = error {
                 completion(error: error)
