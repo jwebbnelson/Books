@@ -47,13 +47,14 @@ class Book: Equatable {
     }
     
 
-    init(title:String, author:String, edition:String?, location:CLLocation = CLLocation(), price:Double, isbn: Double) {
+    init(title:String, author:String, edition:String?, location:CLLocation = CLLocation(), price:Double, isbn: Double, notes:String?) {
         self.title = title
         self.author = author
 //        self.location = location
         self.edition = edition
         self.price = price
 //        self.image = image
+        self.notes = notes
         self.isbn = isbn
         self.uID = ""
     }
