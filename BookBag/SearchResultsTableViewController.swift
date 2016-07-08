@@ -48,7 +48,6 @@ class SearchResultsTableViewController: UITableViewController {
 
         return cell
     }
-    
 
     /*
     // Override to support conditional editing of the table view.
@@ -85,14 +84,17 @@ class SearchResultsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+      
+        if let navController = segue.destinationViewController as? UINavigationController, let destinationVC = navController.viewControllers.first as? BookDetailTableViewController {
+           
+            if let cell = sender as? SearchResultsTableViewCell, let indexPath = tableView.indexPathForCell(cell), let books = books {
+                destinationVC.book = books[indexPath.row]
+            }
+        }
+        
     }
-    */
-
 }

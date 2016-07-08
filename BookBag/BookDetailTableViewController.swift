@@ -11,6 +11,7 @@ import UIKit
 class BookDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var tableViewHeaderView: UIView!
+    var book: Book?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,9 @@ class BookDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("bookDetailCell", forIndexPath: indexPath) as! BookDetailTableViewCell
         
+        if let book = book {
+            cell.updateCellWithBook(book, row: indexPath.row)
+        }
 
         return cell
     }
@@ -54,7 +58,22 @@ class BookDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-
+    
+    // MARK: - BarButtonActions
+    
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func bidButtonTapped(sender: AnyObject) {
+   
+    }
+   
+    @IBAction func likeButtonTapped(sender: AnyObject) {
+   
+    }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
