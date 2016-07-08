@@ -26,7 +26,7 @@
                                     <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="rM7-1X-gnE" kind="show" id="802-Bb-I4z"/>
+                                    <segue destination="rM7-1X-gnE" kind="show" id="JpW-Yl-ZhD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -142,9 +142,22 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="sRS-Ga-eut">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="Sj9-bD-l65">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="kDn-ji-SHC" id="CTx-Di-f3o"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Bid" id="u4w-l8-9C9"/>
-                            <barButtonItem title="Like" id="YOc-Cf-JEx"/>
+                            <barButtonItem title="Bid" id="u4w-l8-9C9">
+                                <connections>
+                                    <action selector="bidButtonTapped:" destination="kDn-ji-SHC" id="wcZ-ge-FyF"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Like" id="YOc-Cf-JEx">
+                                <connections>
+                                    <action selector="likeButtonTapped:" destination="kDn-ji-SHC" id="mjY-qC-Df6"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
