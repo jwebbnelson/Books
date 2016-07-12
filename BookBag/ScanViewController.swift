@@ -11,6 +11,7 @@ import AVFoundation
 
 class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
+    @IBOutlet weak var cancelButton: UIButton!
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
@@ -55,5 +56,24 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         } catch {
             print("ERROR WITH AVCAPTUREDeviceInput")
         }
+        
+        let captureMetadataOutput = AVCaptureMetadataOutput()
+        captureSession?.addOutput(captureMetadataOutput)
+        
+        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeEAN13Code]
+        
+        setUpVideoCapture()
+    }
+    
+    func setUpVideoCapture() {
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+        videoPreviewLayer?.frame = view.layer.bounds
+        view.layer.addSublayer(videoPreviewLayer!)
+        
+        view.bringSubviewToFront(cancelButton)
+        
+        captureSession?.startRunning()
     }
 }
