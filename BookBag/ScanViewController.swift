@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 
+public let ISBNUpdatedNotification = "ISBNUpdatedNotificationName"
+
 class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     @IBOutlet weak var cancelButton: UIButton!
@@ -97,7 +99,9 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
                 }
             }
             if metadataObject.stringValue != nil {
-                print(metadataObject.stringValue)
+                dismissViewControllerAnimated(true, completion: { 
+                    self.isbnCapturedNotification(metadataObject.stringValue)
+                })
             }
             
         }
@@ -125,4 +129,10 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         view.addSubview(isbnFrameView!)
         view.bringSubviewToFront(isbnFrameView!)
     }
+    
+    func isbnCapturedNotification(isbn:String) {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName(ISBNUpdatedNotification, object: isbn)
+    }
 }
+

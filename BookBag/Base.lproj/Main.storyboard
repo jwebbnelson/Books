@@ -375,6 +375,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="SELL" id="9UA-Db-sIh"/>
                     <connections>
+                        <outlet property="isbnTextField" destination="zLx-fx-s7v" id="d6s-jv-iFc"/>
                         <outlet property="notesTextView" destination="eZI-s0-pnT" id="ikz-NO-Lu8"/>
                         <outlet property="notesView" destination="dWi-Pb-y4S" id="JQW-9n-iQz"/>
                         <outlet property="tableHeadView" destination="vEQ-Oq-YUL" id="bPF-aV-EDZ"/>

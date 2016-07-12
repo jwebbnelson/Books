@@ -31,6 +31,7 @@ class SellTableViewController: UITableViewController {
     var image: UIImage?
     
     @IBOutlet weak var tableHeadView: UIView!
+    @IBOutlet weak var isbnTextField: UITextField!
     @IBOutlet var notesView: UIView!
     let notesBackground = UIView()
     @IBOutlet weak var notesTextView: UITextView!
@@ -40,6 +41,7 @@ class SellTableViewController: UITableViewController {
         
         tableHeadView.frame.size.height = view.frame.size.height/7
         setUpNotesView()
+        listenForNotifications()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -138,6 +140,21 @@ class SellTableViewController: UITableViewController {
     }
     */
 
+    // MARK: - Notifications
+    func listenForNotifications() {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector: #selector(SellTableViewController.updateISBN(_:)), name: ISBNUpdatedNotification, object: nil)
+    }
+    
+    func updateISBN(notification:NSNotification) {
+        if let isbnString = notification.object as? String {
+            isbn = isbnString
+            dispatch_async(dispatch_get_main_queue(), {
+                self.isbnTextField.text = isbnString
+            })
+        }
+    }
+    
 }
 
 extension SellTableViewController: UITextFieldDelegate {
