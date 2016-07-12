@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import AVFoundation
 
-class ScanViewController: UIViewController {
+class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
+    var captureSession:AVCaptureSession?
+    var videoPreviewLayer:AVCaptureVideoPreviewLayer?
+    var qrCodeFrameView:UIView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        setUpCapture()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,4 +41,19 @@ class ScanViewController: UIViewController {
     }
     */
 
+    
+    func setUpCapture() {
+        
+        let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        
+        do {
+          let input = try AVCaptureDeviceInput(device: captureDevice)
+            
+            captureSession = AVCaptureSession()
+            captureSession?.addInput(input)
+            
+        } catch {
+            print("ERROR WITH AVCAPTUREDeviceInput")
+        }
+    }
 }
