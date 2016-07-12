@@ -14,7 +14,7 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     @IBOutlet weak var cancelButton: UIButton!
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
-    var qrCodeFrameView:UIView?
+    var isbnFrameView:UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +43,8 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     */
 
     
+    // MARK: - Capture
+    
     func setUpCapture() {
         
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
@@ -61,7 +63,7 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         captureSession?.addOutput(captureMetadataOutput)
         
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-        captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeEAN13Code]
+        captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeEAN8Code]
         
         setUpVideoCapture()
     }
@@ -75,5 +77,52 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         view.bringSubviewToFront(cancelButton)
         
         captureSession?.startRunning()
+        isbnHighlightBoxSetUp()
+    }
+    
+    
+    // MARK: - AVCaptureDelegate
+    
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+        
+        if metadataObjects == nil || metadataObjects.count == 0 {
+            displayMessage()
+            return
+        }
+        
+        if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject {
+            if metadataObject.type == AVMetadataObjectTypeEAN13Code {
+                if let barcodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObject) {
+                    isbnFrameView?.frame = barcodeObject.bounds
+                }
+            }
+            if metadataObject.stringValue != nil {
+                print(metadataObject.stringValue)
+            }
+            
+        }
+        
+        
+    }
+    
+    // MARK: - ScannerDisplay
+    
+    func displayMessage() {
+        dispatch_async(dispatch_get_main_queue()) { 
+            let messageLabel = UILabel()
+            messageLabel.text = "ISBN not detected"
+            messageLabel.center.x = self.view.center.x
+            messageLabel.center.y = self.view.center.y
+            self.view.addSubview(messageLabel)
+            self.view.bringSubviewToFront(messageLabel)
+        }
+    }
+    
+    func isbnHighlightBoxSetUp() {
+        isbnFrameView = UIView()
+        isbnFrameView?.layer.borderColor = UIColor.blueColor().CGColor
+        isbnFrameView?.layer.borderWidth = 2
+        view.addSubview(isbnFrameView!)
+        view.bringSubviewToFront(isbnFrameView!)
     }
 }
