@@ -37,20 +37,39 @@ class BookDetailTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if let book = self.book, let _ = book.notes {
+                return 5
+        } else {
+            return 4
+        }
     }
-
-
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("bookDetailCell", forIndexPath: indexPath) as! BookDetailTableViewCell
         
         if let book = book {
+            // 5 CELLS
+            if let _ = book.notes {
+                if indexPath.row == 4 {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("bookHighlightCell", forIndexPath: indexPath) as! BookHighlightTableViewCell
+                    cell.updateCell(book)
+                    return cell
+                }
+                
+            } else { // 4 CELLS
+                if indexPath.row == 3 {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("bookHighlightCell", forIndexPath: indexPath) as! BookHighlightTableViewCell
+                    cell.updateCell(book)
+                    return cell
+                }
+            }
+            let cell = tableView.dequeueReusableCellWithIdentifier("bookDetailCell", forIndexPath: indexPath) as! BookDetailTableViewCell
             cell.updateCellWithBook(book, row: indexPath.row)
+            return cell
         }
-
-        return cell
+        return UITableViewCell()
     }
- 
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Details"
     }

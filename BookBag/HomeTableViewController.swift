@@ -106,6 +106,8 @@ extension HomeTableViewController: UISearchResultsUpdating {
                     dispatch_async(dispatch_get_main_queue(), {
                         resultsController.tableView.reloadData()
                     })
+                } else {
+                    self.bookArray = []
                 }
             }
         }
@@ -119,6 +121,7 @@ extension HomeTableViewController: UISearchResultsUpdating {
         searchController?.searchResultsUpdater = self
         searchController?.hidesNavigationBarDuringPresentation = true
         searchController?.searchBar.placeholder = "Search Books by Title..."
+        searchController?.searchBar.autocapitalizationType = UITextAutocapitalizationType.Words
         tableView.tableHeaderView = searchController?.searchBar
         definesPresentationContext = true
     }

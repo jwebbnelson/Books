@@ -164,8 +164,10 @@ extension SellTableViewController: UITextFieldDelegate {
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
             textField.keyboardType = UIKeyboardType.Default
+            textField.autocapitalizationType = UITextAutocapitalizationType.Words
         case SellTextFields.Author.rawValue:
             textField.keyboardType = UIKeyboardType.Default
+            textField.autocapitalizationType = UITextAutocapitalizationType.Words
         case SellTextFields.Edition.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         case SellTextFields.Location.rawValue:
@@ -176,7 +178,6 @@ extension SellTableViewController: UITextFieldDelegate {
         default:
             return
         }
-        
     }
     
     

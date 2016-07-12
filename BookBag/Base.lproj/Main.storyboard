@@ -135,6 +135,38 @@
                                     <outlet property="iconImage" destination="kmf-YW-4oC" id="NJ0-kf-wrt"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookHighlightCell" id="w2V-mB-3eA" customClass="BookHighlightTableViewCell" customModule="BookBag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="334.5" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w2V-mB-3eA" id="N3l-Qe-2Ag">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ux-pq-dUg">
+                                            <rect key="frame" x="17" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JjD-i3-1dg">
+                                            <rect key="frame" x="546" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="JjD-i3-1dg" firstAttribute="centerY" secondItem="N3l-Qe-2Ag" secondAttribute="centerY" id="4OV-3F-gMS"/>
+                                        <constraint firstItem="8ux-pq-dUg" firstAttribute="centerY" secondItem="N3l-Qe-2Ag" secondAttribute="centerY" id="Ix6-Hm-dx5"/>
+                                        <constraint firstItem="8ux-pq-dUg" firstAttribute="leading" secondItem="N3l-Qe-2Ag" secondAttribute="leadingMargin" constant="9" id="hvB-Ul-m6k"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="JjD-i3-1dg" secondAttribute="trailing" constant="4" id="jlQ-Uq-cS3"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="locationLabel" destination="8ux-pq-dUg" id="jFG-Yn-9Lo"/>
+                                    <outlet property="priceLabel" destination="JjD-i3-1dg" id="BlO-fb-1Gf"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="kDn-ji-SHC" id="LUp-ws-scA"/>
