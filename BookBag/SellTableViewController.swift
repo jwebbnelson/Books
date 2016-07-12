@@ -245,8 +245,8 @@ extension SellTableViewController: SellButtonDelegate {
     func sellButtonTapped() {
         view.endEditing(true)
         
-        if let title = title, let author = author, price = price {
-            BookController.submitTextbookForApproval(author, title: title, isbn: 01920284, edition: edition, price: price ?? 0, notes: notes) { (error) in
+        if let title = title, let author = author, price = price, let isbn = isbn {
+            BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (error) in
                 if let error = error {
                     print(error.description)
                 } else {
