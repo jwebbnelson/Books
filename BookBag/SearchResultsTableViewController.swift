@@ -42,13 +42,16 @@ class SearchResultsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchResultsCell", forIndexPath: indexPath) as! SearchResultsTableViewCell
 
         if let books = books {
-            cell.textLabel?.text = books[indexPath.row].title
-            cell.detailTextLabel?.text = books[indexPath.row].author
+            cell.updateWithBook(books[indexPath.row])
         }
 
         return cell
     }
 
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

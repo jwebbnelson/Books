@@ -61,7 +61,6 @@ class Book: Equatable {
     
     
     init?(json:[String:AnyObject], identifier:String) {
-        print(json)
         guard let title = json[kTitle] as? String,
         let author = json[kAuthor] as? String,
         let edition = json[kEdition] as? String,
