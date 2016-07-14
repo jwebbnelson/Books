@@ -107,7 +107,7 @@ extension HomeTableViewController: UISearchResultsUpdating {
                         resultsController.tableView.reloadData()
                     })
                 } else {
-                    resultsController.books = []
+                    self.bookArray = []
                 }
             }
         }
