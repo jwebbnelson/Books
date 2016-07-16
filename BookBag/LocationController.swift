@@ -27,6 +27,7 @@ class LocationController {
                 completion(placemark: nil)
             }
         }
+        
     }
     
 }

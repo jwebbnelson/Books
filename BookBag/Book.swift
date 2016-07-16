@@ -7,49 +7,41 @@
 //
 
 import Foundation
-import CoreLocation
-import Firebase
+import UIKit
+import CloudKit
 
 class Book {
-    
-    private let kTitle = "Title"
-    private let kAuthor = "Author"
-    private let kEdition = "Edition"
-//    private let kLocation: CLLocation
-    private let kPrice = "Price"
-    private let kImage = "ImageURL"
     
     var title: String
     var author: String
     var edition: String
     var location: CLLocation
     var price: Double
-    var imageURL: String
-    var uID: String
+//    var image: UIImage
+    var recordID: String
 
-    init(title:String, author:String, edition:String, location:CLLocation, price:Double, imageURL:String) {
+    init(title:String, author:String, edition:String, location:CLLocation, price:Double) {
         self.title = title
         self.author = author
         self.location = location
         self.edition = edition
         self.price = price
-        self.imageURL = imageURL
-        self.uID = ""
+//        self.image = image
+        self.recordID = ""
     }
     
-//    init?(snapshot:FDataSnapshot) {
-//        
-//        guard let title = snapshot.value[kTitle] as? String, let author = snapshot.value[kAuthor] as? String, let edition = snapshot.value[kEdition] as? String, let price = snapshot.value[kPrice] as? Double,let imageURL = snapshot.value[kImage] as? String else {
-//            return
-//        }
-//        self.title = title
-//        self.author = author
-//        self.edition = edition
-//        self.price = price
-//        self.location = CLLocation() // MUST BE CHANGED
-//        self.imageURL = imageURL
-//        self.uID = snapshot.key // MAY BE LOCATION
-//    }
+    
+    init?(record:CKRecord) {
+        guard let title = record["Title"] as? String, let author = record["Author"] as? String, let edition = record["Edition"] as? String, let location = record["Location"] as? CLLocation, let price = record["Price"] as? Double else {
+            return nil
+        }
+        self.title = title
+        self.author = author
+        self.edition = edition
+        self.location = location
+        self.recordID = record.recordID.recordName
+        self.price = price
+    }
     
 }
 

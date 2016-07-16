@@ -15,12 +15,7 @@
 		8393D1D71CCC5D81000E7923 /* BookBagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393D1D61CCC5D81000E7923 /* BookBagUITests.swift */; };
 		83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */; };
 		83A9D39D1CD16D480020E687 /* NextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */; };
-		83B6CE811CE22B5E009C3FB5 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B6CE801CE22B5E009C3FB5 /* libicucore.tbd */; };
-		83B6CE831CE22B6A009C3FB5 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B6CE821CE22B6A009C3FB5 /* libc++.tbd */; };
-		83B6CE851CE22B76009C3FB5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B6CE841CE22B76009C3FB5 /* CFNetwork.framework */; };
-		83B6CE871CE22B7D009C3FB5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B6CE861CE22B7D009C3FB5 /* Security.framework */; };
-		83B6CE891CE22B85009C3FB5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B6CE881CE22B85009C3FB5 /* SystemConfiguration.framework */; };
-		83B6CE8E1CE22C7B009C3FB5 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B6CE8D1CE22C7B009C3FB5 /* Firebase.framework */; };
+		83BD93691CCEAE3800E56534 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BD93681CCEAE3800E56534 /* CloudKit.framework */; };
 		83BD936D1CCEB83300E56534 /* BookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD936C1CCEB83300E56534 /* BookController.swift */; };
 		83BD936F1CCEB87800E56534 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD936E1CCEB87800E56534 /* LocationController.swift */; };
 		83BD93711CCEC3F700E56534 /* BasicSellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93701CCEC3F700E56534 /* BasicSellTableViewCell.swift */; };
@@ -61,12 +56,8 @@
 		8393D1D81CCC5D81000E7923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextTableViewCell.swift; sourceTree = "<group>"; };
-		83B6CE801CE22B5E009C3FB5 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
-		83B6CE821CE22B6A009C3FB5 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		83B6CE841CE22B76009C3FB5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		83B6CE861CE22B7D009C3FB5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		83B6CE881CE22B85009C3FB5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		83B6CE8D1CE22C7B009C3FB5 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		83BD93671CCEAE1600E56534 /* BookBag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = BookBag.entitlements; path = BookBag/BookBag.entitlements; sourceTree = "<group>"; };
+		83BD93681CCEAE3800E56534 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		83BD936C1CCEB83300E56534 /* BookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookController.swift; sourceTree = "<group>"; };
 		83BD936E1CCEB87800E56534 /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		83BD93701CCEC3F700E56534 /* BasicSellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSellTableViewCell.swift; sourceTree = "<group>"; };
@@ -80,12 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83B6CE891CE22B85009C3FB5 /* SystemConfiguration.framework in Frameworks */,
-				83B6CE8E1CE22C7B009C3FB5 /* Firebase.framework in Frameworks */,
-				83B6CE871CE22B7D009C3FB5 /* Security.framework in Frameworks */,
-				83B6CE851CE22B76009C3FB5 /* CFNetwork.framework in Frameworks */,
-				83B6CE831CE22B6A009C3FB5 /* libc++.tbd in Frameworks */,
-				83B6CE811CE22B5E009C3FB5 /* libicucore.tbd in Frameworks */,
+				83BD93691CCEAE3800E56534 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,11 +95,12 @@
 		8393D1AA1CCC5D81000E7923 = {
 			isa = PBXGroup;
 			children = (
+				83BD93671CCEAE1600E56534 /* BookBag.entitlements */,
+				83BD93681CCEAE3800E56534 /* CloudKit.framework */,
 				8393D1B51CCC5D81000E7923 /* BookBag */,
 				8393D1CA1CCC5D81000E7923 /* BookBagTests */,
 				8393D1D51CCC5D81000E7923 /* BookBagUITests */,
 				8393D1B41CCC5D81000E7923 /* Products */,
-				83B6CE8A1CE22B91009C3FB5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,34 +157,13 @@
 			name = HOME;
 			sourceTree = "<group>";
 		};
-		83B6CE7F1CE22B17009C3FB5 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				83BD93701CCEC3F700E56534 /* BasicSellTableViewCell.swift */,
-				83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */,
-				83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
-		83B6CE8A1CE22B91009C3FB5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				83B6CE8D1CE22C7B009C3FB5 /* Firebase.framework */,
-				83B6CE821CE22B6A009C3FB5 /* libc++.tbd */,
-				83B6CE801CE22B5E009C3FB5 /* libicucore.tbd */,
-				83B6CE881CE22B85009C3FB5 /* SystemConfiguration.framework */,
-				83B6CE861CE22B7D009C3FB5 /* Security.framework */,
-				83B6CE841CE22B76009C3FB5 /* CFNetwork.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		83BD93761CCED26100E56534 /* SELL */ = {
 			isa = PBXGroup;
 			children = (
 				83BD93721CCECA8A00E56534 /* SellTableViewController.swift */,
-				83B6CE7F1CE22B17009C3FB5 /* Cells */,
+				83BD93701CCEC3F700E56534 /* BasicSellTableViewCell.swift */,
+				83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */,
+				83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */,
 			);
 			name = SELL;
 			sourceTree = "<group>";
@@ -273,7 +239,7 @@
 						DevelopmentTeam = N9YM4MAB27;
 						SystemCapabilities = {
 							com.apple.iCloud = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -492,10 +458,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BookBag/BookBag.entitlements;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = BookBag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JWN.BookBag;
@@ -508,10 +470,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BookBag/BookBag.entitlements;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = BookBag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JWN.BookBag;
