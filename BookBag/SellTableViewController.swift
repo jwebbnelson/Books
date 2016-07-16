@@ -154,7 +154,6 @@ class SellTableViewController: UITableViewController {
             })
         }
     }
-    
 }
 
 extension SellTableViewController: UITextFieldDelegate {
@@ -173,13 +172,11 @@ extension SellTableViewController: UITextFieldDelegate {
         case SellTextFields.Location.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         case SellTextFields.Price.rawValue:
-            price = NSNumberFormatter().numberFromString(textField.text ?? "")?.doubleValue
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         default:
             return
         }
     }
-    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         switch  textField.placeholder! {
@@ -236,6 +233,7 @@ extension SellTableViewController: UITextFieldDelegate {
                 textField.text = "$\(text)"
             }
         default:
+            isbn = isbnTextField.text
             return
         }
         
@@ -247,11 +245,20 @@ extension SellTableViewController: SellButtonDelegate {
         view.endEditing(true)
         
         if let title = title, let author = author, price = price, let isbn = isbn {
-            BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (error) in
+            BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (bookID, error) in
                 if let error = error {
                     print(error.description)
                 } else {
                     print("TEXTBOOK SAVED")
+                    if let image = self.image, let bookID = bookID {
+                    BookController.uploadPhotoToFirebase(bookID, image: image, completion: { (fileURL, error) in
+                        guard let url = fileURL else {
+                            print(error?.localizedDescription)
+                            return
+                        }
+                        print("SAVED IMAGE: \(url)")
+                    })
+                    }
                 }
             }
             performSegueWithIdentifier("SellReviewSegue", sender: nil)

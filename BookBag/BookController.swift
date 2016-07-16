@@ -8,10 +8,11 @@
 
 import Foundation
 import Firebase
+import UIKit
 
 class BookController {
     
-    // Buying
+    // MARK: - Buying/Searching
     static func queryBooks(searchString:String?, completion:(book:[Book]?) -> Void){
         
         
@@ -31,21 +32,39 @@ class BookController {
         
     }
     
-    // Selling
-    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(error:NSError?) -> Void) {
+    // MARK: - Selling
+    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(bookID: String?, error:NSError?) -> Void) {
         
         let book = Book(title: title, author: author, edition: edition, price: price, isbn: isbn, notes:notes)
         FirebaseController.bookBase.childByAutoId().setValue(book.jsonValue) { (error, ref) in
             if let error = error {
-                completion(error: error)
+                completion(bookID: nil, error: error)
             } else {
                 print("Saved REF: \(ref)")
-                completion(error: nil)
+                completion(bookID: ref.key, error: nil)
             }
-        }   
+        }
     }
     
-    // Bidding
+    // Upload Photo
+    static func uploadPhotoToFirebase(bookID:String, image:UIImage, completion:(fileURL:NSURL?, error:NSError?) -> Void) {
+        
+        if let data: NSData = UIImagePNGRepresentation(image) {
+            
+            let specificImageRef = FirebaseController.imagesRef.child(bookID)
+            
+            let uploadTask = specificImageRef.putData(data, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    completion(fileURL: nil, error: error)
+                } else {
+                    completion(fileURL:metadata?.downloadURL(), error: nil)
+                }
+            })
+        }
+    }
+    
+    
+    // MARK: - Bidding
     static func bidForBook(price:Double, book:Book, completion:(bid:Bid?) -> Void)  {
         
     }
@@ -54,7 +73,7 @@ class BookController {
         
     }
     
-    // Managing (MY BOOKS)
+    // MARK: - Managing (MY BOOKS)
     static func deleteBook(book:Book) {
         
     }

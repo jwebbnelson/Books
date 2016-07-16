@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import CoreLocation
 
 class Book: Equatable {
@@ -26,10 +25,10 @@ class Book: Equatable {
     var edition: String?
 //    var location: CLLocation
     var price: Double
-//    var image: UIImage
+    var image: String
     var notes: String?
     var isbn: String
-    var uID: String?
+    var uID: String
     
     var jsonValue: [String: AnyObject] {
     
@@ -53,7 +52,7 @@ class Book: Equatable {
 //        self.location = location
         self.edition = edition
         self.price = price
-//        self.image = image
+        self.image = ""
         self.notes = notes
         self.isbn = isbn
         self.uID = ""
@@ -65,7 +64,8 @@ class Book: Equatable {
         let author = json[kAuthor] as? String,
         let edition = json[kEdition] as? String,
         let price = json[kPrice] as? Double,
-        let isbn = json[kISBN] as? String else {
+        let isbn = json[kISBN] as? String,
+        let image = json[kImage] as? String else {
             return nil }
         
         self.title = title
@@ -73,6 +73,7 @@ class Book: Equatable {
         self.edition = edition
         self.price = price
         self.isbn = isbn
+        self.image = image
         
         self.notes = json[kNotes] as? String
         

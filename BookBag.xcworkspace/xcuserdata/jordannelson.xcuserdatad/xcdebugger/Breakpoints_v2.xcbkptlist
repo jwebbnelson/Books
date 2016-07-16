@@ -10,43 +10,139 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BookBag/BookController.swift"
-            timestampString = "490047323.967471"
+            timestampString = "490387659.928927"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "queryBooks(_:completion:)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "uploadPhotoToFirebase(_:image:completion:)"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static BookBag.BookController.(queryBooks (Swift.Optional&lt;Swift.String&gt;, completion : (book : Swift.Optional&lt;Swift.Array&lt;BookBag.Book&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "static BookBag.BookController.uploadPhotoToFirebase (Swift.String, image : __ObjC.UIImage, completion : (fileURL : Swift.Optional&lt;__ObjC.NSURL&gt;, error : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "BookBag"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/BookController.swift"
-                  timestampString = "490047475.561074"
+                  timestampString = "490388727.7071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "360">
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "44">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static BookBag.BookController.(queryBooks (Swift.Optional&lt;Swift.String&gt;, completion : (book : Swift.Optional&lt;Swift.Array&lt;BookBag.Book&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  symbolName = "static BookBag.BookController.uploadPhotoToFirebase (Swift.String, image : __ObjC.UIImage, completion : (fileURL : Swift.Optional&lt;__ObjC.NSURL&gt;, error : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "BookBag"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/BookController.swift"
-                  timestampString = "490047475.56117"
+                  timestampString = "490388727.707254"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "28">
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/SellTableViewController.swift"
+            timestampString = "490388661.546031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "sellButtonTapped()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/SellTableViewController.swift"
+            timestampString = "490388661.546031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "sellButtonTapped()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/SellTableViewController.swift"
+            timestampString = "490388661.546031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "sellButtonTapped()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/SellTableViewController.swift"
+            timestampString = "490388834.574456"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
+            landmarkName = "sellButtonTapped()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookBag.SellTableViewController.(sellButtonTapped () -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/SellTableViewController.swift"
+                  timestampString = "490388834.577554"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
+                  offsetFromSymbolStart = "496">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookBag.SellTableViewController.(sellButtonTapped () -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/SellTableViewController.swift"
+                  timestampString = "490388834.577673"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
+                  offsetFromSymbolStart = "552">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -58,12 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BookBag/BookController.swift"
-            timestampString = "490047355.942231"
+            timestampString = "490388877.987301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "queryBooks(_:completion:)"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "uploadPhotoToFirebase(_:image:completion:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,28 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BookBag/BookController.swift"
-            timestampString = "490047424.485104"
+            timestampString = "490388879.196518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "queryBooks(_:completion:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookBag/BookController.swift"
-            timestampString = "490047425.153959"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "queryBooks(_:completion:)"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "uploadPhotoToFirebase(_:image:completion:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
