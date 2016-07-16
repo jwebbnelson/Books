@@ -47,19 +47,25 @@ class BookController {
     }
     
     // Upload Photo
+    // UPDATE RULES in Console .. after write : if request.auth != null
     static func uploadPhotoToFirebase(bookID:String, image:UIImage, completion:(fileURL:NSURL?, error:NSError?) -> Void) {
         
         if let data: NSData = UIImagePNGRepresentation(image) {
             
             let specificImageRef = FirebaseController.imagesRef.child(bookID)
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/png"
             
-            let uploadTask = specificImageRef.putData(data, metadata: nil, completion: { (metadata, error) in
+            let uploadTask = specificImageRef.putData(data, metadata: metaData, completion: { (metadata, error) in
                 if error != nil {
                     completion(fileURL: nil, error: error)
                 } else {
                     completion(fileURL:metadata?.downloadURL(), error: nil)
                 }
             })
+        } else {
+            print("UNABLE TO CREATE DATA FROM IMAGE")
+            completion(fileURL: nil, error: nil)
         }
     }
     
