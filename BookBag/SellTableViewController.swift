@@ -28,13 +28,20 @@ class SellTableViewController: UITableViewController {
     var location: CLLocation?
     var price: Double?
     var notes: String?
+    var image: UIImage?
     
     @IBOutlet weak var tableHeadView: UIView!
+    @IBOutlet weak var isbnTextField: UITextField!
+    @IBOutlet var notesView: UIView!
+    let notesBackground = UIView()
+    @IBOutlet weak var notesTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableHeadView.frame.size.height = view.frame.size.height/7
+        setUpNotesView()
+        listenForNotifications()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -68,7 +75,7 @@ class SellTableViewController: UITableViewController {
         switch indexPath.row {
         case 5:
             let cell = tableView.dequeueReusableCellWithIdentifier("extraCell", forIndexPath: indexPath) as! ExtraSellTableViewCell
-            
+            cell.delegate = self
             return cell
 
         case 6:
@@ -133,6 +140,21 @@ class SellTableViewController: UITableViewController {
     }
     */
 
+    // MARK: - Notifications
+    func listenForNotifications() {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector: #selector(SellTableViewController.updateISBN(_:)), name: ISBNUpdatedNotification, object: nil)
+    }
+    
+    func updateISBN(notification:NSNotification) {
+        if let isbnString = notification.object as? String {
+            isbn = isbnString
+            dispatch_async(dispatch_get_main_queue(), {
+                self.isbnTextField.text = isbnString
+            })
+        }
+    }
+    
 }
 
 extension SellTableViewController: UITextFieldDelegate {
@@ -142,10 +164,12 @@ extension SellTableViewController: UITextFieldDelegate {
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
             textField.keyboardType = UIKeyboardType.Default
+            textField.autocapitalizationType = UITextAutocapitalizationType.Words
         case SellTextFields.Author.rawValue:
             textField.keyboardType = UIKeyboardType.Default
+            textField.autocapitalizationType = UITextAutocapitalizationType.Words
         case SellTextFields.Edition.rawValue:
-            textField.keyboardType = UIKeyboardType.Default
+            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         case SellTextFields.Location.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         case SellTextFields.Price.rawValue:
@@ -154,14 +178,30 @@ extension SellTableViewController: UITextFieldDelegate {
         default:
             return
         }
-        
     }
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
+        switch  textField.placeholder! {
+        case SellTextFields.Title.rawValue:
+            setNextResponder(1)
+        case SellTextFields.Author.rawValue:
+            setNextResponder(2)
+        case SellTextFields.Edition.rawValue:
+            setNextResponder(3)
+        case SellTextFields.Location.rawValue:
+            setNextResponder(4)
+        case SellTextFields.Price.rawValue:
+            textField.resignFirstResponder()
+        default:
+            return true
+        }
         return true
+    }
+    
+    func setNextResponder(nextRow:Int) {
+        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: nextRow, inSection: 0)) as? BasicSellTableViewCell
+        cell?.entryTextField.becomeFirstResponder()
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -199,21 +239,111 @@ extension SellTableViewController: UITextFieldDelegate {
             return
         }
         
-        
     }
 }
 
 extension SellTableViewController: SellButtonDelegate {
     func sellButtonTapped() {
         view.endEditing(true)
-        if let author = author, let title = title, let edition = edition, let price = price, let location = location {
-            BookController.submitTextbookForApproval(author, title: title, isbn: "02830280", edition: edition, price: price, notes: notes, location: location, completion: { (error) in
+        
+        if let title = title, let author = author, price = price, let isbn = isbn {
+            BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (error) in
                 if let error = error {
-                    print("ERROR SAVING TEXTBOOK")
+                    print(error.description)
                 } else {
-                    print("TEXTBOOK SAVED SUCCESSFULLY")
+                    print("TEXTBOOK SAVED")
                 }
-            })
+            }
+            performSegueWithIdentifier("SellReviewSegue", sender: nil)
+        }
+    }
+}
+
+extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func photosPressed() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        let alert = UIAlertController(title: "Add Photo", message: "Take a picture of your textbook", preferredStyle: .ActionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            alert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (_) in
+                imagePicker.sourceType = .Camera
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        self.image = image
+    }
+    
+    func notesPressed() {
+        presentNotesView()
+    }
+}
+
+extension SellTableViewController {
+    
+    func setUpNotesView() {
+        notesView.frame.size.height = view.frame.size.height/3
+        notesView.frame.size.width = view.frame.size.width - 20
+        notesView.center.x = view.center.x
+        notesView.center.y = view.center.y - (view.frame.height * 0.35) + (navigationController?.navigationBar.frame.height)!
+        resetNotesAnimation()
+    }
+    
+    func presentNotesView() {
+        notesBackground.frame = view.frame
+        notesBackground.backgroundColor = UIColor.blackColor()
+        notesBackground.alpha = 0.4
+        view.addSubview(notesBackground)
+        view.addSubview(notesView)
+        UIView.animateWithDuration(0.4, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+            self.notesView.transform = CGAffineTransformIdentity
+            self.notesView.alpha = 1
+        }) { (success) in
+            
+        }
+    }
+    
+    func dismissNotesView() {
+        notesBackground.removeFromSuperview()
+        notesView.removeFromSuperview()
+        resetNotesAnimation()
+        notesTextView.resignFirstResponder()
+    }
+    
+    func resetNotesAnimation() {
+        notesView.transform = CGAffineTransformMakeScale(0, 0)
+        notesView.alpha = 0
+    }
+    
+    @IBAction func saveNotes(sender: AnyObject) {
+        notes = notesTextView.text
+        dismissNotesView()
+    }
+    
+    @IBAction func cancelNotes(sender: AnyObject) {
+        dismissNotesView()
+    }
+}
+
+extension SellTableViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.text == "Enter notes here..." {
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text != "Enter notes here..." {
+            notes = notesTextView.text
         }
     }
 }
