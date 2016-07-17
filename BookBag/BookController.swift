@@ -46,7 +46,7 @@ class BookController {
         }
     }
     
-    // Upload Photo
+    // MARK: - Photo
     // UPDATE RULES in Console .. after write : if request.auth != null
     static func uploadPhotoToFirebase(bookID:String, image:UIImage, completion:(fileURL:NSURL?, error:NSError?) -> Void) {
         
@@ -60,6 +60,9 @@ class BookController {
                 if error != nil {
                     completion(fileURL: nil, error: error)
                 } else {
+                    if let imageURL = metaData.downloadURL() {
+                        updateBookPath(bookID, imagePath:imageURL)
+                    }
                     completion(fileURL:metadata?.downloadURL(), error: nil)
                 }
             })
@@ -69,6 +72,11 @@ class BookController {
         }
     }
     
+    static func updateBookPath(bookID:String,imagePath:NSURL) {
+        if let path = imagePath.path {
+            FirebaseController.bookBase.child(bookID).updateChildValues(["image":path])
+        }
+    }
     
     // MARK: - Bidding
     static func bidForBook(price:Double, book:Book, completion:(bid:Bid?) -> Void)  {

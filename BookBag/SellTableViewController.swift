@@ -84,7 +84,6 @@ class SellTableViewController: UITableViewController {
             return cell
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("basicCell", forIndexPath: indexPath) as! BasicSellTableViewCell
-            
             cell.setDetails(labelArray[indexPath.row], prompt: promptArray[indexPath.row])
             cell.entryTextField.delegate = self
             
@@ -159,7 +158,10 @@ class SellTableViewController: UITableViewController {
 extension SellTableViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
-      
+        if textField.text == textField.placeholder {
+            textField.text = ""
+            textField.textColor = UIColor.blackColor()
+        }
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
             textField.keyboardType = UIKeyboardType.Default
@@ -240,6 +242,7 @@ extension SellTableViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - SellButtonDelegate
 extension SellTableViewController: SellButtonDelegate {
     func sellButtonTapped() {
         view.endEditing(true)
@@ -262,6 +265,16 @@ extension SellTableViewController: SellButtonDelegate {
                 }
             }
             performSegueWithIdentifier("SellReviewSegue", sender: nil)
+        } else {
+            checkRequiredFields()
+        }
+    }
+    
+    func checkRequiredFields() {
+        for cell in tableView.visibleCells {
+            if let indexPath = tableView.indexPathForCell(cell), let textCell = tableView.cellForRowAtIndexPath(indexPath) as? BasicSellTableViewCell {
+                textCell.updateForError()
+            }
         }
     }
 }

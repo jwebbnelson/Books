@@ -30,5 +30,12 @@ class BasicSellTableViewCell: UITableViewCell {
         detailLabel.text = detail
         entryTextField.placeholder = prompt
     }
-
+    
+    func updateForError() {
+        if entryTextField.text == nil || entryTextField.text == "" {
+            entryTextField.text = entryTextField.placeholder
+            entryTextField.textColor = UIColor.redColor()
+        }
+    }
+    
 }
