@@ -29,6 +29,7 @@ class SearchResultsTableViewCell: UITableViewCell {
     }
 
     func updateWithBook(book:Book) {
+        bookImage.image = UIImage()
         titleLabel.text = book.title
         authorLabel.text = book.author
         priceLabel.text = "$\(book.price)"
@@ -36,11 +37,11 @@ class SearchResultsTableViewCell: UITableViewCell {
         
         if let url = NSURL(string: book.image) {
             ImageController.fetchImageAtURL(url) { (image, error) in
-                dispatch_async(dispatch_get_main_queue(), { 
-                    guard let image = image else {
-                        print("FAILURE LOADING IMAGE: \(error?.description)")
-                        return
-                    }
+                guard let image = image else {
+                    print("FAILURE LOADING IMAGE: \(error?.description)")
+                    return
+                }
+                dispatch_async(dispatch_get_main_queue(), {
                     self.bookImage.image = image
                 })
             }
