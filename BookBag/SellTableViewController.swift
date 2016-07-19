@@ -35,6 +35,7 @@ class SellTableViewController: UITableViewController {
     @IBOutlet var notesView: UIView!
     let notesBackground = UIView()
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet var loadingView: LoadingView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +95,12 @@ class SellTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/8
     }
+    
+    // MARK: - TableViewDelegate
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        view.endEditing(true)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -155,6 +162,7 @@ class SellTableViewController: UITableViewController {
     }
 }
 
+// MARK: - TextField Delegate
 extension SellTableViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -248,23 +256,28 @@ extension SellTableViewController: SellButtonDelegate {
         view.endEditing(true)
         
         if let title = title, let author = author, price = price, let isbn = isbn {
+           beginLoadingView()
+            loadingView.updateLabel("Confirming Book Details")
             BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (bookID, error) in
                 if let error = error {
                     print(error.description)
                 } else {
                     print("TEXTBOOK SAVED")
                     if let image = self.image, let bookID = bookID {
+                    self.loadingView.updateLabel("Saving Textbook")
                     BookController.uploadPhotoToFirebase(bookID, image: image, completion: { (fileURL, error) in
                         guard let url = fileURL else {
                             print(error?.localizedDescription)
                             return
                         }
                         print("SAVED IMAGE: \(url)")
+                        self.loadingView.updateLabel("Image Saved")
                     })
                     }
                 }
             }
-            performSegueWithIdentifier("SellReviewSegue", sender: nil)
+            self.dismissLoadingView()
+//            performSegueWithIdentifier("SellReviewSegue", sender: nil)
         } else {
             checkRequiredFields()
         }
@@ -276,6 +289,19 @@ extension SellTableViewController: SellButtonDelegate {
                 textCell.updateForError()
             }
         }
+    }
+    
+    // MARK: - LoadingView
+    func beginLoadingView() {
+        loadingView.center.y = view.center.y
+        loadingView.center.x = view.center.x
+        view.addSubview(loadingView)
+        loadingView.activityIndicator.startAnimating()
+    }
+    
+    func dismissLoadingView() {
+        loadingView.activityIndicator.stopAnimating()
+        loadingView.removeFromSuperview()
     }
 }
 

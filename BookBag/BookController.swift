@@ -50,11 +50,11 @@ class BookController {
     // UPDATE RULES in Console .. after write : if request.auth != null
     static func uploadPhotoToFirebase(bookID:String, image:UIImage, completion:(fileURL:NSURL?, error:NSError?) -> Void) {
         
-        if let data: NSData = UIImagePNGRepresentation(image) {
+        if let data: NSData = UIImageJPEGRepresentation(image, 0.5) {
             
             let specificImageRef = FirebaseController.imagesRef.child(bookID)
             let metaData = FIRStorageMetadata()
-            metaData.contentType = "image/png"
+            metaData.contentType = "image/jpeg"
             
             let uploadTask = specificImageRef.putData(data, metadata: metaData, completion: { (metadata, error) in
                 if error != nil {
@@ -72,10 +72,9 @@ class BookController {
         }
     }
     
-    static func updateBookPath(bookID:String,imagePath:NSURL) {
-        if let path = imagePath.path {
-            FirebaseController.bookBase.child(bookID).updateChildValues(["image":path])
-        }
+    static func updateBookPath(bookID:String, imagePath:NSURL) {
+        print("ImagePath updated")
+        FirebaseController.bookBase.child(bookID).updateChildValues(["image":"\(imagePath)"])
     }
     
     // MARK: - Bidding

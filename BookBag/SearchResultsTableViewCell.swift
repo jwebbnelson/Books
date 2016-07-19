@@ -31,7 +31,7 @@ class SearchResultsTableViewCell: UITableViewCell {
     func updateWithBook(book:Book) {
         titleLabel.text = book.title
         authorLabel.text = book.author
-        priceLabel.text = "\(book.price)"
+        priceLabel.text = "$\(book.price)"
         locationLabel.text = "Location"
     }
 }
