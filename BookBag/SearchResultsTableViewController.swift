@@ -108,6 +108,9 @@ class SearchResultsTableViewController: UITableViewController {
            
             if let cell = sender as? SearchResultsTableViewCell, let indexPath = tableView.indexPathForCell(cell), let books = books {
                 destinationVC.book = books[indexPath.row]
+                if let image = cell.bookImage?.image {
+                    destinationVC.loadedImage = image
+                }
             }
         }
         

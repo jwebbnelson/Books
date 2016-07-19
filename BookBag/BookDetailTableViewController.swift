@@ -12,12 +12,14 @@ class BookDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var tableViewHeaderView: UIView!
     var book: Book?
+    var loadedImage: UIImage?
+    @IBOutlet weak var bookImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableViewHeaderView.frame.size.height = tableView.frame.size.height/3
-       
+        setTableViewSize()
+        loadImage()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -30,8 +32,30 @@ class BookDetailTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func loadImage() {
+        if let image = loadedImage {
+            bookImageView.image = image
+        } else if let book = book, let imageURL = NSURL(string: book.image) {
+            ImageController.fetchImageAtURL(imageURL, completion: { (image, error) in
+                guard let image = image else {
+                    print("FAILURE LOADING IMAGE: \(error?.description)")
+                    return
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.bookImageView.image = image
+                })
+            })
+        }
+    }
+    
+    func setTableViewSize() {
+        tableViewHeaderView.frame.size.height = tableView.frame.size.height/3
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+    }
+    
+    
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -43,7 +67,6 @@ class BookDetailTableViewController: UITableViewController {
             return 4
         }
     }
-    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -76,6 +99,14 @@ class BookDetailTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     // MARK: - BarButtonActions

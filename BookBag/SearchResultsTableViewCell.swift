@@ -21,21 +21,24 @@ class SearchResultsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
     func updateWithBook(book:Book) {
-        bookImage.image = UIImage()
+        handleCellImage(book.image)
         titleLabel.text = book.title
         authorLabel.text = book.author
         priceLabel.text = "$\(book.price)"
         locationLabel.text = "Location"
-        
-        if let url = NSURL(string: book.image) {
+    }
+    
+    func handleCellImage(imageURLString:String) {
+        bookImage.image = nil
+        if let url = NSURL(string: imageURLString) {
             ImageController.fetchImageAtURL(url) { (image, error) in
                 guard let image = image else {
                     print("FAILURE LOADING IMAGE: \(error?.description)")
