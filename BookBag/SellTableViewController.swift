@@ -256,7 +256,7 @@ extension SellTableViewController: SellButtonDelegate {
         view.endEditing(true)
         
         if let title = title, let author = author, price = price, let isbn = isbn {
-           beginLoadingView()
+            beginLoadingView()
             loadingView.updateLabel("Confirming Book Details")
             BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (bookID, error) in
                 if let error = error {
@@ -264,20 +264,26 @@ extension SellTableViewController: SellButtonDelegate {
                 } else {
                     print("TEXTBOOK SAVED")
                     if let image = self.image, let bookID = bookID {
-                    self.loadingView.updateLabel("Saving Textbook")
-                    BookController.uploadPhotoToFirebase(bookID, image: image, completion: { (fileURL, error) in
-                        guard let url = fileURL else {
-                            print(error?.localizedDescription)
-                            return
-                        }
-                        print("SAVED IMAGE: \(url)")
-                        self.loadingView.updateLabel("Image Saved")
-                    })
+                        self.loadingView.updateLabel("Saving Textbook")
+                        BookController.uploadPhotoToFirebase(bookID, image: image, completion: { (fileURL, error) in
+                            guard let url = fileURL else {
+                                print(error?.localizedDescription)
+                                self.dismissLoadingView()
+                                return
+                            }
+                            BookController.updateBookPath(bookID, imagePath: url)
+                            dispatch_async(dispatch_get_main_queue(), { 
+                                self.loadingView.updateLabel("Saved!")
+                                self.dismissLoadingView()
+                            })
+                        })
+                    } else {
+                        self.dismissLoadingView()
                     }
                 }
+                
             }
-            self.dismissLoadingView()
-//            performSegueWithIdentifier("SellReviewSegue", sender: nil)
+            //            performSegueWithIdentifier("SellReviewSegue", sender: nil)
         } else {
             checkRequiredFields()
         }

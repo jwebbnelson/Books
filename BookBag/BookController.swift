@@ -60,9 +60,6 @@ class BookController {
                 if error != nil {
                     completion(fileURL: nil, error: error)
                 } else {
-                    if let imageURL = metaData.downloadURL() {
-                        updateBookPath(bookID, imagePath:imageURL)
-                    }
                     completion(fileURL:metadata?.downloadURL(), error: nil)
                 }
             })

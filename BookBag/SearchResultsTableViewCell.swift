@@ -33,5 +33,17 @@ class SearchResultsTableViewCell: UITableViewCell {
         authorLabel.text = book.author
         priceLabel.text = "$\(book.price)"
         locationLabel.text = "Location"
+        
+        if let url = NSURL(string: book.image) {
+            ImageController.fetchImageAtURL(url) { (image, error) in
+                dispatch_async(dispatch_get_main_queue(), { 
+                    guard let image = image else {
+                        print("FAILURE LOADING IMAGE: \(error?.description)")
+                        return
+                    }
+                    self.bookImage.image = image
+                })
+            }
+        }
     }
 }

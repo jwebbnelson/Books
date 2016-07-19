@@ -63,7 +63,6 @@ class Book: Equatable {
     init?(json:[String:AnyObject], identifier:String) {
         guard let title = json[kTitle] as? String,
         let author = json[kAuthor] as? String,
-        let edition = json[kEdition] as? String,
         let price = json[kPrice] as? Double,
         let isbn = json[kISBN] as? String,
         let image = json[kImage] as? String else {
@@ -71,12 +70,12 @@ class Book: Equatable {
         
         self.title = title
         self.author = author
-        self.edition = edition
         self.price = price
         self.isbn = isbn
         self.image = image
         
         self.notes = json[kNotes] as? String
+        self.edition = json[kEdition] as? String
         
         self.uID = identifier
     }
