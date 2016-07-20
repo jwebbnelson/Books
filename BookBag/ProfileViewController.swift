@@ -8,15 +8,22 @@
 
 import UIKit
 
+enum ProfileState:Int {
+    case Buy
+    
+}
+
 class ProfileViewController: UIViewController {
 
     
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var topView: UIView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUpView()
         // Do any additional setup after loading the view.
     }
 
@@ -25,7 +32,6 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -34,8 +40,23 @@ class ProfileViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
-
+     */
+    
+    func setUpView() {
+//        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
+//        profileImageView.clipsToBounds = true
+//        profileImageView.layer.masksToBounds = false
+        configureViewShadow()
+    }
+    
+    func configureViewShadow() {
+        topView.layer.shadowColor = UIColor.blackColor().CGColor
+        topView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        topView.layer.shadowRadius = 4
+        topView.layer.shadowOpacity = 0.2
+        topView.layer.masksToBounds = false
+    }
+    
 }
 
 // MARK: - CollectionView
@@ -44,9 +65,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("profileBookCell", forIndexPath: indexPath) as! ProfileBookCollectionViewCell
         
-//        cell.layer.shadowColor = UIColor.darkGrayColor().CGColor
-        cell.layer.borderColor = UIColor.separatorGrey().CGColor
-        cell.layer.borderWidth = 1
+        cell.configureShadow()
         
         return cell
     }
@@ -60,12 +79,18 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/2 - 6, height: collectionView.frame.height/2)
+        return CGSize(width: collectionView.frame.width/2 - 9, height: collectionView.frame.height/2)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 4
+    }
+    
+    
     
 }
 
@@ -78,5 +103,17 @@ extension ProfileViewController {
     
     @IBAction func editTapped(sender: AnyObject) {
     
+    }
+}
+
+// MARK: - StackViewButtons
+extension ProfileViewController {
+    
+    @IBAction func buyTapped(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func sellTapped(sender: AnyObject) {
+   
     }
 }
