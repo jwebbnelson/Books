@@ -37,6 +37,9 @@ class BookDetailTableViewCell: UITableViewCell {
         case IconTypes.Title.rawValue:
             updateImage("Title")
             detailLabel.text = book.title
+            if let edition = book.edition {
+                detailLabel.text = detailLabel.text! + " (Edition \(edition))"
+            }
         case IconTypes.Author.rawValue:
             updateImage("Author")
             detailLabel.text = book.author

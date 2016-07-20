@@ -27,6 +27,8 @@
 		83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */; };
 		83A9D39D1CD16D480020E687 /* NextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */; };
 		83AE19511D3E7EC600ABB7FE /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19501D3E7EC600ABB7FE /* ImageController.swift */; };
+		83AE19531D3FCF2200ABB7FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19521D3FCF2200ABB7FE /* ProfileViewController.swift */; };
+		83AE19561D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19551D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift */; };
 		83BD936D1CCEB83300E56534 /* BookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD936C1CCEB83300E56534 /* BookController.swift */; };
 		83BD936F1CCEB87800E56534 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD936E1CCEB87800E56534 /* LocationController.swift */; };
 		83BD93711CCEC3F700E56534 /* BasicSellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93701CCEC3F700E56534 /* BasicSellTableViewCell.swift */; };
@@ -84,6 +86,8 @@
 		83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextTableViewCell.swift; sourceTree = "<group>"; };
 		83AE19501D3E7EC600ABB7FE /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
+		83AE19521D3FCF2200ABB7FE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		83AE19551D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		83BD93671CCEAE1600E56534 /* BookBag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = BookBag.entitlements; path = BookBag/BookBag.entitlements; sourceTree = "<group>"; };
 		83BD936C1CCEB83300E56534 /* BookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookController.swift; sourceTree = "<group>"; };
 		83BD936E1CCEB87800E56534 /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				8393D1B61CCC5D81000E7923 /* AppDelegate.swift */,
 				83A9D39B1CD053360020E687 /* HOME */,
 				83BD93761CCED26100E56534 /* SELL */,
+				83AE19541D3FCF2C00ABB7FE /* PROFILE */,
 				833B81291D22905400E37423 /* Model */,
 				83ECE28E1D229C6B00C5824C /* Controller */,
 				8393D1BD1CCC5D81000E7923 /* Assets.xcassets */,
@@ -246,6 +251,15 @@
 				831EFE1C1D2F1C5300BC6C59 /* BookDetail */,
 			);
 			name = HOME;
+			sourceTree = "<group>";
+		};
+		83AE19541D3FCF2C00ABB7FE /* PROFILE */ = {
+			isa = PBXGroup;
+			children = (
+				83AE19521D3FCF2200ABB7FE /* ProfileViewController.swift */,
+				83AE19551D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift */,
+			);
+			name = PROFILE;
 			sourceTree = "<group>";
 		};
 		83BD93761CCED26100E56534 /* SELL */ = {
@@ -474,11 +488,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				831EFE1E1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift in Sources */,
+				83AE19561D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift in Sources */,
 				83A5C0B91D15122200F51D2C /* FirebaseController.swift in Sources */,
 				83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */,
 				83367F571D3C592500C3996E /* LoadingView.swift in Sources */,
 				8393D1B71CCC5D81000E7923 /* AppDelegate.swift in Sources */,
 				833B81281D1FE3D700E37423 /* ScanViewController.swift in Sources */,
+				83AE19531D3FCF2200ABB7FE /* ProfileViewController.swift in Sources */,
 				83A9D39D1CD16D480020E687 /* NextTableViewCell.swift in Sources */,
 				83BD93711CCEC3F700E56534 /* BasicSellTableViewCell.swift in Sources */,
 				83ECE2921D229F8300C5824C /* User.swift in Sources */,

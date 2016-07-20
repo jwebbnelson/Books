@@ -152,9 +152,7 @@ extension HomeTableViewController {
     }
     
     func restoreSearch() {
-//        searchController?.active = true
-//        searchController?.searchBar.hidden = false
-//        searchController?.searchBar.isFirstResponder()
+        searchController?.searchBar.hidden = false
     }
     
     func resignSearch() {
