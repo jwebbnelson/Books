@@ -8,6 +8,10 @@
 
 import UIKit
 
+public let DismissSearchNotification = "DismissSearchNotificationName"
+public let RestoreSearchNotification = "RestoreSearchNotificationName"
+public let ResignSearchNotification = "ResignSearchNotificationName"
+
 class SearchResultsTableViewController: UITableViewController {
 
     var books: [Book]?
@@ -23,6 +27,14 @@ class SearchResultsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        
+        restoreNotification()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,7 +48,6 @@ class SearchResultsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -62,6 +73,37 @@ class SearchResultsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    // MARK: - TableViewDelegate 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        view.endEditing(true)
+        dismissNotification()
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+//        resignNotification()
+    }
+    
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        resignNotification()
+    }
+    
+    // MARK: - Notifications
+    func dismissNotification() {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName(DismissSearchNotification, object: nil)
+    }
+    
+    func resignNotification() {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName(ResignSearchNotification, object: nil)
+    }
+    
+    func restoreNotification() {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName(RestoreSearchNotification, object: nil)
     }
     
     /*
@@ -98,13 +140,12 @@ class SearchResultsTableViewController: UITableViewController {
         return true
     }
     */
-
     
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       
-        if let navController = segue.destinationViewController as? UINavigationController, let destinationVC = navController.viewControllers.first as? BookDetailTableViewController {
+        if let destinationVC = segue.destinationViewController as? BookDetailTableViewController {
            
             if let cell = sender as? SearchResultsTableViewCell, let indexPath = tableView.indexPathForCell(cell), let books = books {
                 destinationVC.book = books[indexPath.row]
@@ -113,6 +154,6 @@ class SearchResultsTableViewController: UITableViewController {
                 }
             }
         }
-        
     }
+    
 }

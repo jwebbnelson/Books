@@ -136,16 +136,24 @@ class SellTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let destinationVC = segue.destinationViewController as? BookDetailTableViewController, let book = sender as? Book {
+            
+            destinationVC.book = book
+            if let image = image {
+                destinationVC.loadedImage = image
+            }
+        }
     }
-    */
-
+    
+    
     // MARK: - Notifications
     func listenForNotifications() {
         let nc = NSNotificationCenter.defaultCenter()
@@ -258,7 +266,7 @@ extension SellTableViewController: SellButtonDelegate {
         if let title = title, let author = author, price = price, let isbn = isbn {
             beginLoadingView()
             loadingView.updateLabel("Confirming Book Details")
-            BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (bookID, error) in
+            BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (book, bookID, error) in
                 if let error = error {
                     print(error.description)
                 } else {
@@ -272,18 +280,19 @@ extension SellTableViewController: SellButtonDelegate {
                                 return
                             }
                             BookController.updateBookPath(bookID, imagePath: url)
-                            dispatch_async(dispatch_get_main_queue(), { 
+                            dispatch_async(dispatch_get_main_queue(), {
                                 self.loadingView.updateLabel("Saved!")
                                 self.dismissLoadingView()
+                                if let book = book {
+                                    self.performSegueWithIdentifier("SellReviewSegue", sender: book)
+                                }
                             })
                         })
                     } else {
                         self.dismissLoadingView()
                     }
                 }
-                
             }
-            //            performSegueWithIdentifier("SellReviewSegue", sender: nil)
         } else {
             checkRequiredFields()
         }

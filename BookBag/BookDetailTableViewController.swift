@@ -17,7 +17,7 @@ class BookDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setTableViewSize()
         loadImage()
         // Uncomment the following line to preserve selection between presentations

@@ -33,15 +33,15 @@ class BookController {
     }
     
     // MARK: - Selling
-    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(bookID: String?, error:NSError?) -> Void) {
+    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(book:Book?, bookID: String?, error:NSError?) -> Void) {
         
         let book = Book(title: title, author: author, edition: edition, price: price, isbn: isbn, notes:notes)
         FirebaseController.bookBase.childByAutoId().setValue(book.jsonValue) { (error, ref) in
             if let error = error {
-                completion(bookID: nil, error: error)
+                completion(book: nil, bookID: nil, error: error)
             } else {
                 print("Saved REF: \(ref)")
-                completion(bookID: ref.key, error: nil)
+                completion(book: book, bookID: ref.key, error: nil)
             }
         }
     }
@@ -50,7 +50,7 @@ class BookController {
     // UPDATE RULES in Console .. after write : if request.auth != null
     static func uploadPhotoToFirebase(bookID:String, image:UIImage, completion:(fileURL:NSURL?, error:NSError?) -> Void) {
         
-        if let data: NSData = UIImageJPEGRepresentation(image, 0.5) {
+        if let data: NSData = UIImageJPEGRepresentation(image, 0.7) {
             
             let specificImageRef = FirebaseController.imagesRef.child(bookID)
             let metaData = FIRStorageMetadata()

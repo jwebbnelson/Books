@@ -31,7 +31,7 @@ class SearchResultsTableViewCell: UITableViewCell {
     func updateWithBook(book:Book) {
         handleCellImage(book.image)
         titleLabel.text = book.title
-        authorLabel.text = book.author
+        authorLabel.text = "by \(book.author)"
         priceLabel.text = "$\(book.price)"
         locationLabel.text = "Location"
     }
