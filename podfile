@@ -14,6 +14,7 @@ pod 'Firebase/RemoteConfig'
 pod 'Firebase/Storage'
 #pod 'Firebase/Invites'
 #pod 'Firebase/DynamicLinks'
+pod 'FirebaseUI/Auth'
 end
 
 target 'BookBagTests' do
