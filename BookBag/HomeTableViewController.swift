@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class HomeTableViewController: UITableViewController {
     
@@ -92,6 +94,19 @@ class HomeTableViewController: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+    @IBAction func profileButtonTapped(sender: AnyObject) {
+        
+        if let _ = FIRAuth.auth()?.currentUser {
+            // User is signed in.
+            performSegueWithIdentifier("showProfileSegue", sender: nil)
+        } else {
+            // No user is signed in.
+            performSegueWithIdentifier("showSignUpSegue", sender: nil)
+        }
+    
+    }
+    
     
 }
 
