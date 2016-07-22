@@ -7,18 +7,35 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
 
 class User {
     
-    var name:String
-    var phoneNumber: Int
+    var name: String
+    var university: String?
+    var email: String
     var uID: String
     
-    
-    init(name:String, phoneNumber:Int) {
+    init(name:String, university:String, email:String) {
         self.name = name
-        self.phoneNumber = phoneNumber
+        self.university = university
+        self.email = email
         uID = ""
+    }
+    
+    init(fireUser:FIRUser) {
+        if let email = fireUser.email {
+            self.email = email
+        } else {
+            self.email = ""
+        }
+        self.name = fireUser.displayName ?? ""
+        
+        
+        self.university = "University"
+        self.uID = fireUser.uid
+        
     }
     
     

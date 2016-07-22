@@ -10,9 +10,13 @@ import UIKit
 
 class LoginInTableViewController: UITableViewController {
 
+    @IBOutlet var signUpInputView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        setUpInputAccessorry()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,25 +32,45 @@ class LoginInTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 4
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell", forIndexPath: indexPath) as! AuthTextfieldTableViewCell
 
-        // Configure the cell...
+        
 
         return cell
     }
-    */
 
+    // MARK: - InputAccessory
+    override var inputAccessoryView: UIView {
+        return signUpInputView
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    func setUpInputAccessorry() {
+        signUpInputView.frame = CGRectMake(0, 0, self.view.frame.width, 50)
+    }
+    
+    @IBAction func inputAccessTapped(sender: AnyObject) {
+        performSegueWithIdentifier("toSignUpSegue", sender: nil)
+    }
+    
+    @IBAction func cancelTapped(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -91,5 +115,5 @@ class LoginInTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+ 
 }
