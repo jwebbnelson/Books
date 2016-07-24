@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
 
 class UserController {
     
@@ -22,6 +24,16 @@ class UserController {
     
     static func logOutUser(completion:(success:Bool) -> Void){
         
+    }
+    
+    static func checkCurrentUser(completion:(currentUser:Bool) -> Void) {
+        if let _ = FIRAuth.auth()?.currentUser {
+            // User is signed in.
+           completion(currentUser: true)
+        } else {
+            // No user is signed in.
+           completion(currentUser: false)
+        }
     }
     
     

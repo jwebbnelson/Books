@@ -146,10 +146,14 @@
                     <navigationItem key="navigationItem" title="BookBag" id="fv3-Ec-cW4">
                         <barButtonItem key="leftBarButtonItem" image="Author" id="aIG-1m-cp4">
                             <connections>
-                                <segue destination="6lS-aQ-r14" kind="presentation" identifier="showProfileSegue" id="Rgs-GN-YP0"/>
+                                <action selector="profileButtonTapped:" destination="CBw-tT-Wvp" id="pda-nw-Uca"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="6lS-aQ-r14" kind="presentation" identifier="showProfileSegue" id="THJ-3S-fvL"/>
+                        <segue destination="teH-eW-Wpr" kind="presentation" identifier="showSignUpSegue" id="XQh-Md-mU1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJV-Uu-VFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -561,7 +565,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wK-TR-D46">
                             <rect key="frame" x="99" y="53" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -689,6 +693,31 @@
             </objects>
             <point key="canvasLocation" x="1786" y="-2005"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="3eC-uU-9Fq">
+            <objects>
+                <viewController id="WUv-EX-95E" customClass="LoginViewController" customModule="BookBag" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kwx-Qf-Rl3"/>
+                        <viewControllerLayoutGuide type="bottom" id="QeJ-jj-owU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="St4-tQ-ITB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mPJ-2b-PFr">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="rSr-gG-9rX">
+                            <connections>
+                                <action selector="cancelTapped:" destination="WUv-EX-95E" id="PUc-Bw-FoI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xG4-6Y-Ahk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2598" y="-2678"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="wWH-ea-GZw">
             <objects>
@@ -725,7 +754,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l20-ax-fMo">
                                                     <rect key="frame" x="8" y="151" width="218" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBX-7X-OX5">
@@ -737,13 +766,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0d-AH-Lfh">
                                                     <rect key="frame" x="8" y="213" width="218" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVy-ui-RsV">
                                                     <rect key="frame" x="8" y="174" width="218" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -867,6 +896,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="znb-lH-oBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2464" y="-2005"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lB5-8L-HRQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="teH-eW-Wpr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z4o-ei-3gJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WUv-EX-95E" kind="relationship" relationship="rootViewController" id="6gW-So-reb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VAi-pm-mwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1786" y="-2678"/>
         </scene>
     </scenes>
     <resources>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52561C28D37694B5C5F89BB6 /* Pods_BookBag.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DA737179B5D07F6163B73B /* Pods_BookBag.framework */; };
+		831D56281D454BF7003F87CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D56271D454BF7003F87CE /* LoginViewController.swift */; };
 		831EFE1B1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EFE1A1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift */; };
 		831EFE1E1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EFE1D1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift */; };
 		831EFE211D2F1FFB00BC6C59 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EFE201D2F1FFB00BC6C59 /* SearchResultsTableViewController.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		4ACCAE5850EF07BC983D7C95 /* Pods-BookBag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookBag.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookBag/Pods-BookBag.release.xcconfig"; sourceTree = "<group>"; };
 		69DA737179B5D07F6163B73B /* Pods_BookBag.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookBag.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		831D56271D454BF7003F87CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		831EFE1A1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailTableViewController.swift; sourceTree = "<group>"; };
 		831EFE1D1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailTableViewCell.swift; sourceTree = "<group>"; };
 		831EFE201D2F1FFB00BC6C59 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		831D56291D454BFD003F87CE /* SIGN UP */ = {
+			isa = PBXGroup;
+			children = (
+				831D56271D454BF7003F87CE /* LoginViewController.swift */,
+			);
+			name = "SIGN UP";
+			sourceTree = "<group>";
+		};
 		831EFE1C1D2F1C5300BC6C59 /* BookDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +213,7 @@
 			children = (
 				8393D1BA1CCC5D81000E7923 /* Main.storyboard */,
 				8393D1B61CCC5D81000E7923 /* AppDelegate.swift */,
+				831D56291D454BFD003F87CE /* SIGN UP */,
 				83A9D39B1CD053360020E687 /* HOME */,
 				83BD93761CCED26100E56534 /* SELL */,
 				83AE19541D3FCF2C00ABB7FE /* PROFILE */,
@@ -511,6 +522,7 @@
 				831EFE211D2F1FFB00BC6C59 /* SearchResultsTableViewController.swift in Sources */,
 				83ECE2941D22A00E00C5824C /* UserController.swift in Sources */,
 				83BD936D1CCEB83300E56534 /* BookController.swift in Sources */,
+				831D56281D454BF7003F87CE /* LoginViewController.swift in Sources */,
 				83BD936F1CCEB87800E56534 /* LocationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
