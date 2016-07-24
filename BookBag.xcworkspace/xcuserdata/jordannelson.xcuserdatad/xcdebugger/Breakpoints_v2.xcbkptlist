@@ -2,4 +2,310 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/SignUpViewController.swift"
+            timestampString = "491089101.220142"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "signUpTapped(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/SignUpViewController.swift"
+            timestampString = "491089101.220142"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "signUpTapped(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookBag.SignUpViewController.(signUpTapped (Swift.AnyObject) -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/SignUpViewController.swift"
+                  timestampString = "491088204.015253"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "537">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookBag.SignUpViewController.(signUpTapped (Swift.AnyObject) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/SignUpViewController.swift"
+                  timestampString = "491088204.015388"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/SignUpViewController.swift"
+            timestampString = "491089101.220142"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "signUpTapped(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookBag.SignUpViewController.signUpTapped (Swift.AnyObject) -&gt; ()"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/SignUpViewController.swift"
+                  timestampString = "491088204.016328"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "2009">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookBag.SignUpViewController.(signUpTapped (Swift.AnyObject) -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/SignUpViewController.swift"
+                  timestampString = "491088204.016488"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "404">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/UserController.swift"
+            timestampString = "491087873.790348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "fetchUserWithUID(_:completion:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.UserController.fetchUserWithUID (Swift.String, completion : () -&gt; ()) -&gt; ()"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/UserController.swift"
+                  timestampString = "491088204.017491"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "69">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.UserController.(fetchUserWithUID (Swift.String, completion : () -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/UserController.swift"
+                  timestampString = "491088204.017649"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "82">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/UserController.swift"
+            timestampString = "491087873.790348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "signUpUser(_:password:completion:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.UserController.signUpUser (Swift.String, password : Swift.String, completion : (uid : Swift.Optional&lt;Swift.String&gt;, errorString : Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/UserController.swift"
+                  timestampString = "491088204.018551"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.UserController.(signUpUser (Swift.String, password : Swift.String, completion : (uid : Swift.Optional&lt;Swift.String&gt;, errorString : Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/UserController.swift"
+                  timestampString = "491088204.018685"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "42">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/UserController.swift"
+            timestampString = "491087873.790348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "signUpUser(_:password:completion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/UserController.swift"
+            timestampString = "491087873.790348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "signUpUser(_:password:completion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/UserController.swift"
+            timestampString = "491087873.790348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "fetchUserWithUID(_:completion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/UserController.swift"
+            timestampString = "491087944.662678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "createFirebaseUser(_:name:email:school:completion:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.UserController.createFirebaseUser (Swift.String, name : Swift.String, email : Swift.String, school : Swift.String, completion : (success : Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/UserController.swift"
+                  timestampString = "491088204.021327"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "397">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.UserController.(createFirebaseUser (Swift.String, name : Swift.String, email : Swift.String, school : Swift.String, completion : (success : Swift.Bool) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/UserController.swift"
+                  timestampString = "491088204.021469"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "38">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -39,8 +39,8 @@ class ProfileBookCollectionViewCell: UICollectionViewCell {
     
     func configureShadow() {
         layer.shadowColor = UIColor.blackColor().CGColor
-        layer.shadowOffset = CGSize(width: 0, height: 4)
-        layer.shadowRadius = 4
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowRadius = 2
         layer.cornerRadius = 2
         layer.shadowOpacity = 0.2
         layer.masksToBounds = false

@@ -25,5 +25,10 @@ class LoadingView: UIView {
     func updateLabel(message:String) {
         label.text = message
     }
+    
+    func beginLoading() {
+        activityIndicator.startAnimating()
+    }
+    
 
 }

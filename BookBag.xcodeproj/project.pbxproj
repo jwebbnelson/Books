@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		52561C28D37694B5C5F89BB6 /* Pods_BookBag.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DA737179B5D07F6163B73B /* Pods_BookBag.framework */; };
 		831D56281D454BF7003F87CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D56271D454BF7003F87CE /* LoginViewController.swift */; };
+		831D562B1D455009003F87CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D562A1D455009003F87CE /* SignUpViewController.swift */; };
 		831EFE1B1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EFE1A1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift */; };
 		831EFE1E1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EFE1D1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift */; };
 		831EFE211D2F1FFB00BC6C59 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EFE201D2F1FFB00BC6C59 /* SearchResultsTableViewController.swift */; };
@@ -36,6 +37,7 @@
 		83BD93731CCECA8A00E56534 /* SellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93721CCECA8A00E56534 /* SellTableViewController.swift */; };
 		83BD93751CCED25900E56534 /* ExtraSellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */; };
 		83BD93781CCEE76400E56534 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93771CCEE76400E56534 /* Book.swift */; };
+		83E90E1E1D456AD8001ECC4B /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E90E1D1D456AD8001ECC4B /* ProfileEditViewController.swift */; };
 		83ECE28D1D229ABE00C5824C /* SellReviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE28C1D229ABE00C5824C /* SellReviewTableViewController.swift */; };
 		83ECE2901D229DBA00C5824C /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE28F1D229DBA00C5824C /* Bid.swift */; };
 		83ECE2921D229F8300C5824C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE2911D229F8300C5824C /* User.swift */; };
@@ -63,6 +65,7 @@
 		4ACCAE5850EF07BC983D7C95 /* Pods-BookBag.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookBag.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookBag/Pods-BookBag.release.xcconfig"; sourceTree = "<group>"; };
 		69DA737179B5D07F6163B73B /* Pods_BookBag.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookBag.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		831D56271D454BF7003F87CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		831D562A1D455009003F87CE /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		831EFE1A1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailTableViewController.swift; sourceTree = "<group>"; };
 		831EFE1D1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailTableViewCell.swift; sourceTree = "<group>"; };
 		831EFE201D2F1FFB00BC6C59 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 		83BD93721CCECA8A00E56534 /* SellTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellTableViewController.swift; sourceTree = "<group>"; };
 		83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtraSellTableViewCell.swift; sourceTree = "<group>"; };
 		83BD93771CCEE76400E56534 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		83E90E1D1D456AD8001ECC4B /* ProfileEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		83ECE28C1D229ABE00C5824C /* SellReviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellReviewTableViewController.swift; sourceTree = "<group>"; };
 		83ECE28F1D229DBA00C5824C /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 		83ECE2911D229F8300C5824C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				831D56271D454BF7003F87CE /* LoginViewController.swift */,
+				831D562A1D455009003F87CE /* SignUpViewController.swift */,
 			);
 			name = "SIGN UP";
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				83BD93771CCEE76400E56534 /* Book.swift */,
 				83ECE28F1D229DBA00C5824C /* Bid.swift */,
 				83ECE2911D229F8300C5824C /* User.swift */,
+				83367F561D3C592500C3996E /* LoadingView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -269,6 +275,7 @@
 			children = (
 				83AE19521D3FCF2200ABB7FE /* ProfileViewController.swift */,
 				83AE19551D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift */,
+				83E90E1D1D456AD8001ECC4B /* ProfileEditViewController.swift */,
 			);
 			name = PROFILE;
 			sourceTree = "<group>";
@@ -277,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				83BD93721CCECA8A00E56534 /* SellTableViewController.swift */,
-				83367F561D3C592500C3996E /* LoadingView.swift */,
 				83A5C0B51D0E96E200F51D2C /* Cells */,
 				833B81271D1FE3D700E37423 /* ScanViewController.swift */,
 				83ECE28C1D229ABE00C5824C /* SellReviewTableViewController.swift */,
@@ -504,7 +510,9 @@
 				83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */,
 				83367F571D3C592500C3996E /* LoadingView.swift in Sources */,
 				8393D1B71CCC5D81000E7923 /* AppDelegate.swift in Sources */,
+				831D562B1D455009003F87CE /* SignUpViewController.swift in Sources */,
 				833B81281D1FE3D700E37423 /* ScanViewController.swift in Sources */,
+				83E90E1E1D456AD8001ECC4B /* ProfileEditViewController.swift in Sources */,
 				83AE19531D3FCF2200ABB7FE /* ProfileViewController.swift in Sources */,
 				83A9D39D1CD16D480020E687 /* NextTableViewCell.swift in Sources */,
 				83BD93711CCEC3F700E56534 /* BasicSellTableViewCell.swift in Sources */,

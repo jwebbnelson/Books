@@ -15,6 +15,7 @@ class FirebaseController {
     static let storage = FIRStorage.storage()
     
     static let bookBase = base.child("Books")
+    static let userBase = base.child("Users")
     
     static let storageRef = storage.referenceForURL("gs://bookbag-b2b09.appspot.com")
     static let imagesRef = storageRef.child("images")
