@@ -35,14 +35,10 @@
 		83BD93731CCECA8A00E56534 /* SellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93721CCECA8A00E56534 /* SellTableViewController.swift */; };
 		83BD93751CCED25900E56534 /* ExtraSellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */; };
 		83BD93781CCEE76400E56534 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93771CCEE76400E56534 /* Book.swift */; };
-		83D8EF0B1D4538150080C717 /* AuthButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D8EF0A1D4538150080C717 /* AuthButtonTableViewCell.swift */; };
 		83ECE28D1D229ABE00C5824C /* SellReviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE28C1D229ABE00C5824C /* SellReviewTableViewController.swift */; };
 		83ECE2901D229DBA00C5824C /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE28F1D229DBA00C5824C /* Bid.swift */; };
 		83ECE2921D229F8300C5824C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE2911D229F8300C5824C /* User.swift */; };
 		83ECE2941D22A00E00C5824C /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE2931D22A00E00C5824C /* UserController.swift */; };
-		83F18BED1D414DBF00C8B276 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F18BEC1D414DBF00C8B276 /* SignUpTableViewController.swift */; };
-		83F18BEF1D41516200C8B276 /* LoginInTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F18BEE1D41516200C8B276 /* LoginInTableViewController.swift */; };
-		83F18BF41D41AB5C00C8B276 /* AuthTextfieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F18BF31D41AB5C00C8B276 /* AuthTextfieldTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,14 +95,10 @@
 		83BD93721CCECA8A00E56534 /* SellTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellTableViewController.swift; sourceTree = "<group>"; };
 		83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtraSellTableViewCell.swift; sourceTree = "<group>"; };
 		83BD93771CCEE76400E56534 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		83D8EF0A1D4538150080C717 /* AuthButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthButtonTableViewCell.swift; sourceTree = "<group>"; };
 		83ECE28C1D229ABE00C5824C /* SellReviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellReviewTableViewController.swift; sourceTree = "<group>"; };
 		83ECE28F1D229DBA00C5824C /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 		83ECE2911D229F8300C5824C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		83ECE2931D22A00E00C5824C /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
-		83F18BEC1D414DBF00C8B276 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
-		83F18BEE1D41516200C8B276 /* LoginInTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInTableViewController.swift; sourceTree = "<group>"; };
-		83F18BF31D41AB5C00C8B276 /* AuthTextfieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTextfieldTableViewCell.swift; sourceTree = "<group>"; };
 		8EA24D94C43C8A13886B95A1 /* Pods-BookBag.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookBag.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BookBag/Pods-BookBag.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -299,10 +291,6 @@
 		83F18BF01D41519500C8B276 /* LOGIN */ = {
 			isa = PBXGroup;
 			children = (
-				83F18BEE1D41516200C8B276 /* LoginInTableViewController.swift */,
-				83F18BEC1D414DBF00C8B276 /* SignUpTableViewController.swift */,
-				83F18BF31D41AB5C00C8B276 /* AuthTextfieldTableViewCell.swift */,
-				83D8EF0A1D4538150080C717 /* AuthButtonTableViewCell.swift */,
 			);
 			name = LOGIN;
 			sourceTree = "<group>";
@@ -508,7 +496,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				831EFE1E1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift in Sources */,
-				83F18BED1D414DBF00C8B276 /* SignUpTableViewController.swift in Sources */,
 				83AE19561D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift in Sources */,
 				83A5C0B91D15122200F51D2C /* FirebaseController.swift in Sources */,
 				83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */,
@@ -523,14 +510,11 @@
 				831EFE241D2F221500BC6C59 /* SearchResultsTableViewCell.swift in Sources */,
 				832B5D7E1D37420E00B2BD48 /* Colors.swift in Sources */,
 				832B5D7A1D3583B100B2BD48 /* BookHighlightTableViewCell.swift in Sources */,
-				83F18BEF1D41516200C8B276 /* LoginInTableViewController.swift in Sources */,
 				83AE19511D3E7EC600ABB7FE /* ImageController.swift in Sources */,
 				83ECE2901D229DBA00C5824C /* Bid.swift in Sources */,
-				83D8EF0B1D4538150080C717 /* AuthButtonTableViewCell.swift in Sources */,
 				83ECE28D1D229ABE00C5824C /* SellReviewTableViewController.swift in Sources */,
 				83BD93751CCED25900E56534 /* ExtraSellTableViewCell.swift in Sources */,
 				831EFE1B1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift in Sources */,
-				83F18BF41D41AB5C00C8B276 /* AuthTextfieldTableViewCell.swift in Sources */,
 				83BD93731CCECA8A00E56534 /* SellTableViewController.swift in Sources */,
 				831EFE211D2F1FFB00BC6C59 /* SearchResultsTableViewController.swift in Sources */,
 				83ECE2941D22A00E00C5824C /* UserController.swift in Sources */,
