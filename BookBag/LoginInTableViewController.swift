@@ -17,6 +17,7 @@ class LoginInTableViewController: UITableViewController {
 
         
         
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -27,6 +28,8 @@ class LoginInTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         setUpInputAccessorry()
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
     }
 
     override func didReceiveMemoryWarning() {

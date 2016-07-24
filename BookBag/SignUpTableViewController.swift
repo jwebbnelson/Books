@@ -10,14 +10,23 @@ import UIKit
 
 class SignUpTableViewController: UITableViewController {
 
+    @IBOutlet var returnToSignInButton: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.hidden = true
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        setUpInputAccessorry()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +64,34 @@ class SignUpTableViewController: UITableViewController {
     }
     */
 
+    
+    // MARK: - InputAccessory 
+    // MARK: - InputAccessory
+    
+    override var inputAccessoryView: UIView {
+        return returnToSignInButton
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    func setUpInputAccessorry() {
+        returnToSignInButton.frame = CGRectMake(0, 0, self.view.frame.width, 50)
+        let frame = CGRectMake(0, 0, view.frame.size.width, 30)
+        let returnButton = UIButton(frame: frame)
+        returnButton.setTitle("Return to Sign In?", forState: .Normal)
+        returnButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        returnToSignInButton.addSubview(returnButton)
+        returnButton.addTarget(self, action: #selector(SignUpTableViewController.returnToSignIn), forControlEvents: .TouchUpInside)
+    }
+    
+    func returnToSignIn() {
+        if let navController = navigationController {
+            navController.popViewControllerAnimated(true)
+        }
+    }
+    
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

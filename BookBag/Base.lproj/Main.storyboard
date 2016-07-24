@@ -827,6 +827,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="tvB-GD-el7">
+                            <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hxd-VA-W3K">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
@@ -842,30 +846,18 @@
                             <outlet property="delegate" destination="DNQ-mk-JbK" id="EWf-tD-6MS"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="returnToSignInButton" destination="DFb-6G-rdc" id="rAg-Dc-u7d"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c8f-Ky-lzA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="DFb-6G-rdc">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJU-kF-QIp">
-                            <rect key="frame" x="0.0" y="50.5" width="240" height="27"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <state key="normal" title="Return to Sign In?"/>
-                            <connections>
-                                <action selector="inputAccessTapped:" destination="uyX-So-EDR" eventType="touchUpInside" id="LJ2-CO-ED8"/>
-                            </connections>
-                        </button>
-                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="mJU-kF-QIp" firstAttribute="centerY" secondItem="DFb-6G-rdc" secondAttribute="centerY" id="I1R-XG-VXx"/>
-                        <constraint firstItem="mJU-kF-QIp" firstAttribute="width" secondItem="DFb-6G-rdc" secondAttribute="width" id="Wyy-f4-Bq6"/>
-                        <constraint firstItem="mJU-kF-QIp" firstAttribute="centerX" secondItem="DFb-6G-rdc" secondAttribute="centerX" id="koI-7A-XX4"/>
-                    </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3084" y="-2705"/>
+            <point key="canvasLocation" x="3122" y="-2705"/>
         </scene>
         <!--Profile-->
         <scene sceneID="wWH-ea-GZw">
