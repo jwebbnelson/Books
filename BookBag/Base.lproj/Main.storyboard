@@ -757,7 +757,7 @@
                                     <outlet property="inputTextField" destination="fTQ-jg-i8H" id="X82-bn-Yqb"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="buttonCell" id="Zsy-Rt-DBT">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="buttonCell" id="Zsy-Rt-DBT" customClass="AuthButtonTableViewCell" customModule="BookBag" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="189" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zsy-Rt-DBT" id="deF-e4-qHp">

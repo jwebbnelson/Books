@@ -16,12 +16,17 @@ class LoginInTableViewController: UITableViewController {
         super.viewDidLoad()
 
         
-        setUpInputAccessorry()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        setUpInputAccessorry()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,11 +47,19 @@ class LoginInTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell", forIndexPath: indexPath) as! AuthTextfieldTableViewCell
-
+       
+        switch indexPath.row {
+        case 2:
+            let buttonCell = tableView.dequeueReusableCellWithIdentifier("buttonCell", forIndexPath: indexPath) as! AuthButtonTableViewCell
+            
+            return buttonCell
+        default:
+            let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell", forIndexPath: indexPath) as! AuthTextfieldTableViewCell
+    
+            return cell
+        }
+    
         
-
-        return cell
     }
 
     // MARK: - InputAccessory
@@ -67,8 +80,8 @@ class LoginInTableViewController: UITableViewController {
     }
     
     @IBAction func cancelTapped(sender: AnyObject) {
+        signUpInputView.transform = CGAffineTransformMakeScale(0, 0)
         dismissViewControllerAnimated(true, completion: nil)
-    
     }
     
     /*

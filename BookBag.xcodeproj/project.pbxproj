@@ -35,6 +35,7 @@
 		83BD93731CCECA8A00E56534 /* SellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93721CCECA8A00E56534 /* SellTableViewController.swift */; };
 		83BD93751CCED25900E56534 /* ExtraSellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */; };
 		83BD93781CCEE76400E56534 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BD93771CCEE76400E56534 /* Book.swift */; };
+		83D8EF0B1D4538150080C717 /* AuthButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D8EF0A1D4538150080C717 /* AuthButtonTableViewCell.swift */; };
 		83ECE28D1D229ABE00C5824C /* SellReviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE28C1D229ABE00C5824C /* SellReviewTableViewController.swift */; };
 		83ECE2901D229DBA00C5824C /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE28F1D229DBA00C5824C /* Bid.swift */; };
 		83ECE2921D229F8300C5824C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECE2911D229F8300C5824C /* User.swift */; };
@@ -98,6 +99,7 @@
 		83BD93721CCECA8A00E56534 /* SellTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellTableViewController.swift; sourceTree = "<group>"; };
 		83BD93741CCED25900E56534 /* ExtraSellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtraSellTableViewCell.swift; sourceTree = "<group>"; };
 		83BD93771CCEE76400E56534 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		83D8EF0A1D4538150080C717 /* AuthButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthButtonTableViewCell.swift; sourceTree = "<group>"; };
 		83ECE28C1D229ABE00C5824C /* SellReviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellReviewTableViewController.swift; sourceTree = "<group>"; };
 		83ECE28F1D229DBA00C5824C /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
 		83ECE2911D229F8300C5824C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				83F18BEE1D41516200C8B276 /* LoginInTableViewController.swift */,
 				83F18BEC1D414DBF00C8B276 /* SignUpTableViewController.swift */,
 				83F18BF31D41AB5C00C8B276 /* AuthTextfieldTableViewCell.swift */,
+				83D8EF0A1D4538150080C717 /* AuthButtonTableViewCell.swift */,
 			);
 			name = LOGIN;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				83F18BEF1D41516200C8B276 /* LoginInTableViewController.swift in Sources */,
 				83AE19511D3E7EC600ABB7FE /* ImageController.swift in Sources */,
 				83ECE2901D229DBA00C5824C /* Bid.swift in Sources */,
+				83D8EF0B1D4538150080C717 /* AuthButtonTableViewCell.swift in Sources */,
 				83ECE28D1D229ABE00C5824C /* SellReviewTableViewController.swift in Sources */,
 				83BD93751CCED25900E56534 /* ExtraSellTableViewCell.swift in Sources */,
 				831EFE1B1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift in Sources */,
