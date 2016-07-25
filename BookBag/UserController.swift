@@ -29,7 +29,6 @@ class UserController {
         }
         
         set {
-            
             if let newValue = newValue {
                 NSUserDefaults.standardUserDefaults().setValue(newValue.jsonValue, forKey: kUser)
                 NSUserDefaults.standardUserDefaults().synchronize()
@@ -52,7 +51,7 @@ class UserController {
                 if success == true {
                     completion(errorString: nil)
                 } else {
-                    createFirebaseUser(user.uid, name: user.displayName!, email: user.email!, imageURL: "\(user.photoURL)", completion: { (success) in
+                    createFirebaseUser(user.uid, name: user.displayName!, email: user.email!, imageURL: user.photoURL, completion: { (success) in
                         if success == true {
                             completion(errorString: nil)
                         } else {
@@ -76,7 +75,7 @@ class UserController {
                 if success == true {
                     completion(errorString: nil)
                 } else {
-                    createFirebaseUser(user.uid, name: user.displayName!, email: user.email!, imageURL: "\(user.photoURL)", completion: { (success) in
+                    createFirebaseUser(user.uid, name: user.displayName!, email: user.email!, imageURL: user.photoURL, completion: { (success) in
                         if success == true {
                             completion(errorString: nil)
                         } else {
@@ -98,14 +97,15 @@ class UserController {
         })
     }
     
-    static func createFirebaseUser(uID: String, name:String, email:String, imageURL:String?, completion:(success:Bool) -> Void) {
-        let user = User(name: name, email: email, imageURL: imageURL)
+    static func createFirebaseUser(uID: String, name:String, email:String, imageURL:NSURL?, completion:(success:Bool) -> Void) {
+        let user = User(name: name, email: email, imageURL: imageURL?.absoluteString)
         FirebaseController.userBase.child(uID).setValue(user.jsonValue) { (error, ref) in
             if let error = error {
                 print(error.localizedDescription)
                 completion(success: false)
                 return
             } else {
+                UserController.sharedController.currentUser = user
                 completion(success: true)
             }
         }
