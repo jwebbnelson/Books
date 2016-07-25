@@ -19,10 +19,10 @@ enum SellTextFields: String {
 
 class SellTableViewController: UITableViewController {
 
-    
     let labelArray = ["Title", "Author", "Edition", "Location", "Price"]
     let promptArray = ["Name of Textbook", "John, Smith", "Version #", "Zipcode", "$$$"]
     var isbn: String?
+    var bookTitle: String?
     var author: String?
     var edition: String?
     var location: CLLocation?
@@ -223,7 +223,7 @@ extension SellTableViewController: UITextFieldDelegate {
        
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
-            title = textField.text
+            bookTitle = textField.text
         case SellTextFields.Author.rawValue:
             author = textField.text
         case SellTextFields.Edition.rawValue:
@@ -263,10 +263,10 @@ extension SellTableViewController: SellButtonDelegate {
     func sellButtonTapped() {
         view.endEditing(true)
         
-        if let title = title, let author = author, price = price, let isbn = isbn {
+        if let bookTitle = bookTitle, let author = author, price = price, let isbn = isbn {
             beginLoadingView()
             loadingView.updateLabel("Confirming Book Details")
-            BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (book, bookID, error) in
+            BookController.submitTextbookForApproval(author, title: bookTitle, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (book, bookID, error) in
                 if let error = error {
                     print(error)
                 } else {
