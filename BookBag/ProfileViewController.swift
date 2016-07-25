@@ -25,12 +25,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setUpView()
-        UserController.sharedController.fetchMyBooks { (book) in
-            self.booksForSale = book
-            dispatch_async(dispatch_get_main_queue(), {
-                self.collectionView.reloadData()
-            })
-        }
+  
         // Do any additional setup after loading the view.
     }
     
@@ -45,23 +40,45 @@ class ProfileViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+     // Pass the selected object to the new view controller.
+     }
      */
     
     func setUpView() {
-//        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
-//        profileImageView.clipsToBounds = true
-//        profileImageView.layer.masksToBounds = false
-        configureProfileImage()
-        title = UserController.sharedController.currentUser?.name
+        //        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
+        //        profileImageView.clipsToBounds = true
+        //        profileImageView.layer.masksToBounds = false
+        if let currentUser = UserController.sharedController.currentUser {
+            title = currentUser.name
+            if let image = currentUser.imageURL {
+                configureProfileImage(image)
+            }
+            UserController.sharedController.fetchMyBooks { (book) in
+                self.booksForSale = book
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.collectionView.reloadData()
+                })
+            }
+        }
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         configureViewShadow()
     }
     
-    func configureProfileImage() {
-        
+    func configureProfileImage(imageString:String) {
+        if let url = NSURL(string:imageString) {
+            ImageController.fetchImageAtURL(url, completion: { (image, error) in
+                guard let image = image else {
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    return
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.profileImageView.image = image
+                })
+            })
+        }
     }
     
     func configureViewShadow() {
