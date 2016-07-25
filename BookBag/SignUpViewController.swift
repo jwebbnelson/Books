@@ -50,10 +50,8 @@ class SignUpViewController: UIViewController {
                                 self.dismissViewControllerAnimated(true, completion: nil)
                             })
                         }
-                        
                     })
                 })
-                
             })
             beginLoadingAnimation()
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
@@ -16,6 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var googleSignInButton: GIDSignInButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,7 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         resetActivityIndicator()
         errorLabel.hidden = true
+        configureGoogle()
     }
     
     func resetActivityIndicator() {
@@ -110,5 +113,21 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         self.hideErrorLabel()
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
+}
+
+extension LoginViewController: GIDSignInUIDelegate {
+    
+    func configureGoogle() {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        googleSignInButton.colorScheme = GIDSignInButtonColorScheme.Light
+    }
+   
+    @IBAction func googleTapped(sender: AnyObject) {
+   
     }
 }
