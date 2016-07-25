@@ -285,10 +285,37 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bookImageView" destination="SqD-s5-efU" id="l1Y-fT-OXX"/>
+                        <outlet property="expandedView" destination="eQc-qU-D9T" id="rDq-Mh-v7W"/>
                         <outlet property="tableViewHeaderView" destination="KfO-D6-8sS" id="JTQ-zy-Joc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lIc-48-xsf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="eQc-qU-D9T" customClass="ExpandedView" customModule="BookBag" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XAt-ms-yG5">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfX-o1-Ec8">
+                            <rect key="frame" x="8" y="8" width="30" height="30"/>
+                            <state key="normal" title="X"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="XAt-ms-yG5" secondAttribute="bottom" id="Cuc-NS-OAX"/>
+                        <constraint firstItem="PfX-o1-Ec8" firstAttribute="leading" secondItem="eQc-qU-D9T" secondAttribute="leading" constant="8" id="QW8-b1-qKy"/>
+                        <constraint firstItem="XAt-ms-yG5" firstAttribute="top" secondItem="eQc-qU-D9T" secondAttribute="top" id="Sap-tG-Lc2"/>
+                        <constraint firstItem="PfX-o1-Ec8" firstAttribute="top" secondItem="eQc-qU-D9T" secondAttribute="top" constant="8" id="f1x-oT-JYp"/>
+                        <constraint firstItem="XAt-ms-yG5" firstAttribute="leading" secondItem="eQc-qU-D9T" secondAttribute="leading" id="fDb-xC-T1J"/>
+                        <constraint firstAttribute="trailing" secondItem="XAt-ms-yG5" secondAttribute="trailing" id="kCN-wa-A5e"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="cancelButton" destination="PfX-o1-Ec8" id="F4C-5l-7tx"/>
+                        <outlet property="imageView" destination="XAt-ms-yG5" id="VNw-lK-R7C"/>
+                    </connections>
+                </view>
             </objects>
             <point key="canvasLocation" x="3084" y="246"/>
         </scene>
