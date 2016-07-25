@@ -9,7 +9,6 @@
 import UIKit
 
 class ProfileBookCollectionViewCell: UICollectionViewCell {
- 
     
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -19,7 +18,11 @@ class ProfileBookCollectionViewCell: UICollectionViewCell {
     
     func updateCellForBook(book: Book) {
         handleImage(book.image)
-        
+        configureShadow()
+        titleLabel.text = book.title
+        authorLabel.text = book.author
+        locationLabel.text = "City, State"
+        priceLabel.text = "$\(book.price)"
     }
     
     func handleImage(imageString: String) {
@@ -32,6 +35,7 @@ class ProfileBookCollectionViewCell: UICollectionViewCell {
                 }
                 dispatch_async(dispatch_get_main_queue(), {
                     self.bookImageView.image = image
+                    self.bookImageView.backgroundColor = UIColor.clearColor()
                 })
             }
         }

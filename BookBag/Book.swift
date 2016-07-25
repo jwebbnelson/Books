@@ -36,7 +36,7 @@ class Book: Equatable {
     
         var json: [String: AnyObject] = [kTitle: title, kAuthor: author, kPrice: price, kLocation:kLocation, kISBN: isbn,
                                          kImage:"", kOwnerID:ownerID]
-    
+        
         if let edition = edition {
             json[kEdition] = edition
         }
@@ -84,7 +84,6 @@ class Book: Equatable {
         self.uID = identifier
     }
 }
-
 
 func == (lhs:Book, rhs:Book) -> Bool {
     return  (lhs.isbn == rhs.isbn) && (lhs.uID == rhs.uID)

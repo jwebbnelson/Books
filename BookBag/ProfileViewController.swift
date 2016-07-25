@@ -9,8 +9,8 @@
 import UIKit
 
 enum ProfileState:Int {
-    case Buy
-    
+    case Buy,
+        Sell
 }
 
 class ProfileViewController: UIViewController {
@@ -18,15 +18,22 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var topView: UIView!
-    
+    var booksForSale: [Book]?
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUpView()
+        UserController.sharedController.fetchMyBooks { (book) in
+            self.booksForSale = book
+            dispatch_async(dispatch_get_main_queue(), {
+                self.collectionView.reloadData()
+            })
+        }
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,13 +75,15 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("profileBookCell", forIndexPath: indexPath) as! ProfileBookCollectionViewCell
         
-        cell.configureShadow()
+        if let booksForSale = booksForSale {
+        cell.updateCellForBook(booksForSale[indexPath.row])
+        }
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return booksForSale?.count ?? 0
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

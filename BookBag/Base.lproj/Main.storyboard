@@ -1235,6 +1235,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="VHw-sP-KnD" id="Hiz-Zk-mQA"/>
                         <outlet property="profileImageView" destination="738-VM-Hnb" id="7vW-Wq-eus"/>
                         <outlet property="topView" destination="uGb-bN-EmL" id="JvF-7V-0Mf"/>
                     </connections>

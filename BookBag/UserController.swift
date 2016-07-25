@@ -94,7 +94,6 @@ class UserController {
     }
     
     static func checkCurrentUser(completion:(currentUser:Bool) -> Void) {
-//       try! FIRAuth.auth()?.signOut()
         if let _ = FIRAuth.auth()?.currentUser {
             // User is signed in.
            completion(currentUser: true)
@@ -105,9 +104,9 @@ class UserController {
     }
     
     // MY LIBRARY
-    static func fetchMyBooks(completion:(book:[Book]?) -> Void) {
+    func fetchMyBooks(completion:(book:[Book]?) -> Void) {
         if let currentUser = UserController.sharedController.currentUser {
-            FirebaseController.userBase.queryOrderedByChild("ownerID").queryEqualToValue(currentUser.uID).observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, childKey) in
+            FirebaseController.bookBase.queryOrderedByChild("ownerID").queryEqualToValue(currentUser.uID).observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, childKey) in
                 
                 if let bookDictionaries = snapshot.value as? [String: AnyObject] {
                     let books = bookDictionaries.flatMap({Book(json: $0.1 as! [String:AnyObject], identifier: $0.0)})

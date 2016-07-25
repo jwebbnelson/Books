@@ -33,16 +33,20 @@ class BookController {
     }
     
     // MARK: - Selling
-    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(book:Book?, bookID: String?, error:NSError?) -> Void) {
+    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(book:Book?, bookID: String?, error:String?) -> Void) {
         
-        let book = Book(title: title, author: author, edition: edition, price: price, isbn: isbn, notes:notes)
-        FirebaseController.bookBase.childByAutoId().setValue(book.jsonValue) { (error, ref) in
-            if let error = error {
-                completion(book: nil, bookID: nil, error: error)
-            } else {
-                print("Saved REF: \(ref)")
-                completion(book: book, bookID: ref.key, error: nil)
+        if let currentUser = UserController.sharedController.currentUser {
+            let book = Book(title: title, author: author, edition: edition, price: price, isbn: isbn, notes:notes, ownerID: currentUser.uID)
+            FirebaseController.bookBase.childByAutoId().setValue(book.jsonValue) { (error, ref) in
+                if let error = error {
+                    completion(book: nil, bookID: nil, error: error.localizedDescription)
+                } else {
+                    print("Saved REF: \(ref)")
+                    completion(book: book, bookID: ref.key, error: nil)
+                }
             }
+        } else {
+            completion(book: nil, bookID: nil, error: "User Not Logged In")
         }
     }
     

@@ -268,7 +268,7 @@ extension SellTableViewController: SellButtonDelegate {
             loadingView.updateLabel("Confirming Book Details")
             BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (book, bookID, error) in
                 if let error = error {
-                    print(error.description)
+                    print(error)
                 } else {
                     print("TEXTBOOK SAVED")
                     if let image = self.image, let bookID = bookID {
