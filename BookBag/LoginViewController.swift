@@ -146,6 +146,7 @@ extension LoginViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     }
     
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError?) {
+        beginLoadingAnimation()
         if let error = error {
             self.showErrorLabel(error.localizedDescription)
             return
