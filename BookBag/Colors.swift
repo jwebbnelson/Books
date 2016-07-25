@@ -9,12 +9,11 @@
 import Foundation
 import UIKit
 
-class Colors: UIColor {
-//    
-//    func separatorGrey() -> UIColor {
-//       return UIColor(red:0, green:0, blue:0, alpha:0.12)
-//    }
+extension UIColor {
     
-    static var separatorGrey = UIColor(red:0, green:0, blue:0, alpha:0.12)
+    static func separatorGrey() -> UIColor {
+       return UIColor(red:0, green:0, blue:0, alpha:0.12)
+    }
+    
     
 }

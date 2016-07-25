@@ -9,61 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BookBag/BookController.swift"
-            timestampString = "490047323.967471"
+            filePath = "BookBag/AppDelegate.swift"
+            timestampString = "491179206.959302"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "queryBooks(_:completion:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static BookBag.BookController.(queryBooks (Swift.Optional&lt;Swift.String&gt;, completion : (book : Swift.Optional&lt;Swift.Array&lt;BookBag.Book&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "BookBag"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/BookController.swift"
-                  timestampString = "490047475.561074"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "360">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static BookBag.BookController.(queryBooks (Swift.Optional&lt;Swift.String&gt;, completion : (book : Swift.Optional&lt;Swift.Array&lt;BookBag.Book&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "BookBag"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/BookController.swift"
-                  timestampString = "490047475.56117"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookBag/BookController.swift"
-            timestampString = "490047355.942231"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "queryBooks(_:completion:)"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "application(_:openURL:options:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,29 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BookBag/BookController.swift"
-            timestampString = "490047424.485104"
+            filePath = "BookBag/AppDelegate.swift"
+            timestampString = "491179207.972304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "queryBooks(_:completion:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookBag/BookController.swift"
-            timestampString = "490047425.153959"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "queryBooks(_:completion:)"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "signIn(_:didDisconnectWithUser:withError:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,10 +8,11 @@
 
 import Foundation
 import Firebase
+import UIKit
 
 class BookController {
     
-    // Buying
+    // MARK: - Buying/Searching
     static func queryBooks(searchString:String?, completion:(book:[Book]?) -> Void){
         
         
@@ -31,21 +32,53 @@ class BookController {
         
     }
     
-    // Selling
-    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(error:NSError?) -> Void) {
+    // MARK: - Selling
+    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(book:Book?, bookID: String?, error:String?) -> Void) {
         
-        let book = Book(title: title, author: author, edition: edition, price: price, isbn: isbn, notes:notes)
-        FirebaseController.bookBase.childByAutoId().setValue(book.jsonValue) { (error, ref) in
-            if let error = error {
-                completion(error: error)
-            } else {
-                print("Saved REF: \(ref)")
-                completion(error: nil)
+        if let currentUser = UserController.sharedController.currentUser {
+            let book = Book(title: title, author: author, edition: edition, price: price, isbn: isbn, notes:notes, ownerID: currentUser.uID)
+            FirebaseController.bookBase.childByAutoId().setValue(book.jsonValue) { (error, ref) in
+                if let error = error {
+                    completion(book: nil, bookID: nil, error: error.localizedDescription)
+                } else {
+                    print("Saved REF: \(ref)")
+                    completion(book: book, bookID: ref.key, error: nil)
+                }
             }
-        }   
+        } else {
+            completion(book: nil, bookID: nil, error: "User Not Logged In")
+        }
     }
     
-    // Bidding
+    // MARK: - Photo
+    // UPDATE RULES in Console .. after write : if request.auth != null
+    static func uploadPhotoToFirebase(bookID:String, image:UIImage, completion:(fileURL:NSURL?, error:NSError?) -> Void) {
+        
+        if let data: NSData = UIImageJPEGRepresentation(image, 0.7) {
+            
+            let specificImageRef = FirebaseController.imagesRef.child(bookID)
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpeg"
+            
+            let uploadTask = specificImageRef.putData(data, metadata: metaData, completion: { (metadata, error) in
+                if error != nil {
+                    completion(fileURL: nil, error: error)
+                } else {
+                    completion(fileURL:metadata?.downloadURL(), error: nil)
+                }
+            })
+        } else {
+            print("UNABLE TO CREATE DATA FROM IMAGE")
+            completion(fileURL: nil, error: nil)
+        }
+    }
+    
+    static func updateBookPath(bookID:String, imagePath:NSURL) {
+        print("ImagePath updated")
+        FirebaseController.bookBase.child(bookID).updateChildValues(["image":"\(imagePath)"])
+    }
+    
+    // MARK: - Bidding
     static func bidForBook(price:Double, book:Book, completion:(bid:Bid?) -> Void)  {
         
     }
@@ -54,7 +87,7 @@ class BookController {
         
     }
     
-    // Managing (MY BOOKS)
+    // MARK: - Managing (MY BOOKS)
     static func deleteBook(book:Book) {
         
     }

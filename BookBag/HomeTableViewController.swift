@@ -93,14 +93,27 @@ class HomeTableViewController: UITableViewController {
      }
      */
     
+    @IBAction func profileButtonTapped(sender: AnyObject) {
+   
+        UserController.checkCurrentUser { (currentUser) in
+            if currentUser == true {
+                self.performSegueWithIdentifier("showProfileSegue", sender: nil)
+            } else {
+                self.performSegueWithIdentifier("showSignUpSegue", sender: nil)
+            }
+        }
+    }
+    
+    
 }
 
-extension HomeTableViewController: UISearchResultsUpdating {
+extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         BookController.queryBooks(searchController.searchBar.text) { (book) in
-            if let resultsController = searchController.searchResultsController as? SearchResultsTableViewController {
+            if let resultNav = searchController.searchResultsController as? UINavigationController, let resultsController = resultNav.viewControllers.first as? SearchResultsTableViewController {
+                resultNav.popToRootViewControllerAnimated(true)
                 if let books = book {
                     resultsController.books = books
                     dispatch_async(dispatch_get_main_queue(), {
@@ -120,11 +133,47 @@ extension HomeTableViewController: UISearchResultsUpdating {
         searchController = UISearchController(searchResultsController: resultsController)
         searchController?.searchResultsUpdater = self
         searchController?.hidesNavigationBarDuringPresentation = true
+        searchController?.obscuresBackgroundDuringPresentation = true
         searchController?.searchBar.placeholder = "Search Books by Title..."
         searchController?.searchBar.autocapitalizationType = UITextAutocapitalizationType.Words
         tableView.tableHeaderView = searchController?.searchBar
         definesPresentationContext = true
+        searchController?.searchBar.sizeToFit()
+        listenForNotifications()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
+
+// MARK: - Notifications
+extension HomeTableViewController {
+    
+    func listenForNotifications() {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector: #selector(HomeTableViewController.dismissSearch), name: DismissSearchNotification, object: nil)
+        nc.addObserver(self, selector: #selector(HomeTableViewController.restoreSearch), name: RestoreSearchNotification, object: nil)
+        nc.addObserver(self, selector: #selector(HomeTableViewController.resignSearch), name: ResignSearchNotification, object: nil)
+    }
+    
+    func dismissSearch() {
+        // searchController?.active = false
+        searchController?.searchBar.hidden = true
+        resignSearch()
+    }
+    
+    func restoreSearch() {
+        searchController?.searchBar.hidden = false
+    }
+    
+    func resignSearch() {
+        if searchController?.searchBar.isFirstResponder() == true {
+            searchController?.searchBar.resignFirstResponder()
+        }
+    }
+}
+
+
 
 

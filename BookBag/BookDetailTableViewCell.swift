@@ -35,15 +35,26 @@ class BookDetailTableViewCell: UITableViewCell {
     func updateCellWithBook(book:Book, row:Int) {
         switch row {
         case IconTypes.Title.rawValue:
+            updateImage("Title")
             detailLabel.text = book.title
+            if let edition = book.edition {
+                detailLabel.text = detailLabel.text! + " (Edition \(edition))"
+            }
         case IconTypes.Author.rawValue:
+            updateImage("Author")
             detailLabel.text = book.author
         case IconTypes.ISBN.rawValue:
+            updateImage("Scan")
             detailLabel.text = "\(book.isbn)"
         case IconTypes.Notes.rawValue:
+            updateImage("Notes")
             detailLabel.text = book.notes
         default:
             detailLabel.text = ""
         }
+    }
+    
+    func updateImage(string:String) {
+        iconImage.image = UIImage(named: string)
     }
 }

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import CoreLocation
 
 class Book: Equatable {
@@ -20,21 +19,24 @@ class Book: Equatable {
     private let kImage = "image"
     private let kNotes = "notes"
     private let kISBN = "isbn"
+    private let kOwnerID = "ownerID"
     
     var title: String
     var author: String
     var edition: String?
 //    var location: CLLocation
     var price: Double
-//    var image: UIImage
+    var image: String
     var notes: String?
     var isbn: String
-    var uID: String?
+    var uID: String
+    var ownerID: String
     
     var jsonValue: [String: AnyObject] {
     
-        var json: [String: AnyObject] = [kTitle: title, kAuthor: author, kPrice: price, kLocation:kLocation, kISBN: isbn]
-    
+        var json: [String: AnyObject] = [kTitle: title, kAuthor: author, kPrice: price, kLocation:kLocation, kISBN: isbn,
+                                         kImage:"", kOwnerID:ownerID]
+        
         if let edition = edition {
             json[kEdition] = edition
         }
@@ -47,15 +49,16 @@ class Book: Equatable {
     }
     
 
-    init(title:String, author:String, edition:String?, location:CLLocation = CLLocation(), price:Double, isbn: String, notes:String?) {
+    init(title:String, author:String, edition:String?, location:CLLocation = CLLocation(), price:Double, isbn: String, notes:String?, ownerID:String) {
         self.title = title
         self.author = author
 //        self.location = location
         self.edition = edition
         self.price = price
-//        self.image = image
+        self.image = ""
         self.notes = notes
         self.isbn = isbn
+        self.ownerID = ownerID
         self.uID = ""
     }
     
@@ -63,23 +66,24 @@ class Book: Equatable {
     init?(json:[String:AnyObject], identifier:String) {
         guard let title = json[kTitle] as? String,
         let author = json[kAuthor] as? String,
-        let edition = json[kEdition] as? String,
         let price = json[kPrice] as? Double,
-        let isbn = json[kISBN] as? String else {
-            return nil }
+        let isbn = json[kISBN] as? String,
+        let image = json[kImage] as? String,
+        let ownerID = json[kOwnerID] as? String else { return nil }
         
         self.title = title
         self.author = author
-        self.edition = edition
         self.price = price
         self.isbn = isbn
+        self.image = image
+        self.ownerID = ownerID
         
         self.notes = json[kNotes] as? String
+        self.edition = json[kEdition] as? String
         
         self.uID = identifier
     }
 }
-
 
 func == (lhs:Book, rhs:Book) -> Bool {
     return  (lhs.isbn == rhs.isbn) && (lhs.uID == rhs.uID)

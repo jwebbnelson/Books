@@ -19,10 +19,10 @@ enum SellTextFields: String {
 
 class SellTableViewController: UITableViewController {
 
-    
     let labelArray = ["Title", "Author", "Edition", "Location", "Price"]
     let promptArray = ["Name of Textbook", "John, Smith", "Version #", "Zipcode", "$$$"]
     var isbn: String?
+    var bookTitle: String?
     var author: String?
     var edition: String?
     var location: CLLocation?
@@ -35,6 +35,7 @@ class SellTableViewController: UITableViewController {
     @IBOutlet var notesView: UIView!
     let notesBackground = UIView()
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet var loadingView: LoadingView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +85,6 @@ class SellTableViewController: UITableViewController {
             return cell
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("basicCell", forIndexPath: indexPath) as! BasicSellTableViewCell
-            
             cell.setDetails(labelArray[indexPath.row], prompt: promptArray[indexPath.row])
             cell.entryTextField.delegate = self
             
@@ -95,6 +95,12 @@ class SellTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/8
     }
+    
+    // MARK: - TableViewDelegate
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        view.endEditing(true)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -130,16 +136,24 @@ class SellTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let destinationVC = segue.destinationViewController as? BookDetailTableViewController, let book = sender as? Book {
+            
+            destinationVC.book = book
+            if let image = image {
+                destinationVC.loadedImage = image
+            }
+        }
     }
-    */
-
+    
+    
     // MARK: - Notifications
     func listenForNotifications() {
         let nc = NSNotificationCenter.defaultCenter()
@@ -154,13 +168,16 @@ class SellTableViewController: UITableViewController {
             })
         }
     }
-    
 }
 
+// MARK: - TextField Delegate
 extension SellTableViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
-      
+        if textField.text == textField.placeholder {
+            textField.text = ""
+            textField.textColor = UIColor.blackColor()
+        }
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
             textField.keyboardType = UIKeyboardType.Default
@@ -173,13 +190,11 @@ extension SellTableViewController: UITextFieldDelegate {
         case SellTextFields.Location.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         case SellTextFields.Price.rawValue:
-            price = NSNumberFormatter().numberFromString(textField.text ?? "")?.doubleValue
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
         default:
             return
         }
     }
-    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         switch  textField.placeholder! {
@@ -208,7 +223,7 @@ extension SellTableViewController: UITextFieldDelegate {
        
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
-            title = textField.text
+            bookTitle = textField.text
         case SellTextFields.Author.rawValue:
             author = textField.text
         case SellTextFields.Edition.rawValue:
@@ -236,26 +251,72 @@ extension SellTableViewController: UITextFieldDelegate {
                 textField.text = "$\(text)"
             }
         default:
+            isbn = isbnTextField.text
             return
         }
         
     }
 }
 
+// MARK: - SellButtonDelegate
 extension SellTableViewController: SellButtonDelegate {
     func sellButtonTapped() {
         view.endEditing(true)
         
-        if let title = title, let author = author, price = price, let isbn = isbn {
-            BookController.submitTextbookForApproval(author, title: title, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (error) in
+        if let bookTitle = bookTitle, let author = author, price = price, let isbn = isbn {
+            beginLoadingView()
+            loadingView.updateLabel("Confirming Book Details")
+            BookController.submitTextbookForApproval(author, title: bookTitle, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (book, bookID, error) in
                 if let error = error {
-                    print(error.description)
+                    print(error)
                 } else {
                     print("TEXTBOOK SAVED")
+                    if let image = self.image, let bookID = bookID {
+                        self.loadingView.updateLabel("Saving Textbook")
+                        BookController.uploadPhotoToFirebase(bookID, image: image, completion: { (fileURL, error) in
+                            guard let url = fileURL else {
+                                print(error?.localizedDescription)
+                                self.dismissLoadingView()
+                                return
+                            }
+                            BookController.updateBookPath(bookID, imagePath: url)
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.loadingView.updateLabel("Saved!")
+                                self.dismissLoadingView()
+                                if let book = book {
+                                    self.performSegueWithIdentifier("SellReviewSegue", sender: book)
+                                }
+                            })
+                        })
+                    } else {
+                        self.dismissLoadingView()
+                    }
                 }
             }
-            performSegueWithIdentifier("SellReviewSegue", sender: nil)
+        } else {
+            checkRequiredFields()
         }
+    }
+    
+    func checkRequiredFields() {
+        for cell in tableView.visibleCells {
+            if let indexPath = tableView.indexPathForCell(cell), let textCell = tableView.cellForRowAtIndexPath(indexPath) as? BasicSellTableViewCell {
+                textCell.updateForError()
+            }
+        }
+    }
+    
+    // MARK: - LoadingView
+    func beginLoadingView() {
+        loadingView.center.y = view.center.y
+        loadingView.center.x = view.center.x
+        view.addSubview(loadingView)
+        loadingView.activityIndicator.startAnimating()
+    }
+    
+    func dismissLoadingView() {
+        loadingView.activityIndicator.stopAnimating()
+        loadingView.removeFromSuperview()
     }
 }
 

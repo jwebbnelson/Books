@@ -12,12 +12,15 @@ class BookDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var tableViewHeaderView: UIView!
     var book: Book?
+    var loadedImage: UIImage?
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet var expandedView: ExpandedView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableViewHeaderView.frame.size.height = tableView.frame.size.height/3
-       
+        
+        setTableViewSize()
+        loadImage()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,21 +32,38 @@ class BookDetailTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func loadImage() {
+        if let image = loadedImage {
+            bookImageView.image = image
+        } else if let book = book, let imageURL = NSURL(string: book.image) {
+            ImageController.fetchImageAtURL(imageURL, completion: { (image, error) in
+                guard let image = image else {
+                    print("FAILURE LOADING IMAGE: \(error?.description)")
+                    return
+                }
+                self.loadedImage = image
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.bookImageView.image = image
+                })
+            })
+        }
+        configureGesture()
+    }
+    
+    
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let book = self.book, let _ = book.notes {
-                return 5
+            return 5
         } else {
             return 4
         }
     }
-    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -74,9 +94,26 @@ class BookDetailTableViewController: UITableViewController {
         return "Details"
     }
     
+    // MARK: TableView Heights
+    
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func setTableViewSize() {
+        tableViewHeaderView.frame.size.height = tableView.frame.size.height/3
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+    }
+    
     
     // MARK: - BarButtonActions
     
@@ -92,21 +129,50 @@ class BookDetailTableViewController: UITableViewController {
    
     }
     
+    // MARK: - Photo Enlarge
+    func configureGesture() {
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BookDetailTableViewController.enlargePhoto))
+        bookImageView.addGestureRecognizer(gestureRecognizer)
+        bookImageView.userInteractionEnabled = true
+        configureExpandedView()
+    }
+    
+    func configureExpandedView() {
+        expandedView.cancelButton.addTarget(self, action: #selector(BookDetailTableViewController.dismissPhoto), forControlEvents: .TouchUpInside)
+        expandedView.frame = bookImageView.frame
+        expandedView.layer.transform = CATransform3DMakeScale(0, 0, 0)
+    }
+    
+    func enlargePhoto() {
+        expandedView.imageView.image = loadedImage
+        view.addSubview(expandedView)
+        UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+            self.expandedView.frame = self.view.frame
+            self.expandedView.layer.transform = CATransform3DIdentity
+            }, completion: nil)
+    }
+    
+    func dismissPhoto() {
+        expandedView.removeFromSuperview()
+        self.expandedView.frame = self.bookImageView.frame
+        self.expandedView.layer.transform = CATransform3DMakeScale(0, 0, 0)
+    }
+    
     
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+     // Override to support editing the table view.
+     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+     if editingStyle == .Delete {
+     // Delete the row from the data source
+     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
