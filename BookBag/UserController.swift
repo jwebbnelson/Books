@@ -104,10 +104,19 @@ class UserController {
         }
     }
     
-    
     // MY LIBRARY
-    static func fetchMyBooks(completion:([Book]?) -> Void) {
-        
+    static func fetchMyBooks(completion:(book:[Book]?) -> Void) {
+        if let currentUser = UserController.sharedController.currentUser {
+            FirebaseController.userBase.queryOrderedByChild("ownerID").queryEqualToValue(currentUser.uID).observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, childKey) in
+                
+                if let bookDictionaries = snapshot.value as? [String: AnyObject] {
+                    let books = bookDictionaries.flatMap({Book(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
+                    completion(book: books)
+                } else {
+                    completion(book: nil)
+                }
+            }
+        }
     }
     
 }
