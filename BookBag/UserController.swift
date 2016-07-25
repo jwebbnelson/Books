@@ -44,7 +44,7 @@ class UserController {
     static func logInUser(email:String, password:String, completion:(errorString:String?)-> Void){
         FIRAuth.auth()?.signInWithEmail(email, password: password, completion: { (user, error) in
             guard let user = user else {
-                completion(errorString: error?.description)
+                completion(errorString: error?.localizedDescription)
                 return
             }
             fetchUserWithUID(user.uid, completion: { 

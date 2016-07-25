@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var loadingView: LoadingView!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         resetActivityIndicator()
+        errorLabel.hidden = true
     }
     
     func resetActivityIndicator() {
@@ -47,9 +49,10 @@ class LoginViewController: UIViewController {
         if let email = emailField.text, let password = passwordField.text {
             UserController.logInUser(email, password: password, completion: { (errorString) in
                 if let error = errorString {
-                    print(error)
                     dispatch_async(dispatch_get_main_queue(), {
+                        print(error)
                         self.resetActivityIndicator()
+                        self.showErrorLabel(error)
                     })
                 } else {
                     dispatch_async(dispatch_get_main_queue(), {
@@ -59,6 +62,7 @@ class LoginViewController: UIViewController {
                 }
             })
             beginLoadingAnimation()
+            self.hideErrorLabel()
         }
     }
     
@@ -69,7 +73,24 @@ class LoginViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
- 
+    func showErrorLabel(errorString:String) {
+        self.errorLabel.text = errorString
+        UIView.animateWithDuration(0.3) {
+            self.errorLabel.hidden = false
+        }
+    }
+    
+    func hideErrorLabel() {
+        if errorLabel.hidden == false {
+            UIView.animateWithDuration(0.3) {
+                self.errorLabel.text = ""
+                self.errorLabel.hidden = true
+            }
+        }
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
@@ -82,5 +103,12 @@ class LoginViewController: UIViewController {
 
     @IBAction func cancelTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.hideErrorLabel()
     }
 }
