@@ -165,18 +165,6 @@ extension LoginViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             }
         }
     }
-    
-    // MARK: - GoogleSignIn
-    func application(application: UIApplication, openURL url: NSURL, options: [String: AnyObject]) -> Bool {
-        return GIDSignIn.sharedInstance().handleURL(url,
-                                                    sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,
-                                                    annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
-    }
 
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
-                withError error: NSError!) {
-        // Perform any operations when the user disconnects from app here.
-        // ...
-    }
    
 }
