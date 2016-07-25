@@ -10,11 +10,13 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var universityField: UITextField!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet var loadingView: LoadingView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,7 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         navigationController?.navigationBar.hidden = true
+        resetActivityIndicator()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +46,7 @@ class SignUpViewController: UIViewController {
                             print(error)
                         } else {
                             dispatch_async(dispatch_get_main_queue(), {
-                                self.loadingView.removeFromSuperview()
+                                self.resetActivityIndicator()
                                 self.dismissViewControllerAnimated(true, completion: nil)
                             })
                         }
@@ -56,14 +59,16 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    func resetActivityIndicator() {
+        activityIndicator.layer.transform = CATransform3DMakeScale(0, 0, 0)
+        signUpButton.setTitle("Sign Up", forState: .Normal)
+    }
+    
     func beginLoadingAnimation() {
         view.endEditing(true)
-        loadingView.center.x = view.center.x
-        loadingView.center.y = view.center.y
-        view.addSubview(loadingView)
-        view.bringSubviewToFront(loadingView)
-        loadingView.updateLabel("Creating new user.")
-        loadingView.beginLoading()
+        signUpButton.setTitle(" ", forState: .Normal)
+        activityIndicator.layer.transform = CATransform3DIdentity
+        activityIndicator.startAnimating()
     }
     
     /*

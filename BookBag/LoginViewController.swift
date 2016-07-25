@@ -14,11 +14,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet var loadingView: LoadingView!
     @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavBar()
+        configureView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -26,9 +27,15 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func configureNavBar() {
+    func configureView() {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        resetActivityIndicator()
+    }
+    
+    func resetActivityIndicator() {
+        activityIndicator.layer.transform = CATransform3DMakeScale(0, 0, 0)
+        logInButton.setTitle("Log In", forState: .Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -41,9 +48,12 @@ class LoginViewController: UIViewController {
             UserController.logInUser(email, password: password, completion: { (errorString) in
                 if let error = errorString {
                     print(error)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.resetActivityIndicator()
+                    })
                 } else {
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.loadingView.removeFromSuperview()
+                        self.activityIndicator.removeFromSuperview()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     })
                 }
@@ -54,12 +64,9 @@ class LoginViewController: UIViewController {
     
     func beginLoadingAnimation() {
         view.endEditing(true)
-        loadingView.center.x = view.center.x
-        loadingView.center.y = view.center.y
-        view.addSubview(loadingView)
-        view.bringSubviewToFront(loadingView)
-        loadingView.updateLabel("Signing In.")
-        loadingView.beginLoading()
+        logInButton.setTitle(" ", forState: .Normal)
+        activityIndicator.layer.transform = CATransform3DIdentity
+        activityIndicator.startAnimating()
     }
     
  
