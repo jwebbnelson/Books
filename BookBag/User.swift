@@ -13,25 +13,25 @@ class User {
     
     private let kName = "name"
     private let kPhone = "phone"
-    private let kUniversity = "university"
     private let kImage = "image"
     
     var name:String
     var phoneNumber: Int?
     var uID: String
-    var university: String
     var imageURL: String?
     
     
-    init(name:String, email:String, school:String) {
+    init(name:String, email:String, imageURL: String?) {
         self.name = name
-        self.university = school
+        if let image = imageURL {
+            self.imageURL = image
+        }
         uID = ""
     }
     
     var jsonValue: [String:AnyObject] {
         
-        var json: [String:AnyObject] = [kName:name, kUniversity: university]
+        var json: [String:AnyObject] = [kName:name]
         
         if let phoneNumber = phoneNumber {
             json[kPhone] = phoneNumber
@@ -45,12 +45,10 @@ class User {
     }
     
     init?(json:[String:AnyObject], uID: String) {
-        guard let name = json[kName] as? String,
-            let university = json[kUniversity] as? String else { return nil}
+        guard let name = json[kName] as? String else { return nil}
         
         self.uID = uID
         self.name = name
-        self.university = university
         self.imageURL = json[kImage] as? String
         self.phoneNumber = json[kPhone] as? Int
     }

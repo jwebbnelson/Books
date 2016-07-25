@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleSignIn
+import FirebaseAuth
+import Firebase
 
 class LoginViewController: UIViewController {
 
@@ -18,6 +20,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var googleSignInButton: GIDSignInButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,7 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         resetActivityIndicator()
         errorLabel.hidden = true
+        forgotPasswordButton.hidden = true
         configureGoogle()
     }
     
@@ -99,11 +103,14 @@ class LoginViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    @IBAction func forgotPassTapped(sender: AnyObject) {
+        
     }
-    */
-
+    
     @IBAction func cancelTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -113,6 +120,15 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         self.hideErrorLabel()
+        if textField == passwordField {
+            forgotPasswordButton.hidden = false
+        }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField == passwordField {
+            forgotPasswordButton.hidden = true
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -120,14 +136,47 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
-extension LoginViewController: GIDSignInUIDelegate {
+extension LoginViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     
     func configureGoogle() {
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         googleSignInButton.colorScheme = GIDSignInButtonColorScheme.Light
     }
-   
-    @IBAction func googleTapped(sender: AnyObject) {
-   
+    
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError?) {
+        if let error = error {
+            self.showErrorLabel(error.localizedDescription)
+            return
+        }
+        
+        let authentication = user.authentication
+        let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken,
+                                                                     accessToken: authentication.accessToken)
+        UserController.logInWithCredential(credential) { (errorString) in
+            if let error = errorString {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.showErrorLabel(error)
+                })
+            } else {
+                 print("Google Sign In: - \(user.profile.name)")
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
     }
+    
+    // MARK: - GoogleSignIn
+    func application(application: UIApplication, openURL url: NSURL, options: [String: AnyObject]) -> Bool {
+        return GIDSignIn.sharedInstance().handleURL(url,
+                                                    sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,
+                                                    annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
+    }
+
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
+                withError error: NSError!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
+   
 }

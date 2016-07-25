@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController {
                     print(errorString)
                     return
                 }
-                UserController.createFirebaseUser(uID, name: name, email: email, school: university, completion: { (success) in
+                UserController.createFirebaseUser(uID, name: name, email: email, imageURL: nil, completion: { (success) in
                     UserController.logInUser(email, password: password, completion: { (errorString) in
                         
                         if let error = errorString {

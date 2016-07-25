@@ -48,10 +48,43 @@ class UserController {
                 completion(errorString: error?.localizedDescription)
                 return
             }
-            fetchUserWithUID(user.uid, completion: { 
-                completion(errorString: nil)
+            fetchUserWithUID(user.uid, completion: { (success) in
+                if success == true {
+                    completion(errorString: nil)
+                } else {
+                    createFirebaseUser(user.uid, name: user.displayName!, email: user.email!, imageURL: "\(user.photoURL)", completion: { (success) in
+                        if success == true {
+                            completion(errorString: nil)
+                        } else {
+                            completion(errorString: "Unable to create database reference.")
+                        }
+                    })
+                }
             })
-            
+        })
+    }
+    
+    static func logInWithCredential(credential:FIRAuthCredential, completion:(errorString:String?) -> Void){
+        FIRAuth.auth()?.signInWithCredential(credential, completion: { (user, error) in
+            guard let user = user else {
+                if let error = error {
+                    completion(errorString: error.localizedDescription)
+                }
+                return
+            }
+            fetchUserWithUID(user.uid, completion: { (success) in
+                if success == true {
+                    completion(errorString: nil)
+                } else {
+                    createFirebaseUser(user.uid, name: user.displayName!, email: user.email!, imageURL: "\(user.photoURL)", completion: { (success) in
+                        if success == true {
+                            completion(errorString: nil)
+                        } else {
+                            completion(errorString: "Unable to create database reference.")
+                        }
+                    })
+                }
+            })
         })
     }
     
@@ -61,13 +94,12 @@ class UserController {
                 completion(uid: nil, errorString: error?.description)
                 return
             }
-                completion(uid: user.uid, errorString: nil)
-          
+            completion(uid: user.uid, errorString: nil)
         })
     }
     
-    static func createFirebaseUser(uID: String, name:String, email:String, school:String, completion:(success:Bool) -> Void) {
-        let user = User(name: name, email: email, school: school)
+    static func createFirebaseUser(uID: String, name:String, email:String, imageURL:String?, completion:(success:Bool) -> Void) {
+        let user = User(name: name, email: email, imageURL: imageURL)
         FirebaseController.userBase.child(uID).setValue(user.jsonValue) { (error, ref) in
             if let error = error {
                 print(error.localizedDescription)
@@ -79,13 +111,17 @@ class UserController {
         }
     }
     
-    static func fetchUserWithUID(uID: String, completion:() -> Void) {
+    static func fetchUserWithUID(uID: String, completion:(success:Bool) -> Void) {
         FirebaseController.userBase.child(uID).observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, _) in
             if let userDictionary = snapshot.value as? [String:AnyObject] {
                 if let user = User(json: userDictionary, uID: snapshot.ref.key) {
                     UserController.sharedController.currentUser = user
+                    completion(success: true)
+                } else {
+                    completion(success: false)
                 }
-                completion()
+            } else {
+                completion(success: false)
             }
         }
     }

@@ -53,10 +53,15 @@ class ProfileViewController: UIViewController {
 //        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
 //        profileImageView.clipsToBounds = true
 //        profileImageView.layer.masksToBounds = false
+        configureProfileImage()
         title = UserController.sharedController.currentUser?.name
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         configureViewShadow()
+    }
+    
+    func configureProfileImage() {
+        
     }
     
     func configureViewShadow() {
