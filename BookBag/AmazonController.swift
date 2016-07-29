@@ -8,10 +8,13 @@
 
 import Foundation
 
-class AmazonController {
+class AmazonController: NSObject, NSXMLParserDelegate {
     
+    var xmlParser: NSXMLParser!
     
-    static func amazonItemLookup(isbn:String, completion:([Book]?) -> Void) {
+    static let sharedController = AmazonController()
+    
+    func amazonItemLookup(isbn:String, completion:([Book]?) -> Void) {
         
         let url = NetworkController.createItemLookUpURL(isbn)
         
@@ -22,17 +25,27 @@ class AmazonController {
                 return
             }
             
-//            let resultsAnyObject = try NSJSONSerialization
             
+            self.xmlParser = NSXMLParser(data: data)
+            self.xmlParser.delegate = self
             
+            self.xmlParser.parse()
+
         }
-        
-        
-        
         
     }
     
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+        print(elementName)
+    }
     
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        print(elementName)
+    }
+    
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
+        print(string)
+    }
     
     
     
