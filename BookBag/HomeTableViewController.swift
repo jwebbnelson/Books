@@ -18,6 +18,10 @@ class HomeTableViewController: UITableViewController {
         
         setUpSearchController()
         
+        AmazonController.amazonItemLookup("20300") { (books) in
+            
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         

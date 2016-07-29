@@ -16,6 +16,8 @@
 		831EFE241D2F221500BC6C59 /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831EFE231D2F221400BC6C59 /* SearchResultsTableViewCell.swift */; };
 		832B5D7A1D3583B100B2BD48 /* BookHighlightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B5D791D3583B100B2BD48 /* BookHighlightTableViewCell.swift */; };
 		832B5D7E1D37420E00B2BD48 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B5D7D1D37420E00B2BD48 /* Colors.swift */; };
+		833587231D4AD6EC00E79ECD /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833587221D4AD6EC00E79ECD /* NetworkController.swift */; };
+		833587251D4AD77C00E79ECD /* AmazonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833587241D4AD77C00E79ECD /* AmazonController.swift */; };
 		83367F571D3C592500C3996E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83367F561D3C592500C3996E /* LoadingView.swift */; };
 		833B81281D1FE3D700E37423 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833B81271D1FE3D700E37423 /* ScanViewController.swift */; };
 		836EAC561D466F81006B7D05 /* ExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EAC551D466F81006B7D05 /* ExpandedView.swift */; };
@@ -73,6 +75,8 @@
 		831EFE231D2F221400BC6C59 /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 		832B5D791D3583B100B2BD48 /* BookHighlightTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookHighlightTableViewCell.swift; sourceTree = "<group>"; };
 		832B5D7D1D37420E00B2BD48 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		833587221D4AD6EC00E79ECD /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		833587241D4AD77C00E79ECD /* AmazonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmazonController.swift; sourceTree = "<group>"; };
 		83367F561D3C592500C3996E /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		833B81271D1FE3D700E37423 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		836EAC551D466F81006B7D05 /* ExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedView.swift; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 				83AE19501D3E7EC600ABB7FE /* ImageController.swift */,
 				83ECE2931D22A00E00C5824C /* UserController.swift */,
 				83BD936E1CCEB87800E56534 /* LocationController.swift */,
+				833587221D4AD6EC00E79ECD /* NetworkController.swift */,
+				833587241D4AD77C00E79ECD /* AmazonController.swift */,
 				832B5D7D1D37420E00B2BD48 /* Colors.swift */,
 			);
 			name = Controller;
@@ -509,6 +515,7 @@
 			files = (
 				831EFE1E1D2F1C6D00BC6C59 /* BookDetailTableViewCell.swift in Sources */,
 				83AE19561D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift in Sources */,
+				833587251D4AD77C00E79ECD /* AmazonController.swift in Sources */,
 				83A5C0B91D15122200F51D2C /* FirebaseController.swift in Sources */,
 				83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */,
 				83367F571D3C592500C3996E /* LoadingView.swift in Sources */,
@@ -527,6 +534,7 @@
 				83AE19511D3E7EC600ABB7FE /* ImageController.swift in Sources */,
 				83ECE2901D229DBA00C5824C /* Bid.swift in Sources */,
 				83ECE28D1D229ABE00C5824C /* SellReviewTableViewController.swift in Sources */,
+				833587231D4AD6EC00E79ECD /* NetworkController.swift in Sources */,
 				836EAC561D466F81006B7D05 /* ExpandedView.swift in Sources */,
 				83BD93751CCED25900E56534 /* ExtraSellTableViewCell.swift in Sources */,
 				831EFE1B1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift in Sources */,

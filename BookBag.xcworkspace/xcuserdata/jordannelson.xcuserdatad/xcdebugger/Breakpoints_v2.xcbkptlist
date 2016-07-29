@@ -35,5 +35,149 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/AmazonController.swift"
+            timestampString = "491444418.470589"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "amazonItemLookup(_:completion:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.AmazonController.amazonItemLookup (Swift.String, completion : (Swift.Optional&lt;Swift.Array&lt;BookBag.Book&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/AmazonController.swift"
+                  timestampString = "491444491.945583"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "221">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.AmazonController.(amazonItemLookup (Swift.String, completion : (Swift.Optional&lt;Swift.Array&lt;BookBag.Book&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/AmazonController.swift"
+                  timestampString = "491444491.945771"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/AmazonController.swift"
+            timestampString = "491444423.797496"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "amazonItemLookup(_:completion:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.AmazonController.amazonItemLookup (Swift.String, completion : (Swift.Optional&lt;Swift.Array&lt;BookBag.Book&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/AmazonController.swift"
+                  timestampString = "491444491.946293"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "221">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static BookBag.AmazonController.(amazonItemLookup (Swift.String, completion : (Swift.Optional&lt;Swift.Array&lt;BookBag.Book&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/AmazonController.swift"
+                  timestampString = "491444491.946443"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookBag/HomeTableViewController.swift"
+            timestampString = "491444473.735153"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookBag.HomeTableViewController.viewDidLoad () -&gt; ()"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/HomeTableViewController.swift"
+                  timestampString = "491444491.94697"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookBag.HomeTableViewController.(viewDidLoad () -&gt; ()).(closure #1)"
+                  moduleName = "BookBag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/HomeTableViewController.swift"
+                  timestampString = "491444491.947116"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
