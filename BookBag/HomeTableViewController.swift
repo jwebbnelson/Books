@@ -17,10 +17,12 @@ class HomeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setUpSearchController()
-        
-        AmazonController.amazonItemLookup("20300") { (books) in
+
+
+        AmazonController.sharedController.amazonItemLookup("9781501135910") { (books) in
             
         }
+       
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

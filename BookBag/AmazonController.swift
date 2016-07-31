@@ -17,7 +17,7 @@ class AmazonController: NSObject, NSXMLParserDelegate {
     func amazonItemLookup(isbn:String, completion:([Book]?) -> Void) {
         
         let url = NetworkController.createItemLookUpURL(isbn)
-        
+        print(url)
         NetworkController.dataAtURL(url) { (resultData) in
             guard let data = resultData else {
                 print("NO DATA RETURNED FROM AMAZON ITEM LOOKUP")
@@ -25,14 +25,10 @@ class AmazonController: NSObject, NSXMLParserDelegate {
                 return
             }
             
-            
             self.xmlParser = NSXMLParser(data: data)
             self.xmlParser.delegate = self
-            
             self.xmlParser.parse()
-
         }
-        
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {

@@ -29,7 +29,13 @@ class NetworkController {
     
     // MARK: - URLs
     static func createItemLookUpURL(isbn:String) -> NSURL {
-        let url = NSURL(string:  "http://webservices.amazon.com/onca/xml?AWSAccessKeyId=AKIAIDPXJJNQOOS2ED5Q&AssociateTag=bookbagapp-20&IdType=ISBN&ItemId=1305263723&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers&SearchIndex=Books&Service=AWSECommerceService&Timestamp=2016-07-29T01%3A47%3A32.000Z&Signature=QahzT8vpp80qhtaG72UTLz5bwQ4qRngOMHWEy6Zm2c4%3D")
+        
+        let accessKeyID = "AKIAIDPXJJNQOOS2ED5Q"
+        
+        let currentTimeStamp = NSDate().amazonFormat()
+        
+        let url = NSURL(string:  "http://webservices.amazon.com/onca/xml?AWSAccessKeyId=\(accessKeyID)&AssociateTag=bookbagapp-20&IdType=ISBN&ItemId=\(isbn)=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers&SearchIndex=Books&Service=AWSECommerceService&Timestamp=\(currentTimeStamp)&Signature=upNFspmlD8%2BWNXrAUTR4jdjV48jrdXpXJ8V0W%2BEQwoo%3D")
+        
         
         return url!
     }
