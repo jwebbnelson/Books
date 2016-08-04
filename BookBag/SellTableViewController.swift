@@ -17,6 +17,8 @@ enum SellTextFields: String {
     case Price = "$$$"
 }
 
+public let SellDismissedNotification = "SellDismissedNotificationName"
+
 class SellTableViewController: UITableViewController {
 
     let labelArray = ["Title", "Author", "Edition", "Location", "Price"]
@@ -139,6 +141,11 @@ class SellTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName(SellDismissedNotification, object: nil)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.

@@ -50,6 +50,7 @@ class ProfileViewController: UIViewController {
         //        profileImageView.layer.masksToBounds = false
         if let currentUser = UserController.sharedController.currentUser {
             title = currentUser.name
+            tabBarController?.tabBar.items![2].title = ""
             if let image = currentUser.imageURL {
                 configureProfileImage(image)
             }
