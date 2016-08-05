@@ -42,7 +42,7 @@ class SellTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableHeadView.frame.size.height = view.frame.size.height/7
+        tableHeadView.frame.size.height = view.frame.size.height/9
         setUpNotesView()
         listenForNotifications()
 
@@ -95,7 +95,7 @@ class SellTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/8
+        return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/7
     }
     
     // MARK: - TableViewDelegate
