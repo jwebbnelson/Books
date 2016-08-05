@@ -15,7 +15,6 @@ class BookController {
     // MARK: - Buying/Searching
     static func queryBooks(searchString:String?, completion:(book:[Book]?) -> Void){
         
-        
         FirebaseController.bookBase.queryOrderedByChild("title").queryEqualToValue(searchString).observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, childKey) in
             
             if let bookDictionaries = snapshot.value as? [String: AnyObject] {
@@ -54,7 +53,7 @@ class BookController {
     // UPDATE RULES in Console .. after write : if request.auth != null
     static func uploadPhotoToFirebase(bookID:String, image:UIImage, completion:(fileURL:NSURL?, error:NSError?) -> Void) {
         
-        if let data: NSData = UIImageJPEGRepresentation(image, 0.7) {
+        if let data: NSData = UIImageJPEGRepresentation(image, 0.9) {
             
             let specificImageRef = FirebaseController.imagesRef.child(bookID)
             let metaData = FIRStorageMetadata()
@@ -74,8 +73,8 @@ class BookController {
     }
     
     static func updateBookPath(bookID:String, imagePath:NSURL) {
-        print("ImagePath updated")
         FirebaseController.bookBase.child(bookID).updateChildValues(["image":"\(imagePath)"])
+        print("ImagePath updated")
     }
     
     // MARK: - Bidding
