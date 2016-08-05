@@ -99,18 +99,6 @@ class HomeTableViewController: UITableViewController {
      }
      */
     
-    @IBAction func profileButtonTapped(sender: AnyObject) {
-   
-        UserController.checkCurrentUser { (currentUser) in
-            if currentUser == true {
-                self.performSegueWithIdentifier("showProfileSegue", sender: nil)
-            } else {
-                self.performSegueWithIdentifier("showSignUpSegue", sender: nil)
-            }
-        }
-    }
-    
-    
 }
 
 extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
