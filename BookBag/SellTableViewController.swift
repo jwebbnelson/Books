@@ -95,7 +95,12 @@ class SellTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/7
+        switch indexPath.row {
+        case 6:
+            return 40
+        default:
+            return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/7
+        }
     }
     
     // MARK: - TableViewDelegate
