@@ -263,7 +263,9 @@ extension SellTableViewController: UITextFieldDelegate {
                 textField.text = "$\(text)"
             }
         default:
-            isbn = isbnTextField.text
+            if isbnTextField.text != "" {
+                isbn = isbnTextField.text
+            }
             return
         }
         
@@ -288,12 +290,12 @@ extension SellTableViewController: SellButtonDelegate {
                         BookController.uploadPhotoToFirebase(bookID, image: image, completion: { (fileURL, error) in
                             guard let url = fileURL else {
                                 print(error?.localizedDescription)
+                                self.loadingView.label.text = error?.localizedDescription
                                 self.dismissLoadingView()
                                 return
                             }
                             BookController.updateBookPath(bookID, imagePath: url)
                             dispatch_async(dispatch_get_main_queue(), {
-                                self.loadingView.updateLabel("Saved!")
                                 self.dismissLoadingView()
                                 if let book = book {
                                     self.performSegueWithIdentifier("SellReviewSegue", sender: book)
@@ -315,6 +317,15 @@ extension SellTableViewController: SellButtonDelegate {
             if let indexPath = tableView.indexPathForCell(cell), let textCell = tableView.cellForRowAtIndexPath(indexPath) as? BasicSellTableViewCell {
                 textCell.updateForError()
             }
+        }
+        guard isbn != nil else {
+            isbnTextField.textColor = UIColor.redColor()
+            isbnTextField.text = isbnTextField.placeholder
+            return
+        }
+        
+        if isbn?.characters.count != 10 || isbn?.characters.count != 13 {
+            // WARNING - Error
         }
     }
     
