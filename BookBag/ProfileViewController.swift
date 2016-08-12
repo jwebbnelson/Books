@@ -15,7 +15,6 @@ enum ProfileState:Int {
 
 class ProfileViewController: UIViewController {
 
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var topView: UIView!
     var booksForSale: [Book]?
@@ -27,6 +26,11 @@ class ProfileViewController: UIViewController {
         setUpView()
   
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        adjustViewForLogin()
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,9 +52,14 @@ class ProfileViewController: UIViewController {
         //        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
         //        profileImageView.clipsToBounds = true
         //        profileImageView.layer.masksToBounds = false
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        configureViewShadow()
+    }
+    
+    func adjustViewForLogin(){
         if let currentUser = UserController.sharedController.currentUser {
             title = currentUser.name
-            tabBarController?.tabBar.items![2].title = ""
             if let image = currentUser.imageURL {
                 configureProfileImage(image)
             }
@@ -60,10 +69,15 @@ class ProfileViewController: UIViewController {
                     self.collectionView.reloadData()
                 })
             }
+            collectionView.backgroundView = nil
+        } else {
+            // Logged Out
+            configureBackGroundButton()
+            title = ""
+            profileImageView.image = nil
+            collectionView.reloadData()
         }
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        configureViewShadow()
+        tabBarController?.tabBar.items![2].title = ""
     }
     
     func configureProfileImage(imageString:String) {
@@ -90,6 +104,18 @@ class ProfileViewController: UIViewController {
         topView.layer.masksToBounds = false
     }
     
+    func configureBackGroundButton() {
+        let backButton = UIButton()
+        backButton.setTitle("Log In", forState: .Normal)
+        backButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        backButton.addTarget(self, action: #selector(presentLoginViewController), forControlEvents: .TouchUpInside)
+        collectionView.backgroundView = backButton
+    }
+    
+    func presentLoginViewController() {
+        performSegueWithIdentifier("showSignInSegue", sender: nil)
+    }
+    
 }
 
 // MARK: - CollectionView
@@ -106,7 +132,11 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return booksForSale?.count ?? 0
+        if let _ = UserController.sharedController.currentUser {
+            return booksForSale?.count ?? 0
+        } else {
+            return 0
+        }
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -124,7 +154,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 4
     }
-    
     
     
 }
