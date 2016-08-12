@@ -9,6 +9,12 @@
 import Foundation
 import CoreLocation
 
+
+public enum BookFormat: Int {
+    case Paperback,
+    Hardcover
+}
+
 class Book: Equatable {
     
     private let kTitle = "title"

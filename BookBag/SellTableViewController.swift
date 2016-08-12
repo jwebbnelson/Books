@@ -13,16 +13,19 @@ enum SellTextFields: String {
     case Title = "Name of Textbook"
     case Author = "John, Smith"
     case Edition = "Version #"
-    case Location = "Zipcode"
-    case Price = "$$$"
+    // FORMAT - 3
+    case Location = "Zipcode" // 4
+    case Price = "$$$" // 5
+    // EXTRA - 6
+    // NEXT - 7
 }
 
 public let SellDismissedNotification = "SellDismissedNotificationName"
 
 class SellTableViewController: UITableViewController {
 
-    let labelArray = ["Title", "Author", "Edition", "Location", "Price"]
-    let promptArray = ["Name of Textbook", "John, Smith", "Version #", "Zipcode", "$$$"]
+    let labelArray = ["Title", "Author", "Edition", "", "Location", "Price"]
+    let promptArray = ["Name of Textbook", "John, Smith", "Version #", "", "Zipcode", "$$$"]
     var isbn: String?
     var bookTitle: String?
     var author: String?
@@ -31,6 +34,7 @@ class SellTableViewController: UITableViewController {
     var price: Double?
     var notes: String?
     var image: UIImage?
+    var formatIndex: Int?
     
     @IBOutlet weak var tableHeadView: UIView!
     @IBOutlet weak var isbnTextField: UITextField!
@@ -70,18 +74,21 @@ class SellTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 7
+        return 8
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.row {
-        case 5:
+        case 3:
+            let cell = tableView.dequeueReusableCellWithIdentifier("formatCell", forIndexPath: indexPath) as! FormatTableViewCell
+            cell.delegate = self
+            return cell
+        case 6:
             let cell = tableView.dequeueReusableCellWithIdentifier("extraCell", forIndexPath: indexPath) as! ExtraSellTableViewCell
             cell.delegate = self
             return cell
-
-        case 6:
+        case 7:
             let cell = tableView.dequeueReusableCellWithIdentifier("nextCell", forIndexPath: indexPath) as! NextTableViewCell
             cell.delegate = self
             return cell
@@ -96,8 +103,10 @@ class SellTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.row {
-        case 6:
+        case 3:
             return 40
+        case 7:
+            return 48
         default:
             return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/7
         }
@@ -215,15 +224,20 @@ extension SellTableViewController: UITextFieldDelegate {
         case SellTextFields.Author.rawValue:
             setNextResponder(2)
         case SellTextFields.Edition.rawValue:
-            setNextResponder(3)
-        case SellTextFields.Location.rawValue:
             setNextResponder(4)
+        case SellTextFields.Location.rawValue:
+            setNextResponder(5)
         case SellTextFields.Price.rawValue:
             textField.resignFirstResponder()
+            performSelector(#selector(scrollToNextButton), withObject: nil, afterDelay: 0.3)
         default:
             return true
         }
         return true
+    }
+    
+    func scrollToNextButton() {
+         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 7, inSection: 0), atScrollPosition: .Bottom, animated: true)
     }
     
     func setNextResponder(nextRow:Int) {
@@ -343,6 +357,7 @@ extension SellTableViewController: SellButtonDelegate {
     }
 }
 
+// MARK: - ExtraButtonsDelegate, ImagePicker
 extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func photosPressed() {
         let imagePicker = UIImagePickerController()
@@ -372,6 +387,16 @@ extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerD
     }
 }
 
+// MARK: - FormatCellDelegat
+extension SellTableViewController: FormatCellDelegate {
+    
+    func formatSelected(format: Int) {
+        formatIndex = format
+    }
+}
+
+
+// MARK: - NotesView
 extension SellTableViewController {
     
     func setUpNotesView() {
@@ -418,6 +443,7 @@ extension SellTableViewController {
     }
 }
 
+// MARK: - TextView Delegate
 extension SellTableViewController: UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {
         if textView.text == "Enter notes here..." {
