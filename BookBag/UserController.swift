@@ -11,6 +11,8 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 
+public let myBookNotification = "MyBookNotificationName"
+
 class UserController {
     
     private let kUser = "user"
@@ -38,6 +40,14 @@ class UserController {
             }
         }
         
+    }
+    
+    
+    var myBooks: [Book]? {
+        didSet {
+            let nc = NSNotificationCenter.defaultCenter()
+            nc.postNotificationName(myBookNotification, object: nil)
+        }
     }
     
     // LOGIN - SIGNUP
@@ -141,15 +151,15 @@ class UserController {
     }
     
     // MY LIBRARY
-    func fetchMyBooks(completion:(book:[Book]?) -> Void) {
+    func fetchMyBooks(completion:(success:Bool) -> Void) {
         if let currentUser = UserController.sharedController.currentUser {
             FirebaseController.bookBase.queryOrderedByChild("ownerID").queryEqualToValue(currentUser.uID).observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, childKey) in
                 
                 if let bookDictionaries = snapshot.value as? [String: AnyObject] {
                     let books = bookDictionaries.flatMap({Book(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
-                    completion(book: books)
+                    completion(success: true)
                 } else {
-                    completion(book: nil)
+                    completion(success: false)
                 }
             }
         }

@@ -8,16 +8,14 @@
 
 import UIKit
 
-enum ProfileState:Int {
-    case Buy,
-        Sell
+enum ProfileState {
+    case Buy, Sell, LoggedOut
 }
 
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var topView: UIView!
-    var booksForSale: [Book]?
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -55,6 +53,7 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         configureViewShadow()
+        observeMyBooks()
     }
     
     func adjustViewForLogin(){
@@ -62,12 +61,6 @@ class ProfileViewController: UIViewController {
             title = currentUser.name
             if let image = currentUser.imageURL {
                 configureProfileImage(image)
-            }
-            UserController.sharedController.fetchMyBooks { (book) in
-                self.booksForSale = book
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.collectionView.reloadData()
-                })
             }
             collectionView.backgroundView = nil
         } else {
@@ -107,13 +100,38 @@ class ProfileViewController: UIViewController {
     func configureBackGroundButton() {
         let backButton = UIButton()
         backButton.setTitle("Log In", forState: .Normal)
-        backButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        backButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         backButton.addTarget(self, action: #selector(presentLoginViewController), forControlEvents: .TouchUpInside)
         collectionView.backgroundView = backButton
     }
     
     func presentLoginViewController() {
         performSegueWithIdentifier("showSignInSegue", sender: nil)
+    }
+    
+    
+    // MARK: - MYBOOKS
+    func observeMyBooks() {
+        listenForNotifications()
+        UserController.sharedController.fetchMyBooks { (success) in
+            if success == false {
+                let backButton = UIButton()
+                backButton.setTitle("Error fetching books.", forState: .Normal)
+                backButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                self.collectionView.backgroundView = backButton
+            }
+        }
+    }
+    
+    func listenForNotifications() {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector: #selector(ProfileViewController.reloadBooks), name: myBookNotification, object: nil)
+    }
+    
+    func reloadBooks() {
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.collectionView.reloadData()
+        }
     }
     
 }
@@ -124,8 +142,8 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("profileBookCell", forIndexPath: indexPath) as! ProfileBookCollectionViewCell
         
-        if let booksForSale = booksForSale {
-        cell.updateCellForBook(booksForSale[indexPath.row])
+        if let booksForSale = UserController.sharedController.myBooks {
+            cell.updateCellForBook(booksForSale[indexPath.row])
         }
         
         return cell
@@ -133,7 +151,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let _ = UserController.sharedController.currentUser {
-            return booksForSale?.count ?? 0
+            return UserController.sharedController.myBooks?.count ?? 0
         } else {
             return 0
         }
