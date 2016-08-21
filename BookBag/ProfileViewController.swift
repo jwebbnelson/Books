@@ -17,6 +17,18 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var buyView: UIView!
+    @IBOutlet weak var sellView: UIView!
+    
+    var currentViewState: ProfileState {
+        get {
+            if let _ = UserController.sharedController.currentUser {
+                return .Buy
+            } else {
+                return .LoggedOut
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +58,8 @@ class ProfileViewController: UIViewController {
      }
      */
     
+    
+    // MARK: - VIEW SETUP
     func setUpView() {
         //        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
         //        profileImageView.clipsToBounds = true
@@ -53,7 +67,7 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         configureViewShadow()
-        observeMyBooks()
+        configureTab()
     }
     
     func adjustViewForLogin(){
@@ -63,6 +77,7 @@ class ProfileViewController: UIViewController {
                 configureProfileImage(image)
             }
             collectionView.backgroundView = nil
+            observeMyBooks()
         } else {
             // Logged Out
             configureBackGroundButton()
@@ -71,6 +86,21 @@ class ProfileViewController: UIViewController {
             collectionView.reloadData()
         }
         tabBarController?.tabBar.items![2].title = ""
+        configureTab()
+    }
+    
+    func configureTab() {
+        switch currentViewState {
+        case .Buy:
+            buyView.backgroundColor = .blackColor()
+            sellView.backgroundColor = .lightGrayColor()
+        case .Sell:
+            sellView.backgroundColor = .blackColor()
+            buyView.backgroundColor = .lightGrayColor()
+        case .LoggedOut:
+            sellView.backgroundColor = .whiteColor()
+            buyView.backgroundColor = .whiteColor()
+        }
     }
     
     func configureProfileImage(imageString:String) {
@@ -133,6 +163,7 @@ class ProfileViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
+    
     
 }
 

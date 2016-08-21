@@ -10,6 +10,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
+    @IBOutlet var trendingSearchView: UIView!
     var bookArray: [Book]?
     var searchController: UISearchController?
     
@@ -18,10 +19,9 @@ class HomeTableViewController: UITableViewController {
         
         setUpSearchController()
 
-
-        AmazonController.sharedController.amazonItemLookup("9781501135910") { (books) in
-            
-        }
+        trendingSearchView.frame = tableView.frame
+        tableView.backgroundView = trendingSearchView
+        tableView.scrollEnabled = false
        
         
         // Uncomment the following line to preserve selection between presentations
@@ -105,6 +105,9 @@ extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate 
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
+        tableView.backgroundView = nil
+        tableView.scrollEnabled = true
+        
         BookController.queryBooks(searchController.searchBar.text) { (book) in
             if let resultNav = searchController.searchResultsController as? UINavigationController, let resultsController = resultNav.viewControllers.first as? SearchResultsTableViewController {
                 resultNav.popToRootViewControllerAnimated(true)
@@ -128,7 +131,9 @@ extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate 
         searchController?.searchResultsUpdater = self
         searchController?.hidesNavigationBarDuringPresentation = true
         searchController?.obscuresBackgroundDuringPresentation = true
-        searchController?.searchBar.placeholder = "Search Books by Title..."
+        searchController?.searchBar.placeholder = "Search Books by Title"
+        searchController?.searchBar.searchBarStyle = UISearchBarStyle.Minimal
+        searchController?.searchBar.tintColor = UIColor.blackColor()
         searchController?.searchBar.autocapitalizationType = UITextAutocapitalizationType.Words
         tableView.tableHeaderView = searchController?.searchBar
         definesPresentationContext = true
