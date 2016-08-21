@@ -637,11 +637,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sell" id="9UA-Db-sIh">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="1qm-n9-9xH">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1qm-n9-9xH">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="tQK-OM-obc" id="N5z-iH-Lzn"/>
                             </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1vy-gA-MVB">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -711,26 +714,31 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" id="Xao-VF-K0Y" customClass="LoadingView" customModule="BookBag" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <rect key="frame" x="0.0" y="0.0" width="207" height="107"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="p9c-fK-zJd">
-                            <rect key="frame" x="110" y="37" width="20" height="20"/>
-                        </activityIndicatorView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wK-TR-D46">
-                            <rect key="frame" x="99" y="70" width="42" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <rect key="frame" x="82" y="24.5" width="43.5" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="p9c-fK-zJd">
+                            <rect key="frame" x="93" y="65" width="20" height="20"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="1wK-TR-D46" firstAttribute="centerX" secondItem="p9c-fK-zJd" secondAttribute="centerX" id="4rm-Sk-mwT"/>
-                        <constraint firstItem="p9c-fK-zJd" firstAttribute="centerX" secondItem="Xao-VF-K0Y" secondAttribute="centerX" id="G9g-bf-80g"/>
-                        <constraint firstItem="1wK-TR-D46" firstAttribute="top" secondItem="p9c-fK-zJd" secondAttribute="bottom" constant="13" id="QXo-uU-4j0"/>
-                        <constraint firstItem="p9c-fK-zJd" firstAttribute="top" secondItem="Xao-VF-K0Y" secondAttribute="top" constant="37" id="T2k-3d-zVf"/>
+                        <constraint firstItem="1wK-TR-D46" firstAttribute="centerY" secondItem="Xao-VF-K0Y" secondAttribute="centerY" constant="-18.5" id="0BL-0f-shb"/>
+                        <constraint firstItem="p9c-fK-zJd" firstAttribute="centerY" secondItem="Xao-VF-K0Y" secondAttribute="centerY" constant="22" id="6Eo-LP-oM0"/>
+                        <constraint firstItem="p9c-fK-zJd" firstAttribute="centerX" secondItem="Xao-VF-K0Y" secondAttribute="centerX" id="dei-9k-f4x"/>
+                        <constraint firstItem="1wK-TR-D46" firstAttribute="centerX" secondItem="Xao-VF-K0Y" secondAttribute="centerX" id="mIU-A0-eaS"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="activityIndicator" destination="p9c-fK-zJd" id="xec-sK-A2M"/>
                         <outlet property="label" destination="1wK-TR-D46" id="yax-Vc-vKf"/>
@@ -827,7 +835,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -847,6 +855,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9vK-Ln-7Do">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -867,7 +876,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1290,7 +1299,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="buyTapped:" destination="ANd-Z2-nz0" eventType="touchUpInside" id="DKs-2a-76m"/>
+                                                            <action selector="tabBarChanged:" destination="ANd-Z2-nz0" eventType="touchUpInside" id="X1D-tr-kqK"/>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V81-sS-5Tb">
@@ -1305,14 +1314,14 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="me8-xA-faZ">
                                                 <rect key="frame" x="300" y="0.0" width="300" height="31"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcs-eL-YwJ">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcs-eL-YwJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                         <state key="normal" title="SELL">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="sellTapped:" destination="ANd-Z2-nz0" eventType="touchUpInside" id="BWO-cU-T9m"/>
+                                                            <action selector="tabBarChanged:" destination="ANd-Z2-nz0" eventType="touchUpInside" id="YF6-Au-k7F"/>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8sv-zt-dCd">
@@ -1379,9 +1388,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buyButton" destination="CEa-ze-a0u" id="2fw-e6-JIs"/>
                         <outlet property="buyView" destination="V81-sS-5Tb" id="oRS-nv-3kO"/>
                         <outlet property="collectionView" destination="VHw-sP-KnD" id="Hiz-Zk-mQA"/>
                         <outlet property="profileImageView" destination="738-VM-Hnb" id="7vW-Wq-eus"/>
+                        <outlet property="sellButton" destination="Lcs-eL-YwJ" id="Imm-86-4uT"/>
                         <outlet property="sellView" destination="8sv-zt-dCd" id="Mal-UD-du2"/>
                         <outlet property="topView" destination="uGb-bN-EmL" id="JvF-7V-0Mf"/>
                         <segue destination="teH-eW-Wpr" kind="presentation" identifier="showSignInSegue" id="8Hj-gN-SpN"/>
@@ -1449,7 +1460,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
@@ -1474,6 +1485,6 @@
         <image name="ScanButtonBlack" width="25" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="W9S-ic-dWC"/>
+        <segue reference="61F-Fx-KKG"/>
     </inferredMetricsTieBreakers>
 </document>

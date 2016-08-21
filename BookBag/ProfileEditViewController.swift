@@ -32,7 +32,7 @@ class ProfileEditViewController: UIViewController {
     }
     */
     @IBAction func logOutTapped(sender: AnyObject) {
-        UserController.logOutUser()
+        UserController.sharedController.logOutUser()
         navigationController?.popViewControllerAnimated(true)
     }
 

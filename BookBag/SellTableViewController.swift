@@ -47,6 +47,7 @@ class SellTableViewController: UITableViewController {
     let notesBackground = UIView()
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet var loadingView: LoadingView!
+    var backgroundView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -366,6 +367,10 @@ extension SellTableViewController: SellButtonDelegate {
     
     // MARK: - LoadingView
     func beginLoadingView() {
+        backgroundView = UIView(frame: self.tableView.frame)
+        backgroundView.backgroundColor = UIColor.blackColor()
+        backgroundView.alpha = 0.4
+        view.addSubview(backgroundView)
         loadingView.center.y = view.center.y
         loadingView.center.x = view.center.x
         view.addSubview(loadingView)
@@ -375,6 +380,7 @@ extension SellTableViewController: SellButtonDelegate {
     func dismissLoadingView() {
         loadingView.activityIndicator.stopAnimating()
         loadingView.removeFromSuperview()
+        backgroundView.removeFromSuperview()
     }
 }
 

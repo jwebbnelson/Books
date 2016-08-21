@@ -32,13 +32,13 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpTapped(sender: AnyObject) {
         if let email = emailField.text, let password = passwordField.text, let name = nameField.text {
-            UserController.signUpUser(email, password: password, completion: { (uid, errorString) in
+            UserController.sharedController.signUpUser(email, password: password, completion: { (uid, errorString) in
                 guard let uID = uid else {
                     print(errorString)
                     return
                 }
-                UserController.createFirebaseUser(uID, name: name, email: email, imageURL: nil, completion: { (success) in
-                    UserController.logInUser(email, password: password, completion: { (errorString) in
+                UserController.sharedController.createFirebaseUser(uID, name: name, email: email, imageURL: nil, completion: { (success) in
+                    UserController.sharedController.logInUser(email, password: password, completion: { (errorString) in
                         
                         if let error = errorString {
                             print(error)

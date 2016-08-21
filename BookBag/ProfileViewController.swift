@@ -19,6 +19,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var buyView: UIView!
     @IBOutlet weak var sellView: UIView!
+    @IBOutlet weak var buyButton: UIButton!
+    @IBOutlet weak var sellButton: UIButton!
     
     var currentViewState: ProfileState {
         get {
@@ -27,6 +29,10 @@ class ProfileViewController: UIViewController {
             } else {
                 return .LoggedOut
             }
+        }
+        
+        set {
+           configureTab(newValue)
         }
     }
     
@@ -67,7 +73,7 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         configureViewShadow()
-        configureTab()
+        configureTab(currentViewState)
     }
     
     func adjustViewForLogin(){
@@ -86,22 +92,35 @@ class ProfileViewController: UIViewController {
             collectionView.reloadData()
         }
         tabBarController?.tabBar.items![2].title = ""
-        configureTab()
+        configureTab(currentViewState)
     }
     
-    func configureTab() {
-        switch currentViewState {
+    // MARK: - TAB
+    
+    func configureTab(state:ProfileState) {
+        switch state {
         case .Buy:
+            
             buyView.backgroundColor = .blackColor()
-            sellView.backgroundColor = .lightGrayColor()
+            sellView.backgroundColor = .whiteColor()
         case .Sell:
             sellView.backgroundColor = .blackColor()
-            buyView.backgroundColor = .lightGrayColor()
+            buyView.backgroundColor = .whiteColor()
         case .LoggedOut:
             sellView.backgroundColor = .whiteColor()
             buyView.backgroundColor = .whiteColor()
         }
     }
+    
+    @IBAction func tabBarChanged(sender: AnyObject) {
+        switch sender.tag {
+        case 0:
+            self.currentViewState = .Buy
+        default:
+            self.currentViewState = .Sell
+        }
+    }
+    
     
     func configureProfileImage(imageString:String) {
         if let url = NSURL(string:imageString) {
@@ -219,14 +238,3 @@ extension ProfileViewController {
     }
 }
 
-// MARK: - StackViewButtons
-extension ProfileViewController {
-    
-    @IBAction func buyTapped(sender: AnyObject) {
-        
-    }
-    
-    @IBAction func sellTapped(sender: AnyObject) {
-   
-    }
-}
