@@ -29,7 +29,7 @@ public let SellDismissedNotification = "SellDismissedNotificationName"
 
 class SellTableViewController: UITableViewController {
 
-    let labelArray = ["TITLE", "Author", "Edition", "", "Location", "Price"]
+    let labelArray = ["TITLE", "AUTHOR", "EDITION", "", "LOCATION", "PRICE"]
     let promptArray = ["Title", "John, Smith", "Version #", "", "Zipcode", "$$$"]
     var isbn: String?
     var bookTitle: String?
@@ -214,13 +214,16 @@ extension SellTableViewController: UITextFieldDelegate {
         case SellTextFields.Author.rawValue:
             textField.keyboardType = UIKeyboardType.Default
             textField.autocapitalizationType = UITextAutocapitalizationType.Words
-            
+            showCellLabel(SellTableViewCells.Author.rawValue)
         case SellTextFields.Edition.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+            showCellLabel(SellTableViewCells.Edition.rawValue)
         case SellTextFields.Location.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+            showCellLabel(SellTableViewCells.Location.rawValue)
         case SellTextFields.Price.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+            showCellLabel(SellTableViewCells.Price.rawValue)
         default:
             return
         }
