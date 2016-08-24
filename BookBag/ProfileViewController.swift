@@ -54,15 +54,22 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+        
+        if let vc = segue.destinationViewController as? BookDetailTableViewController, let books = UserController.sharedController.myBooks, let cell = sender as? ProfileBookCollectionViewCell, let indexPath = collectionView.indexPathForCell(cell) {
+            
+            let book = books[indexPath.row]
+            vc.book = book
+            if let image = cell.bookImageView.image {
+                vc.loadedImage = image
+            }
+        }
      }
-     */
+    
     
     
     // MARK: - VIEW SETUP
@@ -222,7 +229,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 4
     }
-    
     
 }
 

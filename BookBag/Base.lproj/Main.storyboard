@@ -151,62 +151,62 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJV-Uu-VFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="BDh-fU-wfl">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="186"/>
+                    <rect key="frame" x="0.0" y="0.0" width="360" height="186"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="0Kn-c1-g4f">
-                            <rect key="frame" x="-34" y="37" width="307" height="112"/>
+                            <rect key="frame" x="16" y="46" width="328" height="112"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending Searches" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaM-Ky-cHK">
-                                    <rect key="frame" x="0.0" y="0.0" width="307" height="14"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaM-Ky-cHK">
+                                    <rect key="frame" x="0.0" y="0.0" width="328" height="14"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6C-r4-nTZ">
-                                    <rect key="frame" x="0.0" y="14" width="307" height="14"/>
+                                    <rect key="frame" x="0.0" y="14" width="328" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <state key="normal" title="The Art of Public Speaking">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbv-EW-ijY">
-                                    <rect key="frame" x="0.0" y="28" width="307" height="14"/>
+                                    <rect key="frame" x="0.0" y="28" width="328" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <state key="normal" title="Principles of Microeconomics">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIa-bo-2hP">
-                                    <rect key="frame" x="0.0" y="42" width="307" height="14"/>
+                                    <rect key="frame" x="0.0" y="42" width="328" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <state key="normal" title="Modern Management: Concepts and Skills">
+                                    <state key="normal" title="Modern Management">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aii-yI-kQE">
-                                    <rect key="frame" x="0.0" y="56" width="307" height="14"/>
+                                    <rect key="frame" x="0.0" y="56" width="328" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <state key="normal" title="Prebles' Artforms">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYp-U2-dTw" userLabel="Children">
-                                    <rect key="frame" x="0.0" y="70" width="307" height="14"/>
+                                    <rect key="frame" x="0.0" y="70" width="328" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <state key="normal" title="Children">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSn-uH-dlb" userLabel="Financial Accounting">
-                                    <rect key="frame" x="0.0" y="84" width="307" height="14"/>
+                                    <rect key="frame" x="0.0" y="84" width="328" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <state key="normal" title="Financial Accounting">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YE-J8-JgZ" userLabel="College Algebra">
-                                    <rect key="frame" x="0.0" y="98" width="307" height="14"/>
+                                    <rect key="frame" x="0.0" y="98" width="328" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <state key="normal" title="College Algebra">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,8 +218,10 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="0Kn-c1-g4f" firstAttribute="height" secondItem="BDh-fU-wfl" secondAttribute="height" multiplier="6/10" id="A4a-AD-1GT"/>
+                        <constraint firstItem="0Kn-c1-g4f" firstAttribute="leading" secondItem="BDh-fU-wfl" secondAttribute="leadingMargin" constant="8" id="OYj-Ci-4wT"/>
                         <constraint firstItem="0Kn-c1-g4f" firstAttribute="centerX" secondItem="BDh-fU-wfl" secondAttribute="centerX" id="oSf-SH-h6t"/>
-                        <constraint firstItem="0Kn-c1-g4f" firstAttribute="centerY" secondItem="BDh-fU-wfl" secondAttribute="centerY" id="v54-we-3vA"/>
+                        <constraint firstItem="0Kn-c1-g4f" firstAttribute="centerY" secondItem="BDh-fU-wfl" secondAttribute="centerY" constant="9" id="v54-we-3vA"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="0Kn-c1-g4f" secondAttribute="trailing" constant="8" id="vyM-Yg-GVV"/>
                     </constraints>
                 </view>
             </objects>
@@ -351,7 +353,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="bidView" destination="9mk-RC-Oax" id="ZJf-DL-Gky"/>
+                        <outlet property="bidView" destination="9mk-RC-Oax" id="szx-HU-Yui"/>
                         <outlet property="bookImageView" destination="SqD-s5-efU" id="l1Y-fT-OXX"/>
                         <outlet property="expandedView" destination="eQc-qU-D9T" id="rDq-Mh-v7W"/>
                         <outlet property="tableViewHeaderView" destination="KfO-D6-8sS" id="JTQ-zy-Joc"/>
@@ -386,7 +388,7 @@
                         <outlet property="imageView" destination="XAt-ms-yG5" id="VNw-lK-R7C"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" id="9mk-RC-Oax">
+                <view contentMode="scaleToFill" id="9mk-RC-Oax" customClass="BidView" customModule="BookBag" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -395,6 +397,9 @@
                             <state key="normal" title="X">
                                 <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="cancelTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="pUi-k9-7y1"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-h2-CGV">
                             <rect key="frame" x="136" y="12" width="28.5" height="21"/>
@@ -403,47 +408,62 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-0n-bD5">
-                            <rect key="frame" x="0.0" y="270" width="300" height="30"/>
+                            <rect key="frame" x="0.0" y="260" width="300" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="hZL-qy-YOR"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <state key="normal" title="CONFIRM">
                                 <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="confirmTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="ezC-HR-RWv"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-gH-WBY">
                             <rect key="frame" x="262" y="8" width="30" height="30"/>
                             <state key="normal" title="?">
                                 <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="questionTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="9ra-ah-04K"/>
+                            </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="y17-29-Il8">
-                            <rect key="frame" x="10" y="41" width="280" height="221"/>
+                            <rect key="frame" x="10" y="75" width="280" height="150"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NCG-ab-kot">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="49"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="39"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Asking Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcV-Fo-1hh">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Asking Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcV-Fo-1hh">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="10"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cD-bI-EAU">
-                                            <rect key="frame" x="0.0" y="29" width="280" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cD-bI-EAU">
+                                            <rect key="frame" x="0.0" y="18" width="280" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enter the price you wish to purchase this book for. The seller will be notified immediately. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUC-tg-nMI">
+                                    <rect key="frame" x="0.0" y="39" width="280" height="61"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54259159479999997" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eK2-KE-Nhf">
-                                    <rect key="frame" x="0.0" y="111" width="280" height="1"/>
+                                    <rect key="frame" x="0.0" y="100" width="280" height="1"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1156788793" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="ivq-Ts-SDy"/>
                                     </constraints>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RZU-FL-Of5">
-                                    <rect key="frame" x="0.0" y="176" width="280" height="46"/>
+                                    <rect key="frame" x="0.0" y="101" width="280" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Your Offer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP6-05-Koh">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="21"/>
@@ -452,8 +472,8 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$$" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pQr-Tf-fzv">
-                                            <rect key="frame" x="0.0" y="29" width="280" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <rect key="frame" x="0.0" y="29" width="280" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
@@ -468,6 +488,8 @@
                         <constraint firstItem="y17-29-Il8" firstAttribute="leading" secondItem="9mk-RC-Oax" secondAttribute="leading" constant="10" id="NzT-9u-hnS"/>
                         <constraint firstItem="y17-29-Il8" firstAttribute="top" secondItem="C6t-h2-CGV" secondAttribute="bottom" constant="8" id="Pm6-3j-TYc"/>
                         <constraint firstAttribute="trailing" secondItem="y17-29-Il8" secondAttribute="trailing" constant="10" id="QMU-aD-t3n"/>
+                        <constraint firstItem="y17-29-Il8" firstAttribute="height" secondItem="9mk-RC-Oax" secondAttribute="height" multiplier="1/2" id="Qqm-Vo-xko"/>
+                        <constraint firstItem="y17-29-Il8" firstAttribute="centerY" secondItem="9mk-RC-Oax" secondAttribute="centerY" id="Sho-kt-d3C"/>
                         <constraint firstItem="tY4-Qw-bwO" firstAttribute="leading" secondItem="9mk-RC-Oax" secondAttribute="leading" constant="8" id="YHG-bH-D8o"/>
                         <constraint firstItem="C6t-h2-CGV" firstAttribute="centerY" secondItem="tY4-Qw-bwO" secondAttribute="centerY" id="Yaw-SG-aNt"/>
                         <constraint firstItem="8qy-0n-bD5" firstAttribute="top" secondItem="y17-29-Il8" secondAttribute="bottom" constant="8" id="dX6-23-40h"/>
@@ -482,6 +504,21 @@
                             <integer key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Pm6-3j-TYc"/>
+                            <exclude reference="dX6-23-40h"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="centerView" destination="eK2-KE-Nhf" id="WQN-Zf-6av"/>
+                        <outlet property="confirmButton" destination="8qy-0n-bD5" id="9xk-9g-5DW"/>
+                        <outlet property="explanationLabel" destination="zUC-tg-nMI" id="PAt-EF-Ehj"/>
+                        <outlet property="offerTextField" destination="pQr-Tf-fzv" id="XK1-Tu-UbF"/>
+                        <outlet property="questionButton" destination="Mwd-gH-WBY" id="oX1-T4-hyg"/>
+                        <outletCollection property="bidTools" destination="NCG-ab-kot" collectionClass="NSMutableArray" id="1Oe-sH-SZQ"/>
+                        <outletCollection property="bidTools" destination="RZU-FL-Of5" collectionClass="NSMutableArray" id="VMa-t6-LTe"/>
+                    </connections>
                 </view>
             </objects>
             <point key="canvasLocation" x="3084" y="246"/>
@@ -973,6 +1010,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="D3X-aa-6ne">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         </textAttributes>
@@ -1373,6 +1411,7 @@
                                             <outlet property="locationLabel" destination="z0d-AH-Lfh" id="Neb-VE-cJx"/>
                                             <outlet property="priceLabel" destination="bBX-7X-OX5" id="Vnk-2F-4FR"/>
                                             <outlet property="titleLabel" destination="l20-ax-fMo" id="g3y-Ue-YGI"/>
+                                            <segue destination="kDn-ji-SHC" kind="show" id="wus-Sj-1ff"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1477,6 +1516,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="UlO-2B-3Tc">
+                        <barButtonItem key="backBarButtonItem" title="Profile" id="yE6-Yb-luI"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="pna-pU-Bbq">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1583,6 +1623,6 @@
         <image name="ScanButtonBlack" width="25" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="61F-Fx-KKG"/>
+        <segue reference="wus-Sj-1ff"/>
     </inferredMetricsTieBreakers>
 </document>

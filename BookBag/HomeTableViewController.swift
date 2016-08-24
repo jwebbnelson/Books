@@ -133,6 +133,7 @@ extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate 
         searchController?.obscuresBackgroundDuringPresentation = true
         searchController?.searchBar.placeholder = "Search Books by Title"
         searchController?.searchBar.searchBarStyle = UISearchBarStyle.Minimal
+        searchController?.searchBar.backgroundColor = UIColor.whiteColor()
         searchController?.searchBar.tintColor = UIColor.blackColor()
         searchController?.searchBar.autocapitalizationType = UITextAutocapitalizationType.Words
         tableView.tableHeaderView = searchController?.searchBar

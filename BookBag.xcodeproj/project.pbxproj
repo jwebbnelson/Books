@@ -27,6 +27,7 @@
 		8393D1C11CCC5D81000E7923 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8393D1BF1CCC5D81000E7923 /* LaunchScreen.storyboard */; };
 		8393D1CC1CCC5D81000E7923 /* BookBagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393D1CB1CCC5D81000E7923 /* BookBagTests.swift */; };
 		8393D1D71CCC5D81000E7923 /* BookBagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393D1D61CCC5D81000E7923 /* BookBagUITests.swift */; };
+		83940D071D6DD0FA00C76395 /* BidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83940D061D6DD0FA00C76395 /* BidView.swift */; };
 		83A5C0B71D0E9BDF00F51D2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83A5C0B61D0E9BDF00F51D2C /* GoogleService-Info.plist */; };
 		83A5C0B91D15122200F51D2C /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A5C0B81D15122200F51D2C /* FirebaseController.swift */; };
 		83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */; };
@@ -95,6 +96,7 @@
 		8393D1D21CCC5D81000E7923 /* BookBagUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookBagUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8393D1D61CCC5D81000E7923 /* BookBagUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBagUITests.swift; sourceTree = "<group>"; };
 		8393D1D81CCC5D81000E7923 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83940D061D6DD0FA00C76395 /* BidView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidView.swift; sourceTree = "<group>"; };
 		83A5C0B61D0E9BDF00F51D2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		83A5C0B81D15122200F51D2C /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				831EFE1A1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift */,
 				836EAC551D466F81006B7D05 /* ExpandedView.swift */,
+				83940D061D6DD0FA00C76395 /* BidView.swift */,
 				831EFE1F1D2F1C8300BC6C59 /* Cells */,
 			);
 			name = BookDetail;
@@ -556,6 +559,7 @@
 				83BD936D1CCEB83300E56534 /* BookController.swift in Sources */,
 				831D56281D454BF7003F87CE /* LoginViewController.swift in Sources */,
 				83BD936F1CCEB87800E56534 /* LocationController.swift in Sources */,
+				83940D071D6DD0FA00C76395 /* BidView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

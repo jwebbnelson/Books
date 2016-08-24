@@ -15,7 +15,9 @@ class BookDetailTableViewController: UITableViewController {
     var loadedImage: UIImage?
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet var expandedView: ExpandedView!
-    @IBOutlet var bidView: UIView!
+    @IBOutlet var bidView: BidView!
+    
+    var darkView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,22 +125,19 @@ class BookDetailTableViewController: UITableViewController {
     }
     
     @IBAction func bidButtonTapped(sender: AnyObject) {
-        configureViewShadow()
-        bidView.frame.size.width = tableView.frame.width - 16
+        bidView.configure()
+        bidView.frame.size.width = tableView.frame.width - 26
         bidView.frame.size.height = tableView.frame.size.height/3
         bidView.center.y = tableView.center.y - tableView.frame.size.height/4
         bidView.center.x = tableView.center.x
+        darkView = UIView(frame: tableView.frame)
+        darkView?.backgroundColor = UIColor.blackColor()
+        darkView?.alpha = 0.4
+        tableView.addSubview(darkView!)
         tableView.addSubview(bidView)
-        
     }
     
-    func configureViewShadow() {
-        bidView.layer.shadowColor = UIColor.blackColor().CGColor
-        bidView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        bidView.layer.shadowRadius = 4
-        bidView.layer.shadowOpacity = 0.2
-        bidView.layer.masksToBounds = false
-    }
+    
    
     @IBAction func likeButtonTapped(sender: AnyObject) {
    
