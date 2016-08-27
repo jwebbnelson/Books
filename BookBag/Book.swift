@@ -31,7 +31,7 @@ class Book: Equatable {
     var title: String
     var author: String
     var edition: String?
-//    var location: CLLocation
+ // var location: CLLocation
     var price: Double
     var image: String
     var notes: String?

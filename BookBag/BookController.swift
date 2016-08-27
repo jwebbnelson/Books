@@ -32,10 +32,10 @@ class BookController {
     }
     
     // MARK: - Selling
-    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, completion:(book:Book?, bookID: String?, error:String?) -> Void) {
+    static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, format:String, completion:(book:Book?, bookID: String?, error:String?) -> Void) {
         
         if let currentUser = UserController.sharedController.currentUser {
-            let book = Book(title: title, author: author, edition: edition, price: price, isbn: isbn, notes:notes, ownerID: currentUser.uID)
+            let book = Book(title: title, author: author, edition: edition, price: price, isbn: isbn, notes:notes, ownerID: currentUser.uID, format: format)
             FirebaseController.bookBase.childByAutoId().setValue(book.jsonValue) { (error, ref) in
                 if let error = error {
                     completion(book: nil, bookID: nil, error: error.localizedDescription)

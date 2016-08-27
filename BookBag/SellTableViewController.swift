@@ -39,7 +39,7 @@ class SellTableViewController: UITableViewController {
     var price: Double?
     var notes: String?
     var image: UIImage?
-    var formatIndex: Int?
+    var formatString: String?
     
     @IBOutlet weak var tableHeadView: UIView!
     @IBOutlet weak var isbnTextField: UITextField!
@@ -313,10 +313,10 @@ extension SellTableViewController: SellButtonDelegate {
     func sellButtonTapped() {
         view.endEditing(true)
         
-        if let bookTitle = bookTitle, let author = author, price = price, let isbn = isbn {
+        if let bookTitle = bookTitle, let author = author, price = price, let isbn = isbn, let formatString = formatString {
             beginLoadingView()
             loadingView.updateLabel("Confirming Book Details")
-            BookController.submitTextbookForApproval(author, title: bookTitle, isbn: isbn, edition: edition, price: price ?? 0, notes: notes) { (book, bookID, error) in
+            BookController.submitTextbookForApproval(author, title: bookTitle, isbn: isbn, edition: edition, price: price ?? 0, notes: notes, format: formatString) { (book, bookID, error) in
                 if let error = error {
                     print(error)
                 } else {
@@ -425,10 +425,14 @@ extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerD
 extension SellTableViewController: FormatCellDelegate {
     
     func formatSelected(format: Int) {
-        formatIndex = format
+        switch format {
+        case 0:
+            formatString = "Paperback"
+        default:
+            formatString = "Hardcover"
+        }
     }
 }
-
 
 // MARK: - NotesView
 extension SellTableViewController {
