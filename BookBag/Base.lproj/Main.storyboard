@@ -160,7 +160,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaM-Ky-cHK">
                                     <rect key="frame" x="0.0" y="0.0" width="328" height="14"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6C-r4-nTZ">
@@ -389,90 +389,72 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" id="9mk-RC-Oax" customClass="BidView" customModule="BookBag" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="355"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tY4-Qw-bwO">
-                            <rect key="frame" x="8" y="8" width="30" height="30"/>
-                            <state key="normal" title="X">
-                                <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="cancelTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="pUi-k9-7y1"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-h2-CGV">
-                            <rect key="frame" x="136" y="12" width="28.5" height="21"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-0n-bD5">
-                            <rect key="frame" x="0.0" y="260" width="300" height="40"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAI-pb-Uuv">
+                            <rect key="frame" x="0.0" y="69" width="300" height="1"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1156788793" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="hZL-qy-YOR"/>
+                                <constraint firstAttribute="height" constant="1" id="ypi-bd-2dB"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                            <state key="normal" title="CONFIRM">
-                                <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="confirmTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="ezC-HR-RWv"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-gH-WBY">
-                            <rect key="frame" x="262" y="8" width="30" height="30"/>
-                            <state key="normal" title="?">
-                                <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="questionTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="9ra-ah-04K"/>
-                            </connections>
-                        </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="y17-29-Il8">
-                            <rect key="frame" x="10" y="75" width="280" height="150"/>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="y17-29-Il8">
+                            <rect key="frame" x="0.0" y="77" width="300" height="227"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NCG-ab-kot">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="39"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NCG-ab-kot">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="49"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Asking Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcV-Fo-1hh">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="10"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Asking Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcV-Fo-1hh">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cD-bI-EAU">
-                                            <rect key="frame" x="0.0" y="18" width="280" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cD-bI-EAU">
+                                            <rect key="frame" x="0.0" y="29" width="300" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enter the price you wish to purchase this book for. The seller will be notified immediately. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUC-tg-nMI">
-                                    <rect key="frame" x="0.0" y="39" width="280" height="61"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54259159479999997" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eK2-KE-Nhf">
-                                    <rect key="frame" x="0.0" y="100" width="280" height="1"/>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1156788793" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="ivq-Ts-SDy"/>
-                                    </constraints>
-                                </view>
-                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RZU-FL-Of5">
-                                    <rect key="frame" x="0.0" y="101" width="280" height="50"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="D5I-gH-ia8">
+                                    <rect key="frame" x="0.0" y="49" width="300" height="128"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UL5-Cw-lEk">
+                                            <rect key="frame" x="0.0" y="0.0" width="38" height="128"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="JIb-za-THb"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Enter the price you wish to purchase this book for. The seller will be notified immediately. " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUC-tg-nMI">
+                                            <rect key="frame" x="38" y="0.0" width="225" height="128"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54259159479999997" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ssu-qe-UX6">
+                                            <rect key="frame" x="263" y="0.0" width="38" height="128"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="8iS-dq-6uj"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RZU-FL-Of5">
+                                    <rect key="frame" x="0.0" y="177" width="300" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Your Offer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP6-05-Koh">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$$" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pQr-Tf-fzv">
-                                            <rect key="frame" x="0.0" y="29" width="280" height="21"/>
+                                            <rect key="frame" x="0.0" y="29" width="300" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -480,24 +462,70 @@
                                 </stackView>
                             </subviews>
                         </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vnc-Q2-4Ud">
+                            <rect key="frame" x="158" y="311" width="134" height="36"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tY4-Qw-bwO">
+                                    <rect key="frame" x="0.0" y="0.0" width="59" height="36"/>
+                                    <state key="normal" title="CANCEL">
+                                        <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="cancelTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="pUi-k9-7y1"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-0n-bD5">
+                                    <rect key="frame" x="75" y="0.0" width="59" height="36"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="hZL-qy-YOR"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                    <state key="normal" title="OK">
+                                        <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="confirmTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="ezC-HR-RWv"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid On Textbook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-h2-CGV" userLabel="Bid On ">
+                            <rect key="frame" x="24" y="24" width="131" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-gH-WBY">
+                            <rect key="frame" x="24" y="314" width="30" height="30"/>
+                            <state key="normal" title="?">
+                                <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="questionTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="9ra-ah-04K"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="Mwd-gH-WBY" firstAttribute="top" secondItem="9mk-RC-Oax" secondAttribute="top" constant="8" id="Cwv-Gk-N4Z"/>
-                        <constraint firstItem="C6t-h2-CGV" firstAttribute="centerX" secondItem="9mk-RC-Oax" secondAttribute="centerX" id="I8h-Bh-Esk"/>
-                        <constraint firstItem="y17-29-Il8" firstAttribute="leading" secondItem="9mk-RC-Oax" secondAttribute="leading" constant="10" id="NzT-9u-hnS"/>
+                        <constraint firstItem="y17-29-Il8" firstAttribute="leading" secondItem="9mk-RC-Oax" secondAttribute="leading" id="1U4-1d-2ou"/>
+                        <constraint firstItem="oAI-pb-Uuv" firstAttribute="leading" secondItem="9mk-RC-Oax" secondAttribute="leading" id="5ZR-7m-k8r"/>
+                        <constraint firstItem="Mwd-gH-WBY" firstAttribute="centerY" secondItem="tY4-Qw-bwO" secondAttribute="centerY" id="8lL-fA-2oh"/>
+                        <constraint firstAttribute="trailing" secondItem="vnc-Q2-4Ud" secondAttribute="trailing" constant="8" id="D2v-MK-u1a"/>
+                        <constraint firstItem="C6t-h2-CGV" firstAttribute="leading" secondItem="9mk-RC-Oax" secondAttribute="leading" constant="24" id="DQk-Ip-22d"/>
+                        <constraint firstItem="y17-29-Il8" firstAttribute="top" secondItem="9mk-RC-Oax" secondAttribute="top" constant="60" id="GwA-5X-qCP"/>
+                        <constraint firstItem="y17-29-Il8" firstAttribute="leading" secondItem="9mk-RC-Oax" secondAttribute="leading" id="NzT-9u-hnS"/>
                         <constraint firstItem="y17-29-Il8" firstAttribute="top" secondItem="C6t-h2-CGV" secondAttribute="bottom" constant="8" id="Pm6-3j-TYc"/>
-                        <constraint firstAttribute="trailing" secondItem="y17-29-Il8" secondAttribute="trailing" constant="10" id="QMU-aD-t3n"/>
+                        <constraint firstAttribute="trailing" secondItem="y17-29-Il8" secondAttribute="trailing" id="QMU-aD-t3n"/>
                         <constraint firstItem="y17-29-Il8" firstAttribute="height" secondItem="9mk-RC-Oax" secondAttribute="height" multiplier="1/2" id="Qqm-Vo-xko"/>
                         <constraint firstItem="y17-29-Il8" firstAttribute="centerY" secondItem="9mk-RC-Oax" secondAttribute="centerY" id="Sho-kt-d3C"/>
-                        <constraint firstItem="tY4-Qw-bwO" firstAttribute="leading" secondItem="9mk-RC-Oax" secondAttribute="leading" constant="8" id="YHG-bH-D8o"/>
-                        <constraint firstItem="C6t-h2-CGV" firstAttribute="centerY" secondItem="tY4-Qw-bwO" secondAttribute="centerY" id="Yaw-SG-aNt"/>
-                        <constraint firstItem="8qy-0n-bD5" firstAttribute="top" secondItem="y17-29-Il8" secondAttribute="bottom" constant="8" id="dX6-23-40h"/>
-                        <constraint firstItem="tY4-Qw-bwO" firstAttribute="top" secondItem="9mk-RC-Oax" secondAttribute="top" constant="8" id="g2v-3F-hWU"/>
-                        <constraint firstAttribute="bottom" secondItem="8qy-0n-bD5" secondAttribute="bottom" id="h7i-gT-te7"/>
-                        <constraint firstAttribute="trailing" secondItem="8qy-0n-bD5" secondAttribute="trailing" id="jZc-Of-lfy"/>
-                        <constraint firstAttribute="trailing" secondItem="Mwd-gH-WBY" secondAttribute="trailing" constant="8" id="l6i-wi-lD0"/>
-                        <constraint firstItem="8qy-0n-bD5" firstAttribute="leading" secondItem="9mk-RC-Oax" secondAttribute="leading" id="xbE-a9-NZe"/>
+                        <constraint firstItem="Mwd-gH-WBY" firstAttribute="leading" secondItem="C6t-h2-CGV" secondAttribute="leading" id="ayj-MU-NDp"/>
+                        <constraint firstItem="oAI-pb-Uuv" firstAttribute="top" secondItem="C6t-h2-CGV" secondAttribute="bottom" constant="24" id="bmN-aW-6eh"/>
+                        <constraint firstAttribute="trailing" secondItem="y17-29-Il8" secondAttribute="trailing" id="gyq-ym-dJK"/>
+                        <constraint firstItem="vnc-Q2-4Ud" firstAttribute="top" secondItem="y17-29-Il8" secondAttribute="bottom" constant="8" id="rqo-PC-gox"/>
+                        <constraint firstItem="y17-29-Il8" firstAttribute="top" secondItem="oAI-pb-Uuv" secondAttribute="bottom" constant="7" id="tzy-g6-AVE"/>
+                        <constraint firstAttribute="bottom" secondItem="vnc-Q2-4Ud" secondAttribute="bottom" constant="8" id="ukj-Ze-MhP"/>
+                        <constraint firstAttribute="trailing" secondItem="oAI-pb-Uuv" secondAttribute="trailing" id="yfY-uQ-FcI"/>
+                        <constraint firstItem="C6t-h2-CGV" firstAttribute="top" secondItem="9mk-RC-Oax" secondAttribute="top" constant="24" id="zxe-32-0Nq"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -506,14 +534,17 @@
                     </userDefinedRuntimeAttributes>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="1U4-1d-2ou"/>
+                            <exclude reference="GwA-5X-qCP"/>
                             <exclude reference="Pm6-3j-TYc"/>
-                            <exclude reference="dX6-23-40h"/>
+                            <exclude reference="Qqm-Vo-xko"/>
+                            <exclude reference="Sho-kt-d3C"/>
+                            <exclude reference="gyq-ym-dJK"/>
                         </mask>
                     </variation>
                     <connections>
-                        <outlet property="centerView" destination="eK2-KE-Nhf" id="WQN-Zf-6av"/>
                         <outlet property="confirmButton" destination="8qy-0n-bD5" id="9xk-9g-5DW"/>
-                        <outlet property="explanationLabel" destination="zUC-tg-nMI" id="PAt-EF-Ehj"/>
+                        <outlet property="explanationStack" destination="D5I-gH-ia8" id="Gr0-ty-r4e"/>
                         <outlet property="offerTextField" destination="pQr-Tf-fzv" id="XK1-Tu-UbF"/>
                         <outlet property="questionButton" destination="Mwd-gH-WBY" id="oX1-T4-hyg"/>
                         <outletCollection property="bidTools" destination="NCG-ab-kot" collectionClass="NSMutableArray" id="1Oe-sH-SZQ"/>

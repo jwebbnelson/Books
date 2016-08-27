@@ -126,9 +126,9 @@ class BookDetailTableViewController: UITableViewController {
     
     @IBAction func bidButtonTapped(sender: AnyObject) {
         bidView.configure()
-        bidView.frame.size.width = tableView.frame.width - 26
-        bidView.frame.size.height = tableView.frame.size.height/3
-        bidView.center.y = tableView.center.y - tableView.frame.size.height/4
+        bidView.frame.size.width = tableView.frame.width * 0.75
+        bidView.frame.size.height = tableView.frame.size.height/2.5
+        bidView.center.y = tableView.center.y - tableView.frame.size.height/5
         bidView.center.x = tableView.center.x
         darkView = UIView(frame: tableView.frame)
         darkView?.backgroundColor = UIColor.blackColor()
@@ -136,7 +136,6 @@ class BookDetailTableViewController: UITableViewController {
         tableView.addSubview(darkView!)
         tableView.addSubview(bidView)
     }
-    
     
    
     @IBAction func likeButtonTapped(sender: AnyObject) {

@@ -16,10 +16,9 @@ class BidView: UIView {
 
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var questionButton: UIButton!
-    @IBOutlet weak var explanationLabel: UILabel!
+    @IBOutlet weak var explanationStack: UIStackView!
     @IBOutlet weak var offerTextField: UITextField!
     @IBOutlet var bidTools: [UIStackView]!
-    @IBOutlet weak var centerView: UIView!
     
     var currentState: BidViewState = .Bid
     
@@ -37,11 +36,11 @@ class BidView: UIView {
         case .Bid:
             currentState = .Question
             UIView.animateWithDuration(0.3, animations: { 
-                self.explanationLabel.hidden = true
+                self.explanationStack.hidden = true
                 for item in self.bidTools {
                     item.hidden = false
                 }
-                self.centerView.hidden = false
+               
             })
             
         case .Question:
@@ -50,8 +49,7 @@ class BidView: UIView {
                 for item in self.bidTools {
                     item.hidden = true
                 }
-                self.centerView.hidden = true
-                self.explanationLabel.hidden = false
+                self.explanationStack.hidden = false
             })
             
         }
@@ -62,7 +60,7 @@ class BidView: UIView {
     }
     
     @IBAction func confirmTapped(sender: AnyObject) {
-   
+        
     }
     
     func configure() {
@@ -71,7 +69,7 @@ class BidView: UIView {
         layer.shadowRadius = 4
         layer.shadowOpacity = 0.2
         layer.masksToBounds = false
-        explanationLabel.hidden = true
+        explanationStack.hidden = true
         confirmButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
     }
 
