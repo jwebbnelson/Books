@@ -26,6 +26,7 @@ class Book: Equatable {
     private let kNotes = "notes"
     private let kISBN = "isbn"
     private let kOwnerID = "ownerID"
+    private let kFormat = "format"
     
     var title: String
     var author: String
@@ -37,6 +38,7 @@ class Book: Equatable {
     var isbn: String
     var uID: String
     var ownerID: String
+    var format: String
     
     var jsonValue: [String: AnyObject] {
     
@@ -55,7 +57,7 @@ class Book: Equatable {
     }
     
 
-    init(title:String, author:String, edition:String?, location:CLLocation = CLLocation(), price:Double, isbn: String, notes:String?, ownerID:String) {
+    init(title:String, author:String, edition:String?, location:CLLocation = CLLocation(), price:Double, isbn: String, notes:String?, ownerID:String, format: String) {
         self.title = title
         self.author = author
 //        self.location = location
@@ -66,6 +68,7 @@ class Book: Equatable {
         self.isbn = isbn
         self.ownerID = ownerID
         self.uID = ""
+        self.format = format
     }
     
     
@@ -75,7 +78,8 @@ class Book: Equatable {
         let price = json[kPrice] as? Double,
         let isbn = json[kISBN] as? String,
         let image = json[kImage] as? String,
-        let ownerID = json[kOwnerID] as? String else { return nil }
+        let ownerID = json[kOwnerID] as? String,
+        let format = json[kFormat] as? String else { return nil }
         
         self.title = title
         self.author = author
@@ -83,6 +87,7 @@ class Book: Equatable {
         self.isbn = isbn
         self.image = image
         self.ownerID = ownerID
+        self.format = format
         
         self.notes = json[kNotes] as? String
         self.edition = json[kEdition] as? String
