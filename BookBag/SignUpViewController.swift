@@ -13,9 +13,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var universityField: UITextField!
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet var loadingView: LoadingView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -33,14 +31,14 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpTapped(sender: AnyObject) {
-        if let email = emailField.text, let password = passwordField.text, let university = universityField.text, let name = nameField.text {
-            UserController.signUpUser(email, password: password, completion: { (uid, errorString) in
+        if let email = emailField.text, let password = passwordField.text, let name = nameField.text {
+            UserController.sharedController.signUpUser(email, password: password, completion: { (uid, errorString) in
                 guard let uID = uid else {
                     print(errorString)
                     return
                 }
-                UserController.createFirebaseUser(uID, name: name, email: email, imageURL: nil, completion: { (success) in
-                    UserController.logInUser(email, password: password, completion: { (errorString) in
+                UserController.sharedController.createFirebaseUser(uID, name: name, email: email, imageURL: nil, completion: { (success) in
+                    UserController.sharedController.logInUser(email, password: password, completion: { (errorString) in
                         
                         if let error = errorString {
                             print(error)

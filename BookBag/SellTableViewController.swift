@@ -10,17 +10,27 @@ import UIKit
 import CoreLocation
 
 enum SellTextFields: String {
-    case Title = "Name of Textbook"
+    case Title = "Title"
     case Author = "John, Smith"
     case Edition = "Version #"
-    case Location = "Zipcode"
-    case Price = "$$$"
+    // FORMAT - 3
+    case Location = "Zipcode" // 4
+    case Price = "$$$" // 5
+    // EXTRA - 6
+    // NEXT - 7
 }
+
+enum SellTableViewCells: Int {
+    case Title, Author, Edition, Format,
+    Location, Price, Extra, Next
+}
+
+public let SellDismissedNotification = "SellDismissedNotificationName"
 
 class SellTableViewController: UITableViewController {
 
-    let labelArray = ["Title", "Author", "Edition", "Location", "Price"]
-    let promptArray = ["Name of Textbook", "John, Smith", "Version #", "Zipcode", "$$$"]
+    let labelArray = ["TITLE", "AUTHOR", "EDITION", "", "LOCATION", "PRICE"]
+    let promptArray = ["Title", "John, Smith", "Version #", "", "Zipcode", "$$$"]
     var isbn: String?
     var bookTitle: String?
     var author: String?
@@ -29,6 +39,7 @@ class SellTableViewController: UITableViewController {
     var price: Double?
     var notes: String?
     var image: UIImage?
+    var formatIndex: Int?
     
     @IBOutlet weak var tableHeadView: UIView!
     @IBOutlet weak var isbnTextField: UITextField!
@@ -36,11 +47,12 @@ class SellTableViewController: UITableViewController {
     let notesBackground = UIView()
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet var loadingView: LoadingView!
+    var backgroundView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableHeadView.frame.size.height = view.frame.size.height/7
+        tableHeadView.frame.size.height = view.frame.size.height/9
         setUpNotesView()
         listenForNotifications()
 
@@ -68,18 +80,21 @@ class SellTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 7
+        return 8
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.row {
-        case 5:
+        case SellTableViewCells.Format.rawValue:
+            let cell = tableView.dequeueReusableCellWithIdentifier("formatCell", forIndexPath: indexPath) as! FormatTableViewCell
+            cell.delegate = self
+            return cell
+        case 6:
             let cell = tableView.dequeueReusableCellWithIdentifier("extraCell", forIndexPath: indexPath) as! ExtraSellTableViewCell
             cell.delegate = self
             return cell
-
-        case 6:
+        case 7:
             let cell = tableView.dequeueReusableCellWithIdentifier("nextCell", forIndexPath: indexPath) as! NextTableViewCell
             cell.delegate = self
             return cell
@@ -93,7 +108,14 @@ class SellTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/8
+        switch indexPath.row {
+        case 3:
+            return 32
+        case 7:
+            return 48
+        default:
+            return (view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - tableHeadView.frame.size.height)/7
+        }
     }
     
     // MARK: - TableViewDelegate
@@ -139,6 +161,12 @@ class SellTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        view.endEditing(true)
+        dismissViewControllerAnimated(true, completion: nil)
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName(SellDismissedNotification, object: nil)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
@@ -178,21 +206,36 @@ extension SellTableViewController: UITextFieldDelegate {
             textField.text = ""
             textField.textColor = UIColor.blackColor()
         }
+        
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
             textField.keyboardType = UIKeyboardType.Default
             textField.autocapitalizationType = UITextAutocapitalizationType.Words
+            showCellLabel(SellTableViewCells.Title.rawValue)
         case SellTextFields.Author.rawValue:
             textField.keyboardType = UIKeyboardType.Default
             textField.autocapitalizationType = UITextAutocapitalizationType.Words
+            showCellLabel(SellTableViewCells.Author.rawValue)
         case SellTextFields.Edition.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+            showCellLabel(SellTableViewCells.Edition.rawValue)
         case SellTextFields.Location.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+            showCellLabel(SellTableViewCells.Location.rawValue)
         case SellTextFields.Price.rawValue:
             textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+            showCellLabel(SellTableViewCells.Price.rawValue)
         default:
             return
+        }
+    }
+    
+    func showCellLabel(row:Int) {
+        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0)) as? BasicSellTableViewCell {
+            dispatch_async(dispatch_get_main_queue(), {
+                cell.detailLabel.hidden = false
+            })
+            
         }
     }
     
@@ -203,15 +246,20 @@ extension SellTableViewController: UITextFieldDelegate {
         case SellTextFields.Author.rawValue:
             setNextResponder(2)
         case SellTextFields.Edition.rawValue:
-            setNextResponder(3)
-        case SellTextFields.Location.rawValue:
             setNextResponder(4)
+        case SellTextFields.Location.rawValue:
+            setNextResponder(5)
         case SellTextFields.Price.rawValue:
             textField.resignFirstResponder()
+            performSelector(#selector(scrollToNextButton), withObject: nil, afterDelay: 0.3)
         default:
             return true
         }
         return true
+    }
+    
+    func scrollToNextButton() {
+         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 7, inSection: 0), atScrollPosition: .Bottom, animated: true)
     }
     
     func setNextResponder(nextRow:Int) {
@@ -251,7 +299,9 @@ extension SellTableViewController: UITextFieldDelegate {
                 textField.text = "$\(text)"
             }
         default:
-            isbn = isbnTextField.text
+            if isbnTextField.text != "" {
+                isbn = isbnTextField.text
+            }
             return
         }
         
@@ -276,12 +326,12 @@ extension SellTableViewController: SellButtonDelegate {
                         BookController.uploadPhotoToFirebase(bookID, image: image, completion: { (fileURL, error) in
                             guard let url = fileURL else {
                                 print(error?.localizedDescription)
+                                self.loadingView.label.text = error?.localizedDescription
                                 self.dismissLoadingView()
                                 return
                             }
                             BookController.updateBookPath(bookID, imagePath: url)
                             dispatch_async(dispatch_get_main_queue(), {
-                                self.loadingView.updateLabel("Saved!")
                                 self.dismissLoadingView()
                                 if let book = book {
                                     self.performSegueWithIdentifier("SellReviewSegue", sender: book)
@@ -304,10 +354,23 @@ extension SellTableViewController: SellButtonDelegate {
                 textCell.updateForError()
             }
         }
+        guard isbn != nil else {
+            isbnTextField.textColor = UIColor.redColor()
+            isbnTextField.text = isbnTextField.placeholder
+            return
+        }
+        
+        if isbn?.characters.count != 10 || isbn?.characters.count != 13 {
+            // WARNING - Error
+        }
     }
     
     // MARK: - LoadingView
     func beginLoadingView() {
+        backgroundView = UIView(frame: self.tableView.frame)
+        backgroundView.backgroundColor = UIColor.blackColor()
+        backgroundView.alpha = 0.4
+        view.addSubview(backgroundView)
         loadingView.center.y = view.center.y
         loadingView.center.x = view.center.x
         view.addSubview(loadingView)
@@ -317,9 +380,11 @@ extension SellTableViewController: SellButtonDelegate {
     func dismissLoadingView() {
         loadingView.activityIndicator.stopAnimating()
         loadingView.removeFromSuperview()
+        backgroundView.removeFromSuperview()
     }
 }
 
+// MARK: - ExtraButtonsDelegate, ImagePicker
 extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func photosPressed() {
         let imagePicker = UIImagePickerController()
@@ -342,6 +407,13 @@ extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerD
         
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         self.image = image
+        
+        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: SellTableViewCells.Extra.rawValue, inSection: 0)) as? ExtraSellTableViewCell {
+            dispatch_async(dispatch_get_main_queue(), {
+                cell.photoButton.imageView?.image = UIImage(named: "PhotoMinimalComplete")
+            })
+            
+        }
     }
     
     func notesPressed() {
@@ -349,6 +421,16 @@ extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerD
     }
 }
 
+// MARK: - FormatCellDelegat
+extension SellTableViewController: FormatCellDelegate {
+    
+    func formatSelected(format: Int) {
+        formatIndex = format
+    }
+}
+
+
+// MARK: - NotesView
 extension SellTableViewController {
     
     func setUpNotesView() {
@@ -388,6 +470,14 @@ extension SellTableViewController {
     @IBAction func saveNotes(sender: AnyObject) {
         notes = notesTextView.text
         dismissNotesView()
+        
+        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: SellTableViewCells.Extra.rawValue, inSection: 0)) as? ExtraSellTableViewCell {
+            dispatch_async(dispatch_get_main_queue(), {
+                cell.notesButton.imageView?.image = UIImage(named: "NotesComplete")
+            })
+            
+        }
+
     }
     
     @IBAction func cancelNotes(sender: AnyObject) {
@@ -395,6 +485,7 @@ extension SellTableViewController {
     }
 }
 
+// MARK: - TextView Delegate
 extension SellTableViewController: UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {
         if textView.text == "Enter notes here..." {

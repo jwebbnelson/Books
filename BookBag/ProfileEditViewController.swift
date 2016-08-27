@@ -32,8 +32,8 @@ class ProfileEditViewController: UIViewController {
     }
     */
     @IBAction func logOutTapped(sender: AnyObject) {
-        UserController.logOutUser()
-        dismissViewControllerAnimated(true, completion: nil)
+        UserController.sharedController.logOutUser()
+        navigationController?.popViewControllerAnimated(true)
     }
 
 }

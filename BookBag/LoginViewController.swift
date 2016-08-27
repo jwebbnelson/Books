@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func logInTapped(sender: AnyObject) {
         if let email = emailField.text, let password = passwordField.text {
-            UserController.logInUser(email, password: password, completion: { (errorString) in
+            UserController.sharedController.logInUser(email, password: password, completion: { (errorString) in
                 if let error = errorString {
                     dispatch_async(dispatch_get_main_queue(), {
                         print(error)
@@ -155,7 +155,7 @@ extension LoginViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         let authentication = user.authentication
         let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken,
                                                                      accessToken: authentication.accessToken)
-        UserController.logInWithCredential(credential) { (errorString) in
+        UserController.sharedController.logInWithCredential(credential) { (errorString) in
             if let error = errorString {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.showErrorLabel(error)

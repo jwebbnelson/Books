@@ -29,6 +29,7 @@ class BasicSellTableViewCell: UITableViewCell {
     func setDetails(detail:String, prompt:String) {
         detailLabel.text = detail
         entryTextField.placeholder = prompt
+        detailLabel.hidden = true
     }
     
     func updateForError() {
