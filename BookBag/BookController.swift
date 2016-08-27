@@ -79,7 +79,16 @@ class BookController {
     
     // MARK: - Bidding
     static func bidForBook(price:Double, book:Book, completion:(bid:Bid?) -> Void)  {
-        
+       
+        if let user = UserController.sharedController.currentUser {
+            
+            let bid = Bid(userID: user.uID, bookID: book.uID, price: price)
+            
+            FirebaseController.bidBase.setValue(bid.jsonValue, withCompletionBlock: { (error, ref) in
+                completion(bid: bid)
+            })
+            
+        }
     }
     
     static func confirmBid(bid:Bid) {

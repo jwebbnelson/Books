@@ -43,7 +43,7 @@ class Book: Equatable {
     var jsonValue: [String: AnyObject] {
     
         var json: [String: AnyObject] = [kTitle: title, kAuthor: author, kPrice: price, kLocation:kLocation, kISBN: isbn,
-                                         kImage:"", kOwnerID:ownerID]
+                                         kImage:"", kOwnerID:ownerID, kFormat: format]
         
         if let edition = edition {
             json[kEdition] = edition

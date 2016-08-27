@@ -426,10 +426,12 @@ extension SellTableViewController: FormatCellDelegate {
     
     func formatSelected(format: Int) {
         switch format {
-        case 0:
+        case BookFormat.Paperback.rawValue:
             formatString = "Paperback"
-        default:
+        case BookFormat.Hardcover.rawValue:
             formatString = "Hardcover"
+        default:
+            formatString = nil
         }
     }
 }
