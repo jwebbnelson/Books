@@ -8,19 +8,13 @@
 
 import UIKit
 
-enum BidViewState {
-    case Bid, Question
-}
-
 class BidView: UIView {
 
     @IBOutlet weak var confirmButton: UIButton!
-    @IBOutlet weak var questionButton: UIButton!
-    @IBOutlet weak var explanationStack: UIStackView!
     @IBOutlet weak var offerTextField: UITextField!
     @IBOutlet var bidTools: [UIStackView]!
     
-    var currentState: BidViewState = .Bid
+
     
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -30,31 +24,7 @@ class BidView: UIView {
     }
     */
     
-    
-    @IBAction func questionTapped(sender: AnyObject) {
-        switch currentState {
-        case .Bid:
-            currentState = .Question
-            UIView.animateWithDuration(0.3, animations: { 
-                self.explanationStack.hidden = true
-                for item in self.bidTools {
-                    item.hidden = false
-                }
-               
-            })
-            
-        case .Question:
-            currentState = .Bid
-            UIView.animateWithDuration(0.3, animations: {
-                for item in self.bidTools {
-                    item.hidden = true
-                }
-                self.explanationStack.hidden = false
-            })
-            
-        }
-    }
-    
+   
     @IBAction func cancelTapped(sender: AnyObject) {
         removeFromSuperview()
     }
@@ -69,7 +39,6 @@ class BidView: UIView {
         layer.shadowRadius = 4
         layer.shadowOpacity = 0.2
         layer.masksToBounds = false
-        explanationStack.hidden = true
         confirmButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
     }
 

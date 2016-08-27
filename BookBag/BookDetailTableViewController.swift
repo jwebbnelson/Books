@@ -218,3 +218,12 @@ class BookDetailTableViewController: UITableViewController {
     */
 
 }
+
+extension BookDetailTableViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        bidView.confirmButton.setTitleColor(UIColor.actionGreen(), forState: .Normal)
+    }
+}
+
+
