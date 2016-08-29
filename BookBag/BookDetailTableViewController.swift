@@ -124,6 +124,8 @@ class BookDetailTableViewController: UITableViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // MARK: - BIDVIEW
+    
     @IBAction func bidButtonTapped(sender: AnyObject) {
         bidView.configure()
         bidView.frame.size.width = tableView.frame.width * 0.75
@@ -137,7 +139,21 @@ class BookDetailTableViewController: UITableViewController {
         tableView.addSubview(bidView)
     }
     
-   
+    @IBAction func confirmBidTapped(sender: AnyObject) {
+        view.endEditing(true)
+        if let book = book {
+            if let price = NSNumberFormatter().numberFromString(bidView.offerTextField.text ?? "")?.doubleValue {
+                BookController.bidForBook(price, book: book, completion: { (bid) in
+                    guard let bid = bid else {
+                        print("Failure to create bid")
+                        return
+                    }
+                })
+            }
+        }
+    
+    }
+
     @IBAction func likeButtonTapped(sender: AnyObject) {
    
     }
@@ -219,11 +235,17 @@ class BookDetailTableViewController: UITableViewController {
 
 }
 
+// MARK: - TEXTFIELD
+
 extension BookDetailTableViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         bidView.confirmButton.setTitleColor(UIColor.actionGreen(), forState: .Normal)
     }
+    
+    
+    
+    
 }
 
 

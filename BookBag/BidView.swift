@@ -29,9 +29,6 @@ class BidView: UIView {
         removeFromSuperview()
     }
     
-    @IBAction func confirmTapped(sender: AnyObject) {
-        
-    }
     
     func configure() {
         layer.shadowColor = UIColor.blackColor().CGColor

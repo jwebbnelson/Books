@@ -421,7 +421,7 @@
                                         <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
-                                        <action selector="confirmTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="ezC-HR-RWv"/>
+                                        <action selector="confirmBidTapped:" destination="kDn-ji-SHC" eventType="touchUpInside" id="UGs-fh-ug6"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -470,6 +470,7 @@
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$$" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pQr-Tf-fzv">
                                             <rect key="frame" x="0.0" y="38.5" width="300" height="38"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             <connections>
