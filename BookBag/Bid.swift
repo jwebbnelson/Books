@@ -21,8 +21,7 @@ class Bid {
 //    var date: String
     
     var jsonValue: [String: AnyObject] {
-        
-        return [kUID: userID, kBookID: bookID, kPrice: price]
+        return [userID: price]
     }
     
     init(userID:String, bookID:String, price:Double) {
@@ -30,5 +29,4 @@ class Bid {
         self.bookID = bookID
         self.price = price
     }
-    
 }

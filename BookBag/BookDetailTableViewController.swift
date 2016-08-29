@@ -127,33 +127,63 @@ class BookDetailTableViewController: UITableViewController {
     // MARK: - BIDVIEW
     
     @IBAction func bidButtonTapped(sender: AnyObject) {
-        bidView.configure()
+        if let book = book {
+            bidView.configure(book)
+        }
         bidView.frame.size.width = tableView.frame.width * 0.75
-        bidView.frame.size.height = tableView.frame.size.height/2.5
-        bidView.center.y = tableView.center.y - tableView.frame.size.height/5
+        bidView.frame.size.height = 250
+        bidView.center.y = tableView.center.y - tableView.frame.size.height/4.5
         bidView.center.x = tableView.center.x
         darkView = UIView(frame: tableView.frame)
         darkView?.backgroundColor = UIColor.blackColor()
-        darkView?.alpha = 0.4
-        tableView.addSubview(darkView!)
-        tableView.addSubview(bidView)
+        darkView?.alpha = 0.0
+        bidView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, -tableView.frame.size.height, 0)
+        view.addSubview(darkView!)
+        view.addSubview(bidView)
+        
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+            self.bidView.layer.transform = CATransform3DIdentity
+            self.darkView?.alpha = 0.3
+            }, completion: nil)
+        
     }
     
     @IBAction func confirmBidTapped(sender: AnyObject) {
         view.endEditing(true)
         if let book = book {
             if let price = NSNumberFormatter().numberFromString(bidView.offerTextField.text ?? "")?.doubleValue {
-                BookController.bidForBook(price, book: book, completion: { (bid) in
-                    guard let bid = bid else {
+                BookController.bidForBook(book.ownerID, price: price, book: book, completion: { (bid) in
+                    guard bid != nil else {
                         print("Failure to create bid")
                         return
                     }
+                    self.dismissBidView()
                 })
             }
+            
         }
-    
     }
-
+    
+    @IBAction func cancelBidTapped(sender: AnyObject) {
+        view.endEditing(true)
+        
+        dismissBidView()
+    }
+    
+    
+    func dismissBidView() {
+        dispatch_async(dispatch_get_main_queue()) {
+            UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+                self.bidView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, -self.tableView.frame.size.height, 0)
+                self.darkView?.alpha = 0
+            }) { (success) in
+                self.darkView?.removeFromSuperview()
+                self.bidView.removeFromSuperview()
+            }
+        }
+    }
+    
+    
     @IBAction func likeButtonTapped(sender: AnyObject) {
    
     }

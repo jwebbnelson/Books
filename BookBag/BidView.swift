@@ -13,8 +13,8 @@ class BidView: UIView {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var offerTextField: UITextField!
     @IBOutlet var bidTools: [UIStackView]!
+    @IBOutlet weak var askingPriceLabel: UILabel!
     
-
     
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -30,13 +30,14 @@ class BidView: UIView {
     }
     
     
-    func configure() {
+    func configure(book:Book) {
         layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.shadowRadius = 4
         layer.shadowOpacity = 0.2
         layer.masksToBounds = false
         confirmButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        askingPriceLabel.text = "$\(book.price)"
     }
 
 }

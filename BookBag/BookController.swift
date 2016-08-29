@@ -78,13 +78,13 @@ class BookController {
     }
     
     // MARK: - Bidding
-    static func bidForBook(price:Double, book:Book, completion:(bid:Bid?) -> Void)  {
-       
+    static func bidForBook(sellerID:String, price:Double, book:Book, completion:(bid:Bid?) -> Void)  {
+       // Bids - SellerID - bid
         if let user = UserController.sharedController.currentUser {
             
             let bid = Bid(userID: user.uID, bookID: book.uID, price: price)
             
-            FirebaseController.bidBase.setValue(bid.jsonValue, withCompletionBlock: { (error, ref) in
+            FirebaseController.bidBase.child(sellerID).child(book.uID).setValue(bid.jsonValue, withCompletionBlock: { (error, ref) in
                 completion(bid: bid)
             })
             

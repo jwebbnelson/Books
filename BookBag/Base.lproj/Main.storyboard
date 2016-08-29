@@ -408,7 +408,7 @@
                                         <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
-                                        <action selector="cancelTapped:" destination="9mk-RC-Oax" eventType="touchUpInside" id="pUi-k9-7y1"/>
+                                        <action selector="cancelBidTapped:" destination="kDn-ji-SHC" eventType="touchUpInside" id="bvC-p9-6JY"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-0n-bD5">
@@ -522,6 +522,7 @@
                         </mask>
                     </variation>
                     <connections>
+                        <outlet property="askingPriceLabel" destination="8cD-bI-EAU" id="Sb0-oW-N7w"/>
                         <outlet property="confirmButton" destination="8qy-0n-bD5" id="9xk-9g-5DW"/>
                         <outlet property="offerTextField" destination="pQr-Tf-fzv" id="XK1-Tu-UbF"/>
                         <outletCollection property="bidTools" destination="NCG-ab-kot" collectionClass="NSMutableArray" id="1Oe-sH-SZQ"/>
