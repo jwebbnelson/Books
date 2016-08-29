@@ -18,10 +18,7 @@ class HomeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setUpSearchController()
-
-        trendingSearchView.frame = tableView.frame
-        tableView.backgroundView = trendingSearchView
-        tableView.scrollEnabled = false
+        setTableViewBackground()
        
         
         // Uncomment the following line to preserve selection between presentations
@@ -105,8 +102,8 @@ extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate 
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
-        tableView.backgroundView = nil
-        tableView.scrollEnabled = true
+        
+        setTableViewBackground()
         
         BookController.queryBooks(searchController.searchBar.text) { (book) in
             if let resultNav = searchController.searchResultsController as? UINavigationController, let resultsController = resultNav.viewControllers.first as? SearchResultsTableViewController {
@@ -144,6 +141,19 @@ extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate 
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+    func setTableViewBackground() {
+        if let sc = searchController {
+            if sc.active {
+                tableView.backgroundView = nil
+                tableView.scrollEnabled = true
+            } else {
+                trendingSearchView.frame = tableView.frame
+                tableView.backgroundView = trendingSearchView
+                tableView.scrollEnabled = false
+            }
+        }
     }
 }
 
