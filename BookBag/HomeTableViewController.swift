@@ -19,7 +19,6 @@ class HomeTableViewController: UITableViewController {
         
         setUpSearchController()
         setTableViewBackground()
-       
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -46,10 +45,8 @@ class HomeTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
     
-        
         return cell
     }
-    
     
     /*
      // Override to support conditional editing of the table view.
@@ -101,7 +98,6 @@ class HomeTableViewController: UITableViewController {
 extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
         
         setTableViewBackground()
         
@@ -155,6 +151,18 @@ extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate 
             }
         }
     }
+    
+    @IBAction func trendingButtonTapped(sender: AnyObject) {
+        searchController?.active = true
+        if let sc = searchController {
+        updateSearchResultsForSearchController(sc)
+        }
+        if let button = sender as? UIButton {
+            searchController?.searchBar.text = button.titleLabel?.text
+        }
+        
+    }
+    
 }
 
 // MARK: - Notifications

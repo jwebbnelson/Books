@@ -169,6 +169,9 @@
                                     <state key="normal" title="The Art of Public Speaking">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="trendingButtonTapped:" destination="CBw-tT-Wvp" eventType="touchUpInside" id="VlU-2n-yfv"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbv-EW-ijY">
                                     <rect key="frame" x="0.0" y="28" width="328" height="14"/>
@@ -176,6 +179,9 @@
                                     <state key="normal" title="Principles of Microeconomics">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="trendingButtonTapped:" destination="CBw-tT-Wvp" eventType="touchUpInside" id="NQ2-bq-eon"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIa-bo-2hP">
                                     <rect key="frame" x="0.0" y="42" width="328" height="14"/>
@@ -183,6 +189,9 @@
                                     <state key="normal" title="Modern Management">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="trendingButtonTapped:" destination="CBw-tT-Wvp" eventType="touchUpInside" id="6e0-y6-QcS"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aii-yI-kQE">
                                     <rect key="frame" x="0.0" y="56" width="328" height="14"/>
@@ -190,6 +199,9 @@
                                     <state key="normal" title="Prebles' Artforms">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="trendingButtonTapped:" destination="CBw-tT-Wvp" eventType="touchUpInside" id="m90-tx-2GC"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYp-U2-dTw" userLabel="Children">
                                     <rect key="frame" x="0.0" y="70" width="328" height="14"/>
@@ -197,6 +209,9 @@
                                     <state key="normal" title="Children">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="trendingButtonTapped:" destination="CBw-tT-Wvp" eventType="touchUpInside" id="TiI-GE-eIR"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSn-uH-dlb" userLabel="Financial Accounting">
                                     <rect key="frame" x="0.0" y="84" width="328" height="14"/>
@@ -204,6 +219,9 @@
                                     <state key="normal" title="Financial Accounting">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="trendingButtonTapped:" destination="CBw-tT-Wvp" eventType="touchUpInside" id="W8Z-JB-fIe"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YE-J8-JgZ" userLabel="College Algebra">
                                     <rect key="frame" x="0.0" y="98" width="328" height="14"/>
@@ -211,6 +229,9 @@
                                     <state key="normal" title="College Algebra">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="trendingButtonTapped:" destination="CBw-tT-Wvp" eventType="touchUpInside" id="RFo-lG-41R"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
