@@ -580,7 +580,7 @@
             </objects>
             <point key="canvasLocation" x="963" y="-925"/>
         </scene>
-        <!--Sell-->
+        <!--Post Textbook-->
         <scene sceneID="dlj-9j-M2I">
             <objects>
                 <tableViewController id="tQK-OM-obc" customClass="SellTableViewController" customModule="BookBag" customModuleProvider="target" sceneMemberID="viewController">
@@ -651,8 +651,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPc-uU-DkA">
                                                     <rect key="frame" x="0.0" y="0.0" width="574" height="13"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Prompt" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9pG-97-8gF">
@@ -675,7 +674,7 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="8uH-Kg-M1B" firstAttribute="height" secondItem="vTz-Zc-xoj" secondAttribute="height" multiplier="6/10" priority="750" id="Bgo-vb-eNE"/>
+                                        <constraint firstItem="8uH-Kg-M1B" firstAttribute="height" secondItem="vTz-Zc-xoj" secondAttribute="height" multiplier="8/10" priority="750" id="Bgo-vb-eNE"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="8uH-Kg-M1B" secondAttribute="trailing" constant="5" id="UI3-td-vQK"/>
                                         <constraint firstItem="8uH-Kg-M1B" firstAttribute="centerY" secondItem="vTz-Zc-xoj" secondAttribute="centerY" id="v1y-h7-FqH"/>
                                         <constraint firstItem="8uH-Kg-M1B" firstAttribute="leading" secondItem="vTz-Zc-xoj" secondAttribute="leadingMargin" constant="5" id="wUX-Uq-EEg"/>
@@ -801,28 +800,31 @@
                             <outlet property="delegate" destination="tQK-OM-obc" id="kXp-Qa-2XV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sell" id="9UA-Db-sIh">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1qm-n9-9xH">
+                    <navigationItem key="navigationItem" title="Post Textbook" id="9UA-Db-sIh">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="stop" id="1qm-n9-9xH">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="tQK-OM-obc" id="N5z-iH-Lzn"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1vy-gA-MVB">
+                        <barButtonItem key="rightBarButtonItem" title="Sell" style="done" id="1vy-gA-MVB">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="saveTapped:" destination="tQK-OM-obc" id="m9K-jI-DZI"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="isbnTextField" destination="zLx-fx-s7v" id="d6s-jv-iFc"/>
                         <outlet property="loadingView" destination="Xao-VF-K0Y" id="b89-qt-FnU"/>
                         <outlet property="notesTextView" destination="eZI-s0-pnT" id="ikz-NO-Lu8"/>
-                        <outlet property="notesView" destination="dWi-Pb-y4S" id="JQW-9n-iQz"/>
+                        <outlet property="notesView" destination="dWi-Pb-y4S" id="ELy-UX-xTJ"/>
                         <outlet property="tableHeadView" destination="vEQ-Oq-YUL" id="bPF-aV-EDZ"/>
                         <segue destination="kDn-ji-SHC" kind="show" identifier="SellReviewSegue" id="61F-Fx-KKG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4jc-Ra-tcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="dWi-Pb-y4S">
+                <view contentMode="scaleToFill" id="dWi-Pb-y4S" customClass="NotesView" customModule="BookBag" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="550" height="329"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -877,10 +879,18 @@
                                 <constraint firstAttribute="height" constant="1" id="24H-jj-RZo"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPB-6L-ZEE">
+                            <rect key="frame" x="0.0" y="275" width="550" height="1"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1156788793" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="r76-py-l5b"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="6d3-3d-ahU" firstAttribute="leading" secondItem="dWi-Pb-y4S" secondAttribute="leading" id="2XW-mm-J0e"/>
+                        <constraint firstItem="pPB-6L-ZEE" firstAttribute="bottom" secondItem="eZI-s0-pnT" secondAttribute="bottom" id="3sa-2y-Jiu"/>
                         <constraint firstItem="cVT-Fg-vxD" firstAttribute="top" secondItem="dWi-Pb-y4S" secondAttribute="top" constant="24" id="7YF-6U-de4"/>
                         <constraint firstItem="eZI-s0-pnT" firstAttribute="top" secondItem="6d3-3d-ahU" secondAttribute="bottom" constant="9" id="D8Q-pj-R81"/>
                         <constraint firstAttribute="trailing" secondItem="eZI-s0-pnT" secondAttribute="trailing" constant="8" id="E4d-b7-vXa"/>
@@ -891,13 +901,18 @@
                         <constraint firstItem="eZI-s0-pnT" firstAttribute="leading" secondItem="dWi-Pb-y4S" secondAttribute="leading" constant="8" id="bgT-7x-biE"/>
                         <constraint firstAttribute="bottom" secondItem="FGc-3W-DvJ" secondAttribute="bottom" constant="8" id="d4K-Qv-OLT"/>
                         <constraint firstItem="FGc-3W-DvJ" firstAttribute="top" secondItem="eZI-s0-pnT" secondAttribute="bottom" constant="9" id="h3d-oT-RFE"/>
+                        <constraint firstAttribute="trailing" secondItem="pPB-6L-ZEE" secondAttribute="trailing" id="lZi-uJ-ODa"/>
                         <constraint firstAttribute="trailing" secondItem="FGc-3W-DvJ" secondAttribute="trailing" constant="8" id="vgq-2j-iIP"/>
+                        <constraint firstItem="pPB-6L-ZEE" firstAttribute="leading" secondItem="dWi-Pb-y4S" secondAttribute="leading" id="w3f-Kq-1zJ"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="saveButton" destination="IO4-mH-9gO" id="PIC-n3-Ovp"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" id="Xao-VF-K0Y" customClass="LoadingView" customModule="BookBag" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="207" height="107"/>
@@ -946,7 +961,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgm-u1-ITu" userLabel="X">
-                                <rect key="frame" x="20" y="544" width="30" height="36"/>
+                                <rect key="frame" x="285" y="544" width="30" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="X">
                                     <color key="titleColor" red="0.0" green="0.90196078430000004" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -958,7 +973,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="Pgm-u1-ITu" secondAttribute="leading" id="VyQ-wr-1rQ"/>
+                            <constraint firstItem="Pgm-u1-ITu" firstAttribute="centerX" secondItem="oTc-rf-hrf" secondAttribute="centerX" id="TXN-bW-013"/>
                             <constraint firstItem="X1k-As-ooj" firstAttribute="top" secondItem="Pgm-u1-ITu" secondAttribute="bottom" constant="20" id="w2W-4q-wIc"/>
                         </constraints>
                     </view>
@@ -1021,7 +1036,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1063,7 +1078,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1524,8 +1539,7 @@
                                         </subviews>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="738-VM-Hnb">
-                                        <rect key="frame" x="258" y="78" width="84" height="84"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.54259159479999997" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="254" y="70" width="92" height="92"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="738-VM-Hnb" secondAttribute="height" multiplier="1:1" id="8KH-H8-4nS"/>
                                         </constraints>
@@ -1535,7 +1549,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="6D0-9E-46r" secondAttribute="trailing" id="3zt-C3-po6"/>
                                     <constraint firstAttribute="bottom" secondItem="738-VM-Hnb" secondAttribute="bottom" constant="38" id="DIe-a5-fHz"/>
-                                    <constraint firstItem="738-VM-Hnb" firstAttribute="top" secondItem="uGb-bN-EmL" secondAttribute="top" constant="78" id="VZ5-Wq-kpO"/>
+                                    <constraint firstItem="738-VM-Hnb" firstAttribute="top" secondItem="uGb-bN-EmL" secondAttribute="top" constant="70" id="VZ5-Wq-kpO"/>
                                     <constraint firstAttribute="bottom" secondItem="6D0-9E-46r" secondAttribute="bottom" id="hRC-zm-Tqc"/>
                                     <constraint firstItem="6D0-9E-46r" firstAttribute="leading" secondItem="uGb-bN-EmL" secondAttribute="leading" id="jg3-cG-AB1"/>
                                     <constraint firstItem="738-VM-Hnb" firstAttribute="centerX" secondItem="uGb-bN-EmL" secondAttribute="centerX" id="vqI-vb-Qv7"/>
@@ -1568,7 +1582,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="UlO-2B-3Tc">
                         <barButtonItem key="backBarButtonItem" title="Profile" id="yE6-Yb-luI"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="pna-pU-Bbq">
+                        <barButtonItem key="rightBarButtonItem" image="settings" id="pna-pU-Bbq">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="editTapped:" destination="ANd-Z2-nz0" id="4aF-mE-7zA"/>
@@ -1649,7 +1663,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
@@ -1672,6 +1686,7 @@
         <image name="PROFILE" width="16" height="16"/>
         <image name="PhotoMinimal" width="30" height="24"/>
         <image name="ScanButtonBlack" width="25" height="22"/>
+        <image name="settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="61F-Fx-KKG"/>

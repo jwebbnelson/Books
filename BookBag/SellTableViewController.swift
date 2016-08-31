@@ -43,7 +43,7 @@ class SellTableViewController: UITableViewController {
     
     @IBOutlet weak var tableHeadView: UIView!
     @IBOutlet weak var isbnTextField: UITextField!
-    @IBOutlet var notesView: UIView!
+    @IBOutlet var notesView: NotesView!
     let notesBackground = UIView()
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet var loadingView: LoadingView!
@@ -80,7 +80,7 @@ class SellTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 8
+        return 7
     }
     
     
@@ -110,7 +110,7 @@ class SellTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.row {
         case 3:
-            return 32
+            return 40
         case 7:
             return 48
         default:
@@ -259,7 +259,7 @@ extension SellTableViewController: UITextFieldDelegate {
     }
     
     func scrollToNextButton() {
-         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 7, inSection: 0), atScrollPosition: .Bottom, animated: true)
+         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 6, inSection: 0), atScrollPosition: .Bottom, animated: true)
     }
     
     func setNextResponder(nextRow:Int) {
@@ -310,6 +310,12 @@ extension SellTableViewController: UITextFieldDelegate {
 
 // MARK: - SellButtonDelegate
 extension SellTableViewController: SellButtonDelegate {
+   
+    @IBAction func saveTapped(sender: AnyObject) {
+        sellButtonTapped()
+    }
+    
+    
     func sellButtonTapped() {
         view.endEditing(true)
         
@@ -441,19 +447,20 @@ extension SellTableViewController {
     
     func setUpNotesView() {
         notesView.frame.size.height = view.frame.size.height/3
-        notesView.frame.size.width = view.frame.size.width - 20
+        notesView.frame.size.width = view.frame.size.width * 0.8
         notesView.center.x = view.center.x
         notesView.center.y = view.center.y - (view.frame.height * 0.35) + (navigationController?.navigationBar.frame.height)!
         resetNotesAnimation()
     }
     
     func presentNotesView() {
+        notesView.setUp()
         notesBackground.frame = view.frame
         notesBackground.backgroundColor = UIColor.blackColor()
-        notesBackground.alpha = 0.4
+        notesBackground.alpha = 0.3
         view.addSubview(notesBackground)
         view.addSubview(notesView)
-        UIView.animateWithDuration(0.4, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
             self.notesView.transform = CGAffineTransformIdentity
             self.notesView.alpha = 1
         }) { (success) in
@@ -497,6 +504,7 @@ extension SellTableViewController: UITextViewDelegate {
         if textView.text == "Enter notes here..." {
             textView.text = ""
         }
+        notesView.makeSaveable()
     }
     
     func textViewDidEndEditing(textView: UITextView) {

@@ -23,6 +23,7 @@
 		83367F571D3C592500C3996E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83367F561D3C592500C3996E /* LoadingView.swift */; };
 		833B81281D1FE3D700E37423 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833B81271D1FE3D700E37423 /* ScanViewController.swift */; };
 		836EAC561D466F81006B7D05 /* ExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EAC551D466F81006B7D05 /* ExpandedView.swift */; };
+		83809AE81D748CC3003CF88B /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83809AE71D748CC3003CF88B /* NotesView.swift */; };
 		8393D1B71CCC5D81000E7923 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8393D1B61CCC5D81000E7923 /* AppDelegate.swift */; };
 		8393D1BC1CCC5D81000E7923 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8393D1BA1CCC5D81000E7923 /* Main.storyboard */; };
 		8393D1BE1CCC5D81000E7923 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8393D1BD1CCC5D81000E7923 /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 		83367F561D3C592500C3996E /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		833B81271D1FE3D700E37423 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		836EAC551D466F81006B7D05 /* ExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedView.swift; sourceTree = "<group>"; };
+		83809AE71D748CC3003CF88B /* NotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		8393D1B31CCC5D81000E7923 /* BookBag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookBag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8393D1B61CCC5D81000E7923 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8393D1BB1CCC5D81000E7923 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				83BD93721CCECA8A00E56534 /* SellTableViewController.swift */,
+				83809AE71D748CC3003CF88B /* NotesView.swift */,
 				83D5D0B81D52E7C900E0CD08 /* HolderViewController.swift */,
 				83A5C0B51D0E96E200F51D2C /* Cells */,
 				833B81271D1FE3D700E37423 /* ScanViewController.swift */,
@@ -647,6 +650,7 @@
 				83ECE28D1D229ABE00C5824C /* SellReviewTableViewController.swift in Sources */,
 				833587231D4AD6EC00E79ECD /* NetworkController.swift in Sources */,
 				836EAC561D466F81006B7D05 /* ExpandedView.swift in Sources */,
+				83809AE81D748CC3003CF88B /* NotesView.swift in Sources */,
 				83BD93751CCED25900E56534 /* ExtraSellTableViewCell.swift in Sources */,
 				831EFE1B1D2F1BDF00BC6C59 /* BookDetailTableViewController.swift in Sources */,
 				83BD93731CCECA8A00E56534 /* SellTableViewController.swift in Sources */,

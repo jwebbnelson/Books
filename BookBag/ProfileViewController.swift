@@ -25,7 +25,11 @@ class ProfileViewController: UIViewController {
     var currentViewState: ProfileState {
         get {
             if let _ = UserController.sharedController.currentUser {
-                return .Buy
+                if buyView.backgroundColor == UIColor.whiteColor() {
+                    return .Sell
+                } else {
+                    return .Buy
+                }
             } else {
                 return .LoggedOut
             }
@@ -74,9 +78,7 @@ class ProfileViewController: UIViewController {
     
     // MARK: - VIEW SETUP
     func setUpView() {
-        //        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
-        //        profileImageView.clipsToBounds = true
-        //        profileImageView.layer.masksToBounds = false
+        
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navigationController?.navigationBar.shadowImage = UIImage()
         configureViewShadow()
@@ -85,7 +87,6 @@ class ProfileViewController: UIViewController {
     
     func adjustViewForLogin(){
         if let currentUser = UserController.sharedController.currentUser {
-            title = currentUser.name
             if let image = currentUser.imageURL {
                 configureProfileImage(image)
             }
@@ -94,7 +95,6 @@ class ProfileViewController: UIViewController {
         } else {
             // Logged Out
             configureBackGroundButton()
-            title = ""
             profileImageView.image = nil
             collectionView.reloadData()
         }
@@ -107,16 +107,24 @@ class ProfileViewController: UIViewController {
     func configureTab(state:ProfileState) {
         switch state {
         case .Buy:
-            
-            buyView.backgroundColor = .blackColor()
-            sellView.backgroundColor = .whiteColor()
+            UIView.animateWithDuration(0.3, animations: {
+                self.buyView.backgroundColor = .blackColor()
+                self.sellView.backgroundColor = .whiteColor()
+                self.sellButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+                self.buyButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            })
         case .Sell:
-            sellView.backgroundColor = .blackColor()
-            buyView.backgroundColor = .whiteColor()
+            UIView.animateWithDuration(0.3, animations: {
+                self.sellView.backgroundColor = .blackColor()
+                self.buyView.backgroundColor = .whiteColor()
+                self.buyButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+                self.sellButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            })
         case .LoggedOut:
             sellView.backgroundColor = .whiteColor()
             buyView.backgroundColor = .whiteColor()
         }
+        collectionView.reloadData()
     }
     
     @IBAction func tabBarChanged(sender: AnyObject) {
@@ -140,6 +148,8 @@ class ProfileViewController: UIViewController {
                 }
                 dispatch_async(dispatch_get_main_queue(), {
                     self.profileImageView.image = image
+                    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2
+                    self.profileImageView.layer.masksToBounds = true
                 })
             })
         }
@@ -207,9 +217,12 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let _ = UserController.sharedController.currentUser {
+        switch currentViewState {
+        case .Buy:
+            return 0
+        case .Sell:
             return UserController.sharedController.myBooks?.count ?? 0
-        } else {
+        case .LoggedOut:
             return 0
         }
     }
