@@ -78,16 +78,35 @@ class BookController {
     }
     
     // MARK: - Bidding
-    static func bidForBook(sellerID:String, price:Double, book:Book, completion:(bid:Bid?) -> Void)  {
+    static func bidForBook(sellerID:String, price:Double, book:Book, completion:(success:Bool) -> Void)  {
        // Bids - SellerID - bid
         if let user = UserController.sharedController.currentUser {
             
             let bid = Bid(userID: user.uID, bookID: book.uID, price: price)
             
             FirebaseController.bidBase.child(sellerID).child(book.uID).setValue(bid.jsonValue, withCompletionBlock: { (error, ref) in
-                completion(bid: bid)
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(success: false)
+                    return
+                } else {
+                    addBidToUser(bid, user: user, completion: { (success) in
+                        completion(success: success)
+                    })
+                }
             })
             
+        }
+    }
+    
+    static func addBidToUser(bid:Bid, user:User, completion: (success:Bool) -> Void) {
+        FirebaseController.userBase.child(user.uID).child("Bids").child(bid.bookID).setValue(true) { (error, ref) in
+            guard let error = error else {
+                completion(success: true)
+                return
+            }
+            print("FAILURE: Unable to add bid to USER in Firebase \(error.localizedDescription)")
+            completion(success: false)
         }
     }
     

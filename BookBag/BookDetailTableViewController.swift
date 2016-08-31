@@ -152,12 +152,13 @@ class BookDetailTableViewController: UITableViewController {
         view.endEditing(true)
         if let book = book {
             if let price = NSNumberFormatter().numberFromString(bidView.offerTextField.text ?? "")?.doubleValue {
-                BookController.bidForBook(book.ownerID, price: price, book: book, completion: { (bid) in
-                    guard bid != nil else {
+                BookController.bidForBook(book.ownerID, price: price, book: book, completion: { (success) in
+                    if success == false {
                         print("Failure to create bid")
                         return
+                    } else {
+                        self.dismissBidView()
                     }
-                    self.dismissBidView()
                 })
             }
             

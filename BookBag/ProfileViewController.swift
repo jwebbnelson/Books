@@ -91,6 +91,7 @@ class ProfileViewController: UIViewController {
                 configureProfileImage(image)
             }
             topView.alpha = 1
+            collectionView.backgroundView = nil
             observeMyBooks()
         } else {
             // Logged Out
