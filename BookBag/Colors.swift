@@ -19,5 +19,10 @@ extension UIColor {
         return UIColor(red:0.00, green:0.90, blue:0.46, alpha:1.00)
     }
     
+    static func whiteSmoke() -> UIColor {
+        return UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.00)
+    }
+    
+    
     
 }

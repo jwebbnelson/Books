@@ -151,7 +151,7 @@ class UserController {
     }
     
     
-    // MY LIBRARY
+    // MARK: - MY LIBRARY
     func fetchMyBooks(completion:(success:Bool) -> Void) {
         if let currentUser = UserController.sharedController.currentUser {
             FirebaseController.bookBase.queryOrderedByChild("ownerID").queryEqualToValue(currentUser.uID).observeEventType(.Value, withBlock: { (snapshot) in
@@ -165,4 +165,11 @@ class UserController {
         }
     }
     
+    // MARK: - My Bids
+//    func 
+    
+    
 }
+
+
+

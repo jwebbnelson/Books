@@ -78,9 +78,9 @@ class ProfileViewController: UIViewController {
     
     // MARK: - VIEW SETUP
     func setUpView() {
-        
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        view.backgroundColor = UIColor.whiteSmoke()
         configureViewShadow()
         configureTab(currentViewState)
     }
@@ -90,11 +90,12 @@ class ProfileViewController: UIViewController {
             if let image = currentUser.imageURL {
                 configureProfileImage(image)
             }
-            collectionView.backgroundView = nil
+            topView.alpha = 1
             observeMyBooks()
         } else {
             // Logged Out
             configureBackGroundButton()
+            topView.alpha = 0
             profileImageView.image = nil
             collectionView.reloadData()
         }
