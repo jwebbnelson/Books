@@ -181,6 +181,8 @@ class ProfileViewController: UIViewController {
     // MARK: - MYBOOKS
     func observeMyBooks() {
         listenForNotifications()
+        
+        UserController.sharedController.fetchMyBidBooks()
         UserController.sharedController.fetchMyBooks { (success) in
             if success == false {
                 let backButton = UIButton()
@@ -194,6 +196,7 @@ class ProfileViewController: UIViewController {
     func listenForNotifications() {
         let nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self, selector: #selector(ProfileViewController.reloadBooks), name: myBookNotification, object: nil)
+        nc.addObserver(self, selector: #selector(ProfileViewController.reloadBooks), name: myBidsNotification, object: nil)
     }
     
     func reloadBooks() {
@@ -211,8 +214,15 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("profileBookCell", forIndexPath: indexPath) as! ProfileBookCollectionViewCell
         
-        if let booksForSale = UserController.sharedController.myBooks {
-            cell.updateCellForBook(booksForSale[indexPath.row])
+        switch currentViewState {
+        case .Buy:
+            if let bids = UserController.sharedController.myBids {
+                cell.updateCellForBook(bids[indexPath.row])
+            }
+        default:
+            if let booksForSale = UserController.sharedController.myBooks {
+                cell.updateCellForBook(booksForSale[indexPath.row])
+            }
         }
         
         return cell
@@ -221,7 +231,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch currentViewState {
         case .Buy:
-            return 0
+            return UserController.sharedController.myBids?.count ?? 0
         case .Sell:
             return UserController.sharedController.myBooks?.count ?? 0
         case .LoggedOut:

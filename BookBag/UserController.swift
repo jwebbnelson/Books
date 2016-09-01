@@ -12,6 +12,7 @@ import FirebaseAuth
 import GoogleSignIn
 
 public let myBookNotification = "MyBookNotificationName"
+public let myBidsNotification = "MyBidsNotificationName"
 
 class UserController {
     
@@ -47,6 +48,13 @@ class UserController {
         didSet {
             let nc = NSNotificationCenter.defaultCenter()
             nc.postNotificationName(myBookNotification, object: nil)
+        }
+    }
+    
+    var myBids: [Book]? {
+        didSet {
+            let nc = NSNotificationCenter.defaultCenter()
+            nc.postNotificationName(myBidsNotification, object: nil)
         }
     }
     
@@ -166,7 +174,46 @@ class UserController {
     }
     
     // MARK: - My Bids
-//    func 
+    func fetchMyBidBooks() -> Void {
+        self.fetchUserBids { (boookIDs) in
+            guard let bookIDs = boookIDs else {
+                return
+            }
+            
+            self.myBids = []
+            let dispatchGroup = dispatch_group_create()
+            
+            for bookID in bookIDs {
+                dispatch_group_enter(dispatchGroup)
+                BookController.bookForBookID(bookID, completion: { (book) in
+                    if let book = book {
+                        UserController.sharedController.myBids?.append(book)
+                    }
+                    dispatch_group_leave(dispatchGroup)
+                })
+            }
+        }
+    }
+
+    
+    func fetchUserBids(completion:(boookIDs:[String]?) -> Void ){
+        
+        if let user = UserController.sharedController.currentUser {
+            
+            FirebaseController.userBase.child(user.uID).child("Bids").observeSingleEventOfType(.Value, withBlock: { (snap) in
+                
+                var bookIDs:[String] = []
+                if let bidArray = snap.value as? [String:AnyObject]  {
+                    for bid in bidArray {
+                        bookIDs.append(bid.0)
+                    }
+                    completion(boookIDs: bookIDs)
+                } else {
+                    completion(boookIDs: nil)
+                }
+            })
+        }
+    }
     
     
 }

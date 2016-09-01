@@ -31,6 +31,20 @@ class BookController {
         
     }
     
+    static func bookForBookID(id:String, completion:(Book?) -> Void) {
+        FirebaseController.bookBase.child(id).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if let bookDictionary = snapshot.value as? [String: AnyObject] {
+                if let book = Book(json: bookDictionary, identifier: id) {
+                    completion(book)
+                } else {
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        })
+    }
+    
     // MARK: - Selling
     static func submitTextbookForApproval(author: String, title:String, isbn: String, edition:String?, price:Double, notes:String?, format:String, completion:(book:Book?, bookID: String?, error:String?) -> Void) {
         
@@ -109,6 +123,8 @@ class BookController {
             completion(success: false)
         }
     }
+    
+       
     
     static func confirmBid(bid:Bid) {
         
