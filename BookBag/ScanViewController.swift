@@ -30,8 +30,8 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelTapped(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelTapped(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
 
     /*
@@ -49,7 +49,7 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     
     func setUpCapture() {
         
-        let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
         do {
           let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -64,7 +64,7 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         let captureMetadataOutput = AVCaptureMetadataOutput()
         captureSession?.addOutput(captureMetadataOutput)
         
-        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeEAN8Code]
         
         setUpVideoCapture()
@@ -76,7 +76,7 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         videoPreviewLayer?.frame = view.layer.bounds
         view.layer.addSublayer(videoPreviewLayer!)
         
-        view.bringSubviewToFront(cancelButton)
+        view.bringSubview(toFront: cancelButton)
         
         captureSession?.startRunning()
         isbnHighlightBoxSetUp()
@@ -85,7 +85,7 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     
     // MARK: - AVCaptureDelegate
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         if metadataObjects == nil || metadataObjects.count == 0 {
             displayMessage()
@@ -94,12 +94,12 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         
         if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject {
             if metadataObject.type == AVMetadataObjectTypeEAN13Code {
-                if let barcodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObject) {
+                if let barcodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObject) {
                     isbnFrameView?.frame = barcodeObject.bounds
                 }
             }
             if metadataObject.stringValue != nil {
-                dismissViewControllerAnimated(true, completion: { 
+                dismiss(animated: true, completion: { 
                     self.isbnCapturedNotification(metadataObject.stringValue)
                 })
             }
@@ -112,27 +112,27 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     // MARK: - ScannerDisplay
     
     func displayMessage() {
-        dispatch_async(dispatch_get_main_queue()) { 
+        DispatchQueue.main.async { 
             let messageLabel = UILabel()
             messageLabel.text = "ISBN not detected"
             messageLabel.center.x = self.view.center.x
             messageLabel.center.y = self.view.center.y
             self.view.addSubview(messageLabel)
-            self.view.bringSubviewToFront(messageLabel)
+            self.view.bringSubview(toFront: messageLabel)
         }
     }
     
     func isbnHighlightBoxSetUp() {
         isbnFrameView = UIView()
-        isbnFrameView?.layer.borderColor = UIColor.blueColor().CGColor
+        isbnFrameView?.layer.borderColor = UIColor.blue.cgColor
         isbnFrameView?.layer.borderWidth = 2
         view.addSubview(isbnFrameView!)
-        view.bringSubviewToFront(isbnFrameView!)
+        view.bringSubview(toFront: isbnFrameView!)
     }
     
-    func isbnCapturedNotification(isbn:String) {
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName(ISBNUpdatedNotification, object: isbn)
+    func isbnCapturedNotification(_ isbn:String) {
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name(rawValue: ISBNUpdatedNotification), object: isbn)
     }
 }
 

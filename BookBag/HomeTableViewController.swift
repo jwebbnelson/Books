@@ -34,16 +34,16 @@ class HomeTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bookArray?.count ?? 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath)
     
         return cell
     }
@@ -97,16 +97,16 @@ class HomeTableViewController: UITableViewController {
 
 extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         
         setTableViewBackground()
         
         BookController.queryBooks(searchController.searchBar.text) { (book) in
             if let resultNav = searchController.searchResultsController as? UINavigationController, let resultsController = resultNav.viewControllers.first as? SearchResultsTableViewController {
-                resultNav.popToRootViewControllerAnimated(true)
+                resultNav.popToRootViewController(animated: true)
                 if let books = book {
                     resultsController.books = books
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         resultsController.tableView.reloadData()
                     })
                 } else {
@@ -118,44 +118,44 @@ extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate 
     
     func setUpSearchController() {
         
-        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("searchTVC")
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchTVC")
         
         searchController = UISearchController(searchResultsController: resultsController)
         searchController?.searchResultsUpdater = self
         searchController?.hidesNavigationBarDuringPresentation = true
         searchController?.obscuresBackgroundDuringPresentation = true
         searchController?.searchBar.placeholder = "Search Books by Title"
-        searchController?.searchBar.searchBarStyle = UISearchBarStyle.Minimal
-        searchController?.searchBar.backgroundColor = UIColor.whiteColor()
-        searchController?.searchBar.tintColor = UIColor.blackColor()
-        searchController?.searchBar.autocapitalizationType = UITextAutocapitalizationType.Words
+        searchController?.searchBar.searchBarStyle = UISearchBarStyle.minimal
+        searchController?.searchBar.backgroundColor = UIColor.white
+        searchController?.searchBar.tintColor = UIColor.black
+        searchController?.searchBar.autocapitalizationType = UITextAutocapitalizationType.words
         tableView.tableHeaderView = searchController?.searchBar
         definesPresentationContext = true
         searchController?.searchBar.sizeToFit()
         listenForNotifications()
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
     
     func setTableViewBackground() {
         if let sc = searchController {
-            if sc.active {
+            if sc.isActive {
                 tableView.backgroundView = nil
-                tableView.scrollEnabled = true
+                tableView.isScrollEnabled = true
             } else {
                 trendingSearchView.frame = tableView.frame
                 tableView.backgroundView = trendingSearchView
-                tableView.scrollEnabled = false
+                tableView.isScrollEnabled = false
             }
         }
     }
     
-    @IBAction func trendingButtonTapped(sender: AnyObject) {
-        searchController?.active = true
+    @IBAction func trendingButtonTapped(_ sender: AnyObject) {
+        searchController?.isActive = true
         if let sc = searchController {
-        updateSearchResultsForSearchController(sc)
+        updateSearchResults(for: sc)
         }
         if let button = sender as? UIButton {
             searchController?.searchBar.text = button.titleLabel?.text
@@ -169,24 +169,24 @@ extension HomeTableViewController: UISearchResultsUpdating, UISearchBarDelegate 
 extension HomeTableViewController {
     
     func listenForNotifications() {
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: #selector(HomeTableViewController.dismissSearch), name: DismissSearchNotification, object: nil)
-        nc.addObserver(self, selector: #selector(HomeTableViewController.restoreSearch), name: RestoreSearchNotification, object: nil)
-        nc.addObserver(self, selector: #selector(HomeTableViewController.resignSearch), name: ResignSearchNotification, object: nil)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(HomeTableViewController.dismissSearch), name: NSNotification.Name(rawValue: DismissSearchNotification), object: nil)
+        nc.addObserver(self, selector: #selector(HomeTableViewController.restoreSearch), name: NSNotification.Name(rawValue: RestoreSearchNotification), object: nil)
+        nc.addObserver(self, selector: #selector(HomeTableViewController.resignSearch), name: NSNotification.Name(rawValue: ResignSearchNotification), object: nil)
     }
     
     func dismissSearch() {
         // searchController?.active = false
-        searchController?.searchBar.hidden = true
+        searchController?.searchBar.isHidden = true
         resignSearch()
     }
     
     func restoreSearch() {
-        searchController?.searchBar.hidden = false
+        searchController?.searchBar.isHidden = false
     }
     
     func resignSearch() {
-        if searchController?.searchBar.isFirstResponder() == true {
+        if searchController?.searchBar.isFirstResponder == true {
             searchController?.searchBar.resignFirstResponder()
         }
     }

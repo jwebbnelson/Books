@@ -39,14 +39,14 @@ class BookDetailTableViewController: UITableViewController {
     func loadImage() {
         if let image = loadedImage {
             bookImageView.image = image
-        } else if let book = book, let imageURL = NSURL(string: book.image) {
+        } else if let book = book, let imageURL = URL(string: book.image) {
             ImageController.fetchImageAtURL(imageURL, completion: { (image, error) in
                 guard let image = image else {
                     print("FAILURE LOADING IMAGE: \(error?.description)")
                     return
                 }
                 self.loadedImage = image
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.bookImageView.image = image
                 })
             })
@@ -56,11 +56,11 @@ class BookDetailTableViewController: UITableViewController {
     
     
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let book = self.book, let _ = book.notes {
             return 5
         } else {
@@ -68,46 +68,46 @@ class BookDetailTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let book = book {
             // 5 CELLS
             if let _ = book.notes {
-                if indexPath.row == 4 {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("bookHighlightCell", forIndexPath: indexPath) as! BookHighlightTableViewCell
+                if (indexPath as NSIndexPath).row == 4 {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "bookHighlightCell", for: indexPath) as! BookHighlightTableViewCell
                     cell.updateCell(book)
                     return cell
                 }
                 
             } else { // 4 CELLS
-                if indexPath.row == 3 {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("bookHighlightCell", forIndexPath: indexPath) as! BookHighlightTableViewCell
+                if (indexPath as NSIndexPath).row == 3 {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "bookHighlightCell", for: indexPath) as! BookHighlightTableViewCell
                     cell.updateCell(book)
                     return cell
                 }
             }
-            let cell = tableView.dequeueReusableCellWithIdentifier("bookDetailCell", forIndexPath: indexPath) as! BookDetailTableViewCell
-            cell.updateCellWithBook(book, row: indexPath.row)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "bookDetailCell", for: indexPath) as! BookDetailTableViewCell
+            cell.updateCellWithBook(book, row: (indexPath as NSIndexPath).row)
             return cell
         }
         return UITableViewCell()
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Details"
     }
     
     // MARK: TableView Heights
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
@@ -120,13 +120,13 @@ class BookDetailTableViewController: UITableViewController {
     
     // MARK: - BarButtonActions
     
-    @IBAction func cancelButtonTapped(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelButtonTapped(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - BIDVIEW
     
-    @IBAction func bidButtonTapped(sender: AnyObject) {
+    @IBAction func bidButtonTapped(_ sender: AnyObject) {
         if let book = book {
             bidView.configure(book)
         }
@@ -135,23 +135,23 @@ class BookDetailTableViewController: UITableViewController {
         bidView.center.y = tableView.center.y - tableView.frame.size.height/4.5
         bidView.center.x = tableView.center.x
         darkView = UIView(frame: tableView.frame)
-        darkView?.backgroundColor = UIColor.blackColor()
+        darkView?.backgroundColor = UIColor.black
         darkView?.alpha = 0.0
         bidView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, -tableView.frame.size.height, 0)
         view.addSubview(darkView!)
         view.addSubview(bidView)
         
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.bidView.layer.transform = CATransform3DIdentity
             self.darkView?.alpha = 0.3
             }, completion: nil)
         
     }
     
-    @IBAction func confirmBidTapped(sender: AnyObject) {
+    @IBAction func confirmBidTapped(_ sender: AnyObject) {
         view.endEditing(true)
         if let book = book {
-            if let price = NSNumberFormatter().numberFromString(bidView.offerTextField.text ?? "")?.doubleValue {
+            if let price = NumberFormatter().number(from: bidView.offerTextField.text ?? "")?.doubleValue {
                 BookController.bidForBook(book.ownerID, price: price, book: book, completion: { (success) in
                     if success == false {
                         print("Failure to create bid")
@@ -165,7 +165,7 @@ class BookDetailTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func cancelBidTapped(sender: AnyObject) {
+    @IBAction func cancelBidTapped(_ sender: AnyObject) {
         view.endEditing(true)
         
         dismissBidView()
@@ -173,8 +173,8 @@ class BookDetailTableViewController: UITableViewController {
     
     
     func dismissBidView() {
-        dispatch_async(dispatch_get_main_queue()) {
-            UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                 self.bidView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, -self.tableView.frame.size.height, 0)
                 self.darkView?.alpha = 0
             }) { (success) in
@@ -185,7 +185,7 @@ class BookDetailTableViewController: UITableViewController {
     }
     
     
-    @IBAction func likeButtonTapped(sender: AnyObject) {
+    @IBAction func likeButtonTapped(_ sender: AnyObject) {
    
     }
     
@@ -193,12 +193,12 @@ class BookDetailTableViewController: UITableViewController {
     func configureGesture() {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BookDetailTableViewController.enlargePhoto))
         bookImageView.addGestureRecognizer(gestureRecognizer)
-        bookImageView.userInteractionEnabled = true
+        bookImageView.isUserInteractionEnabled = true
         configureExpandedView()
     }
     
     func configureExpandedView() {
-        expandedView.cancelButton.addTarget(self, action: #selector(BookDetailTableViewController.dismissPhoto), forControlEvents: .TouchUpInside)
+        expandedView.cancelButton.addTarget(self, action: #selector(BookDetailTableViewController.dismissPhoto), for: .touchUpInside)
         expandedView.frame = bookImageView.frame
         expandedView.layer.transform = CATransform3DMakeScale(0, 0, 0)
     }
@@ -206,7 +206,7 @@ class BookDetailTableViewController: UITableViewController {
     func enlargePhoto() {
         expandedView.imageView.image = loadedImage
         view.addSubview(expandedView)
-        UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.expandedView.frame = self.view.frame
             self.expandedView.layer.transform = CATransform3DIdentity
             }, completion: nil)
@@ -270,8 +270,8 @@ class BookDetailTableViewController: UITableViewController {
 
 extension BookDetailTableViewController: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        bidView.confirmButton.setTitleColor(UIColor.actionGreen(), forState: .Normal)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        bidView.confirmButton.setTitleColor(UIColor.actionGreen(), for: UIControlState())
     }
     
     

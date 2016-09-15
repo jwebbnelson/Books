@@ -13,12 +13,12 @@ class NotesView: UIView {
     @IBOutlet weak var saveButton: UIButton!
     
     func setUp() {
-        saveButton.enabled = false
+        saveButton.isEnabled = false
     }
     
     func makeSaveable() {
-        saveButton.enabled = true
-        saveButton.setTitleColor(UIColor.actionGreen(), forState: .Normal)
+        saveButton.isEnabled = true
+        saveButton.setTitleColor(UIColor.actionGreen(), for: UIControlState())
     }
     
     

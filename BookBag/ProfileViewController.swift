@@ -9,7 +9,7 @@
 import UIKit
 
 enum ProfileState {
-    case Buy, Sell, LoggedOut
+    case buy, sell, loggedOut
 }
 
 class ProfileViewController: UIViewController {
@@ -25,13 +25,13 @@ class ProfileViewController: UIViewController {
     var currentViewState: ProfileState {
         get {
             if let _ = UserController.sharedController.currentUser {
-                if buyView.backgroundColor == UIColor.whiteColor() {
-                    return .Sell
+                if buyView.backgroundColor == UIColor.white {
+                    return .sell
                 } else {
-                    return .Buy
+                    return .buy
                 }
             } else {
-                return .LoggedOut
+                return .loggedOut
             }
         }
         
@@ -48,7 +48,7 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         adjustViewForLogin()
     }
@@ -62,11 +62,11 @@ class ProfileViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let vc = segue.destinationViewController as? BookDetailTableViewController, let books = UserController.sharedController.myBooks, let cell = sender as? ProfileBookCollectionViewCell, let indexPath = collectionView.indexPathForCell(cell) {
+        if let vc = segue.destination as? BookDetailTableViewController, let books = UserController.sharedController.myBooks, let cell = sender as? ProfileBookCollectionViewCell, let indexPath = collectionView.indexPath(for: cell) {
             
-            let book = books[indexPath.row]
+            let book = books[(indexPath as NSIndexPath).row]
             vc.book = book
             if let image = cell.bookImageView.image {
                 vc.loadedImage = image
@@ -78,7 +78,7 @@ class ProfileViewController: UIViewController {
     
     // MARK: - VIEW SETUP
     func setUpView() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         view.backgroundColor = UIColor.whiteSmoke()
         configureViewShadow()
@@ -106,41 +106,41 @@ class ProfileViewController: UIViewController {
     
     // MARK: - TAB
     
-    func configureTab(state:ProfileState) {
+    func configureTab(_ state:ProfileState) {
         switch state {
-        case .Buy:
-            UIView.animateWithDuration(0.3, animations: {
-                self.buyView.backgroundColor = .blackColor()
-                self.sellView.backgroundColor = .whiteColor()
-                self.sellButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-                self.buyButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        case .buy:
+            UIView.animate(withDuration: 0.3, animations: {
+                self.buyView.backgroundColor = .black
+                self.sellView.backgroundColor = .white
+                self.sellButton.setTitleColor(UIColor.lightGray, for: UIControlState())
+                self.buyButton.setTitleColor(UIColor.black, for: UIControlState())
             })
-        case .Sell:
-            UIView.animateWithDuration(0.3, animations: {
-                self.sellView.backgroundColor = .blackColor()
-                self.buyView.backgroundColor = .whiteColor()
-                self.buyButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-                self.sellButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        case .sell:
+            UIView.animate(withDuration: 0.3, animations: {
+                self.sellView.backgroundColor = .black
+                self.buyView.backgroundColor = .white
+                self.buyButton.setTitleColor(UIColor.lightGray, for: UIControlState())
+                self.sellButton.setTitleColor(UIColor.black, for: UIControlState())
             })
-        case .LoggedOut:
-            sellView.backgroundColor = .whiteColor()
-            buyView.backgroundColor = .whiteColor()
+        case .loggedOut:
+            sellView.backgroundColor = .white
+            buyView.backgroundColor = .white
         }
         collectionView.reloadData()
     }
     
-    @IBAction func tabBarChanged(sender: AnyObject) {
+    @IBAction func tabBarChanged(_ sender: AnyObject) {
         switch sender.tag {
         case 0:
-            self.currentViewState = .Buy
+            self.currentViewState = .buy
         default:
-            self.currentViewState = .Sell
+            self.currentViewState = .sell
         }
     }
     
     
-    func configureProfileImage(imageString:String) {
-        if let url = NSURL(string:imageString) {
+    func configureProfileImage(_ imageString:String) {
+        if let url = URL(string:imageString) {
             ImageController.fetchImageAtURL(url, completion: { (image, error) in
                 guard let image = image else {
                     if let error = error {
@@ -148,7 +148,7 @@ class ProfileViewController: UIViewController {
                     }
                     return
                 }
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.profileImageView.image = image
                     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2
                     self.profileImageView.layer.masksToBounds = true
@@ -158,7 +158,7 @@ class ProfileViewController: UIViewController {
     }
     
     func configureViewShadow() {
-        topView.layer.shadowColor = UIColor.blackColor().CGColor
+        topView.layer.shadowColor = UIColor.black.cgColor
         topView.layer.shadowOffset = CGSize(width: 0, height: 4)
         topView.layer.shadowRadius = 4
         topView.layer.shadowOpacity = 0.2
@@ -167,14 +167,14 @@ class ProfileViewController: UIViewController {
     
     func configureBackGroundButton() {
         let backButton = UIButton()
-        backButton.setTitle("Log In", forState: .Normal)
-        backButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        backButton.addTarget(self, action: #selector(presentLoginViewController), forControlEvents: .TouchUpInside)
+        backButton.setTitle("Log In", for: UIControlState())
+        backButton.setTitleColor(UIColor.black, for: UIControlState())
+        backButton.addTarget(self, action: #selector(presentLoginViewController), for: .touchUpInside)
         collectionView.backgroundView = backButton
     }
     
     func presentLoginViewController() {
-        performSegueWithIdentifier("showSignInSegue", sender: nil)
+        performSegue(withIdentifier: "showSignInSegue", sender: nil)
     }
     
     
@@ -186,21 +186,21 @@ class ProfileViewController: UIViewController {
         UserController.sharedController.fetchMyBooks { (success) in
             if success == false {
                 let backButton = UIButton()
-                backButton.setTitle("Error fetching books.", forState: .Normal)
-                backButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                backButton.setTitle("Error fetching books.", for: UIControlState())
+                backButton.setTitleColor(UIColor.black, for: UIControlState())
                 self.collectionView.backgroundView = backButton
             }
         }
     }
     
     func listenForNotifications() {
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: #selector(ProfileViewController.reloadBooks), name: myBookNotification, object: nil)
-        nc.addObserver(self, selector: #selector(ProfileViewController.reloadBooks), name: myBidsNotification, object: nil)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(ProfileViewController.reloadBooks), name: NSNotification.Name(rawValue: myBookNotification), object: nil)
+        nc.addObserver(self, selector: #selector(ProfileViewController.reloadBooks), name: NSNotification.Name(rawValue: myBidsNotification), object: nil)
     }
     
     func reloadBooks() {
-        dispatch_async(dispatch_get_main_queue()) { 
+        DispatchQueue.main.async { 
             self.collectionView.reloadData()
         }
     }
@@ -211,47 +211,47 @@ class ProfileViewController: UIViewController {
 // MARK: - CollectionView
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("profileBookCell", forIndexPath: indexPath) as! ProfileBookCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profileBookCell", for: indexPath) as! ProfileBookCollectionViewCell
         
         switch currentViewState {
-        case .Buy:
+        case .buy:
             if let bids = UserController.sharedController.myBids {
-                cell.updateCellForBook(bids[indexPath.row])
+                cell.updateCellForBook(bids[(indexPath as NSIndexPath).row])
             }
         default:
             if let booksForSale = UserController.sharedController.myBooks {
-                cell.updateCellForBook(booksForSale[indexPath.row])
+                cell.updateCellForBook(booksForSale[(indexPath as NSIndexPath).row])
             }
         }
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch currentViewState {
-        case .Buy:
+        case .buy:
             return UserController.sharedController.myBids?.count ?? 0
-        case .Sell:
+        case .sell:
             return UserController.sharedController.myBooks?.count ?? 0
-        case .LoggedOut:
+        case .loggedOut:
             return 0
         }
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width/2 - 9, height: collectionView.frame.height/2)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 4
     }
     
@@ -260,11 +260,11 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 // MARK: - BarButtonActions
 extension ProfileViewController {
     
-    @IBAction func dismissTapped(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func dismissTapped(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func editTapped(sender: AnyObject) {
+    @IBAction func editTapped(_ sender: AnyObject) {
     
     }
 }

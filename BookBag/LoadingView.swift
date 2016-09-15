@@ -22,7 +22,7 @@ class LoadingView: UIView {
     }
     */
     
-    func updateLabel(message:String) {
+    func updateLabel(_ message:String) {
         label.text = message
     }
     

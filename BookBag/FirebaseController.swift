@@ -18,7 +18,7 @@ class FirebaseController {
     static let userBase = base.child("Users")
     static let bidBase = base.child("Bids")
     
-    static let storageRef = storage.referenceForURL("gs://bookbag-b2b09.appspot.com")
+    static let storageRef = storage.reference(forURL: "gs://bookbag-b2b09.appspot.com")
     static let imagesRef = storageRef.child("images")
     
 }

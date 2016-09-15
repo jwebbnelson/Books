@@ -18,13 +18,13 @@ class BookHighlightTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
-    func updateCell(book:Book) {
+    func updateCell(_ book:Book) {
         locationLabel.text = "City, State"
         priceLabel.text = "$\(book.price)"
     }

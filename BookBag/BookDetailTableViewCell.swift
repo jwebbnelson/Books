@@ -9,10 +9,10 @@
 import UIKit
 
 enum IconTypes:Int {
-    case Title
-    case Author
-    case ISBN
-    case Notes
+    case title
+    case author
+    case isbn
+    case notes
 }
 
 class BookDetailTableViewCell: UITableViewCell {
@@ -26,27 +26,27 @@ class BookDetailTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    func updateCellWithBook(book:Book, row:Int) {
+    func updateCellWithBook(_ book:Book, row:Int) {
         switch row {
-        case IconTypes.Title.rawValue:
+        case IconTypes.title.rawValue:
             updateImage("Title")
             detailLabel.text = book.title
             if let edition = book.edition {
                 detailLabel.text = detailLabel.text! + " (Edition \(edition))"
             }
-        case IconTypes.Author.rawValue:
+        case IconTypes.author.rawValue:
             updateImage("Author")
             detailLabel.text = book.author
-        case IconTypes.ISBN.rawValue:
+        case IconTypes.isbn.rawValue:
             updateImage("Scan")
             detailLabel.text = "\(book.isbn)"
-        case IconTypes.Notes.rawValue:
+        case IconTypes.notes.rawValue:
             updateImage("Notes")
             detailLabel.text = book.notes
         default:
@@ -54,7 +54,7 @@ class BookDetailTableViewCell: UITableViewCell {
         }
     }
     
-    func updateImage(string:String) {
+    func updateImage(_ string:String) {
         iconImage.image = UIImage(named: string)
     }
 }

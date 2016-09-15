@@ -21,8 +21,8 @@ enum SellTextFields: String {
 }
 
 enum SellTableViewCells: Int {
-    case Title, Author, Edition, Format,
-    Location, Price, Extra, Next
+    case title, author, edition, format,
+    location, price, extra, next
 }
 
 public let SellDismissedNotification = "SellDismissedNotificationName"
@@ -67,48 +67,48 @@ class SellTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 7
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case SellTableViewCells.Format.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("formatCell", forIndexPath: indexPath) as! FormatTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch (indexPath as NSIndexPath).row {
+        case SellTableViewCells.format.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "formatCell", for: indexPath) as! FormatTableViewCell
             cell.delegate = self
             return cell
         case 6:
-            let cell = tableView.dequeueReusableCellWithIdentifier("extraCell", forIndexPath: indexPath) as! ExtraSellTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "extraCell", for: indexPath) as! ExtraSellTableViewCell
             cell.delegate = self
             return cell
         case 7:
-            let cell = tableView.dequeueReusableCellWithIdentifier("nextCell", forIndexPath: indexPath) as! NextTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "nextCell", for: indexPath) as! NextTableViewCell
             cell.delegate = self
             return cell
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("basicCell", forIndexPath: indexPath) as! BasicSellTableViewCell
-            cell.setDetails(labelArray[indexPath.row], prompt: promptArray[indexPath.row])
+            let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath) as! BasicSellTableViewCell
+            cell.setDetails(labelArray[(indexPath as NSIndexPath).row], prompt: promptArray[(indexPath as NSIndexPath).row])
             cell.entryTextField.delegate = self
             
             return cell
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch indexPath.row {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath as NSIndexPath).row {
         case 3:
             return 40
         case 7:
@@ -119,7 +119,7 @@ class SellTableViewController: UITableViewController {
     }
     
     // MARK: - TableViewDelegate
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         view.endEditing(true)
     }
     
@@ -161,18 +161,18 @@ class SellTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    @IBAction func cancelButtonTapped(sender: AnyObject) {
+    @IBAction func cancelButtonTapped(_ sender: AnyObject) {
         view.endEditing(true)
-        dismissViewControllerAnimated(true, completion: nil)
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName(SellDismissedNotification, object: nil)
+        dismiss(animated: true, completion: nil)
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name(rawValue: SellDismissedNotification), object: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if let destinationVC = segue.destinationViewController as? BookDetailTableViewController, let book = sender as? Book {
+        if let destinationVC = segue.destination as? BookDetailTableViewController, let book = sender as? Book {
             
             destinationVC.book = book
             if let image = image {
@@ -184,14 +184,14 @@ class SellTableViewController: UITableViewController {
     
     // MARK: - Notifications
     func listenForNotifications() {
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: #selector(SellTableViewController.updateISBN(_:)), name: ISBNUpdatedNotification, object: nil)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(SellTableViewController.updateISBN(_:)), name: NSNotification.Name(rawValue: ISBNUpdatedNotification), object: nil)
     }
     
-    func updateISBN(notification:NSNotification) {
+    func updateISBN(_ notification:Notification) {
         if let isbnString = notification.object as? String {
             isbn = isbnString
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.isbnTextField.text = isbnString
             })
         }
@@ -201,45 +201,45 @@ class SellTableViewController: UITableViewController {
 // MARK: - TextField Delegate
 extension SellTableViewController: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text == textField.placeholder {
             textField.text = ""
-            textField.textColor = UIColor.blackColor()
+            textField.textColor = UIColor.black
         }
         
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
-            textField.keyboardType = UIKeyboardType.Default
-            textField.autocapitalizationType = UITextAutocapitalizationType.Words
-            showCellLabel(SellTableViewCells.Title.rawValue)
+            textField.keyboardType = UIKeyboardType.default
+            textField.autocapitalizationType = UITextAutocapitalizationType.words
+            showCellLabel(SellTableViewCells.title.rawValue)
         case SellTextFields.Author.rawValue:
-            textField.keyboardType = UIKeyboardType.Default
-            textField.autocapitalizationType = UITextAutocapitalizationType.Words
-            showCellLabel(SellTableViewCells.Author.rawValue)
+            textField.keyboardType = UIKeyboardType.default
+            textField.autocapitalizationType = UITextAutocapitalizationType.words
+            showCellLabel(SellTableViewCells.author.rawValue)
         case SellTextFields.Edition.rawValue:
-            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
-            showCellLabel(SellTableViewCells.Edition.rawValue)
+            textField.keyboardType = UIKeyboardType.numbersAndPunctuation
+            showCellLabel(SellTableViewCells.edition.rawValue)
         case SellTextFields.Location.rawValue:
-            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
-            showCellLabel(SellTableViewCells.Location.rawValue)
+            textField.keyboardType = UIKeyboardType.numbersAndPunctuation
+            showCellLabel(SellTableViewCells.location.rawValue)
         case SellTextFields.Price.rawValue:
-            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
-            showCellLabel(SellTableViewCells.Price.rawValue)
+            textField.keyboardType = UIKeyboardType.numbersAndPunctuation
+            showCellLabel(SellTableViewCells.price.rawValue)
         default:
             return
         }
     }
     
-    func showCellLabel(row:Int) {
-        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0)) as? BasicSellTableViewCell {
-            dispatch_async(dispatch_get_main_queue(), {
-                cell.detailLabel.hidden = false
+    func showCellLabel(_ row:Int) {
+        if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? BasicSellTableViewCell {
+            DispatchQueue.main.async(execute: {
+                cell.detailLabel.isHidden = false
             })
             
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
             setNextResponder(1)
@@ -251,7 +251,7 @@ extension SellTableViewController: UITextFieldDelegate {
             setNextResponder(5)
         case SellTextFields.Price.rawValue:
             textField.resignFirstResponder()
-            performSelector(#selector(scrollToNextButton), withObject: nil, afterDelay: 0.3)
+            perform(#selector(scrollToNextButton), with: nil, afterDelay: 0.3)
         default:
             return true
         }
@@ -259,15 +259,15 @@ extension SellTableViewController: UITextFieldDelegate {
     }
     
     func scrollToNextButton() {
-         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 6, inSection: 0), atScrollPosition: .Bottom, animated: true)
+         tableView.scrollToRow(at: IndexPath(row: 6, section: 0), at: .bottom, animated: true)
     }
     
-    func setNextResponder(nextRow:Int) {
-        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: nextRow, inSection: 0)) as? BasicSellTableViewCell
+    func setNextResponder(_ nextRow:Int) {
+        let cell = tableView.cellForRow(at: IndexPath(row: nextRow, section: 0)) as? BasicSellTableViewCell
         cell?.entryTextField.becomeFirstResponder()
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
        
         switch  textField.placeholder! {
         case SellTextFields.Title.rawValue:
@@ -281,21 +281,21 @@ extension SellTableViewController: UITextFieldDelegate {
                 LocationController.convertStringToLocation(textField.text ?? "", completion: { (placemark) in
                     if let location = placemark?.locality, let state = placemark?.administrativeArea {
                         self.location = placemark?.location
-                        dispatch_async(dispatch_get_main_queue(), {
-                            UIView.animateWithDuration(2, animations: {
+                        DispatchQueue.main.async(execute: {
+                            UIView.animate(withDuration: 2, animations: {
                                 textField.text = "\(location), \(state)"
-                                textField.textColor = UIColor.blackColor()
+                                textField.textColor = UIColor.black
                             })
                         })
                     }
                 })
             } else {
-                textField.textColor = UIColor.redColor()
+                textField.textColor = UIColor.red
             }
         case SellTextFields.Price.rawValue:
-            price = NSNumberFormatter().numberFromString(textField.text ?? "")?.doubleValue
+            price = NumberFormatter().number(from: textField.text ?? "")?.doubleValue
             if var text = textField.text {
-                text = text.stringByReplacingOccurrencesOfString("$", withString: "")
+                text = text.replacingOccurrences(of: "$", with: "")
                 textField.text = "$\(text)"
             }
         default:
@@ -311,7 +311,7 @@ extension SellTableViewController: UITextFieldDelegate {
 // MARK: - SellButtonDelegate
 extension SellTableViewController: SellButtonDelegate {
    
-    @IBAction func saveTapped(sender: AnyObject) {
+    @IBAction func saveTapped(_ sender: AnyObject) {
         sellButtonTapped()
     }
     
@@ -319,7 +319,7 @@ extension SellTableViewController: SellButtonDelegate {
     func sellButtonTapped() {
         view.endEditing(true)
         
-        if let bookTitle = bookTitle, let author = author, price = price, let isbn = isbn, let formatString = formatString {
+        if let bookTitle = bookTitle, let author = author, let price = price, let isbn = isbn, let formatString = formatString {
             beginLoadingView()
             loadingView.updateLabel("Confirming Book Details")
             BookController.submitTextbookForApproval(author, title: bookTitle, isbn: isbn, edition: edition, price: price ?? 0, notes: notes, format: formatString) { (book, bookID, error) in
@@ -337,10 +337,10 @@ extension SellTableViewController: SellButtonDelegate {
                                 return
                             }
                             BookController.updateBookPath(bookID, imagePath: url)
-                            dispatch_async(dispatch_get_main_queue(), {
+                            DispatchQueue.main.async(execute: {
                                 self.dismissLoadingView()
                                 if let book = book {
-                                    self.performSegueWithIdentifier("SellReviewSegue", sender: book)
+                                    self.performSegue(withIdentifier: "SellReviewSegue", sender: book)
                                 }
                             })
                         })
@@ -356,12 +356,12 @@ extension SellTableViewController: SellButtonDelegate {
     
     func checkRequiredFields() {
         for cell in tableView.visibleCells {
-            if let indexPath = tableView.indexPathForCell(cell), let textCell = tableView.cellForRowAtIndexPath(indexPath) as? BasicSellTableViewCell {
+            if let indexPath = tableView.indexPath(for: cell), let textCell = tableView.cellForRow(at: indexPath) as? BasicSellTableViewCell {
                 textCell.updateForError()
             }
         }
         guard isbn != nil else {
-            isbnTextField.textColor = UIColor.redColor()
+            isbnTextField.textColor = UIColor.red
             isbnTextField.text = isbnTextField.placeholder
             return
         }
@@ -374,7 +374,7 @@ extension SellTableViewController: SellButtonDelegate {
     // MARK: - LoadingView
     func beginLoadingView() {
         backgroundView = UIView(frame: self.tableView.frame)
-        backgroundView.backgroundColor = UIColor.blackColor()
+        backgroundView.backgroundColor = UIColor.black
         backgroundView.alpha = 0.4
         view.addSubview(backgroundView)
         loadingView.center.y = view.center.y
@@ -396,26 +396,26 @@ extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerD
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
-        let alert = UIAlertController(title: "Add Photo", message: "Take a picture of your textbook", preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: "Add Photo", message: "Take a picture of your textbook", preferredStyle: .actionSheet)
         
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            alert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (_) in
-                imagePicker.sourceType = .Camera
-                self.presentViewController(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
+                imagePicker.sourceType = .camera
+                self.present(imagePicker, animated: true, completion: nil)
             }))
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
         
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         self.image = image
         
-        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: SellTableViewCells.Extra.rawValue, inSection: 0)) as? ExtraSellTableViewCell {
-            dispatch_async(dispatch_get_main_queue(), {
+        if let cell = tableView.cellForRow(at: IndexPath(row: SellTableViewCells.extra.rawValue, section: 0)) as? ExtraSellTableViewCell {
+            DispatchQueue.main.async(execute: {
                 cell.photoButton.imageView?.image = UIImage(named: "PhotoMinimalComplete")
             })
             
@@ -430,11 +430,11 @@ extension SellTableViewController: ExtraButtonsDelgate, UIImagePickerControllerD
 // MARK: - FormatCellDelegat
 extension SellTableViewController: FormatCellDelegate {
     
-    func formatSelected(format: Int) {
+    func formatSelected(_ format: Int) {
         switch format {
-        case BookFormat.Paperback.rawValue:
+        case BookFormat.paperback.rawValue:
             formatString = "Paperback"
-        case BookFormat.Hardcover.rawValue:
+        case BookFormat.hardcover.rawValue:
             formatString = "Hardcover"
         default:
             formatString = nil
@@ -456,12 +456,12 @@ extension SellTableViewController {
     func presentNotesView() {
         notesView.setUp()
         notesBackground.frame = view.frame
-        notesBackground.backgroundColor = UIColor.blackColor()
+        notesBackground.backgroundColor = UIColor.black
         notesBackground.alpha = 0.3
         view.addSubview(notesBackground)
         view.addSubview(notesView)
-        UIView.animateWithDuration(0.5, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseOut, animations: {
-            self.notesView.transform = CGAffineTransformIdentity
+        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+            self.notesView.transform = CGAffineTransform.identity
             self.notesView.alpha = 1
         }) { (success) in
             
@@ -476,16 +476,16 @@ extension SellTableViewController {
     }
     
     func resetNotesAnimation() {
-        notesView.transform = CGAffineTransformMakeScale(0, 0)
+        notesView.transform = CGAffineTransform(scaleX: 0, y: 0)
         notesView.alpha = 0
     }
     
-    @IBAction func saveNotes(sender: AnyObject) {
+    @IBAction func saveNotes(_ sender: AnyObject) {
         notes = notesTextView.text
         dismissNotesView()
         
-        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: SellTableViewCells.Extra.rawValue, inSection: 0)) as? ExtraSellTableViewCell {
-            dispatch_async(dispatch_get_main_queue(), {
+        if let cell = tableView.cellForRow(at: IndexPath(row: SellTableViewCells.extra.rawValue, section: 0)) as? ExtraSellTableViewCell {
+            DispatchQueue.main.async(execute: {
                 cell.notesButton.imageView?.image = UIImage(named: "NotesComplete")
             })
             
@@ -493,21 +493,21 @@ extension SellTableViewController {
 
     }
     
-    @IBAction func cancelNotes(sender: AnyObject) {
+    @IBAction func cancelNotes(_ sender: AnyObject) {
         dismissNotesView()
     }
 }
 
 // MARK: - TextView Delegate
 extension SellTableViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "Enter notes here..." {
             textView.text = ""
         }
         notesView.makeSaveable()
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text != "Enter notes here..." {
             notes = notesTextView.text
         }

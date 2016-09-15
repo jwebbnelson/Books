@@ -31,9 +31,9 @@ class ProfileEditViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func logOutTapped(sender: AnyObject) {
+    @IBAction func logOutTapped(_ sender: AnyObject) {
         UserController.sharedController.logOutUser()
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
 
 }

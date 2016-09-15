@@ -20,17 +20,17 @@ class ExtraSellTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    @IBAction func photoButtonTapped(sender: AnyObject) {
+    @IBAction func photoButtonTapped(_ sender: AnyObject) {
         delegate?.photosPressed()
     }
     
-    @IBAction func notesButtonTapped(sender: AnyObject) {
+    @IBAction func notesButtonTapped(_ sender: AnyObject) {
         delegate?.notesPressed()
     }
 }

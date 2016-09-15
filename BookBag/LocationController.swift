@@ -8,23 +8,43 @@
 
 import Foundation
 import CoreLocation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 
 class LocationController {
     
-    static func convertStringToLocation(address:String, completion:(placemark:CLPlacemark?) -> Void) {
+    static func convertStringToLocation(_ address:String, completion:@escaping (_ placemark:CLPlacemark?) -> Void) {
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemark, error) in
             if let _ = error {
-                completion(placemark: nil)
+                completion(nil)
                 return
             }
             if placemark?.count > 0 {
                 let placement = placemark?.first
-                completion(placemark: placement)
+                completion(placement)
             } else {
-                completion(placemark: nil)
+                completion(nil)
             }
         }
         

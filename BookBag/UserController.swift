@@ -16,14 +16,14 @@ public let myBidsNotification = "MyBidsNotificationName"
 
 class UserController {
     
-    private let kUser = "user"
+    fileprivate let kUser = "user"
     static let sharedController = UserController()
     
     var currentUser: User? {
         get {
             
             guard let uid = FIRAuth.auth()?.currentUser?.uid,
-                let userDictionary = NSUserDefaults.standardUserDefaults().valueForKey(kUser) as? [String: AnyObject] else {
+                let userDictionary = UserDefaults.standard.value(forKey: kUser) as? [String: AnyObject] else {
                     
                     return nil
             }
@@ -33,11 +33,11 @@ class UserController {
         
         set {
             if let newValue = newValue {
-                NSUserDefaults.standardUserDefaults().setValue(newValue.jsonValue, forKey: kUser)
-                NSUserDefaults.standardUserDefaults().synchronize()
+                UserDefaults.standard.setValue(newValue.jsonValue, forKey: kUser)
+                UserDefaults.standard.synchronize()
             } else {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(kUser)
-                NSUserDefaults.standardUserDefaults().synchronize()
+                UserDefaults.standard.removeObject(forKey: kUser)
+                UserDefaults.standard.synchronize()
             }
         }
         
@@ -46,34 +46,34 @@ class UserController {
     
     var myBooks: [Book]? {
         didSet {
-            let nc = NSNotificationCenter.defaultCenter()
-            nc.postNotificationName(myBookNotification, object: nil)
+            let nc = NotificationCenter.default
+            nc.post(name: Notification.Name(rawValue: myBookNotification), object: nil)
         }
     }
     
     var myBids: [Book]? {
         didSet {
-            let nc = NSNotificationCenter.defaultCenter()
-            nc.postNotificationName(myBidsNotification, object: nil)
+            let nc = NotificationCenter.default
+            nc.post(name: Notification.Name(rawValue: myBidsNotification), object: nil)
         }
     }
     
     // LOGIN - SIGNUP
-    func logInUser(email:String, password:String, completion:(errorString:String?)-> Void){
-        FIRAuth.auth()?.signInWithEmail(email, password: password, completion: { (user, error) in
+    func logInUser(_ email:String, password:String, completion:@escaping (_ errorString:String?)-> Void){
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             guard let user = user else {
-                completion(errorString: error?.localizedDescription)
+                completion(error?.localizedDescription)
                 return
             }
             self.fetchUserWithUID(user.uid, completion: { (success) in
                 if success == true {
-                    completion(errorString: nil)
+                    completion(nil)
                 } else {
                     self.createFirebaseUser(user.uid, name: user.displayName!, email: user.email!, imageURL: user.photoURL, completion: { (success) in
                         if success == true {
-                            completion(errorString: nil)
+                            completion(nil)
                         } else {
-                            completion(errorString: "Unable to create database reference.")
+                            completion("Unable to create database reference.")
                         }
                     })
                 }
@@ -81,23 +81,23 @@ class UserController {
         })
     }
     
-    func logInWithCredential(credential:FIRAuthCredential, completion:(errorString:String?) -> Void){
-        FIRAuth.auth()?.signInWithCredential(credential, completion: { (user, error) in
+    func logInWithCredential(_ credential:FIRAuthCredential, completion:@escaping (_ errorString:String?) -> Void){
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             guard let user = user else {
                 if let error = error {
-                    completion(errorString: error.localizedDescription)
+                    completion(error.localizedDescription)
                 }
                 return
             }
             self.fetchUserWithUID(user.uid, completion: { (success) in
                 if success == true {
-                    completion(errorString: nil)
+                    completion(nil)
                 } else {
                     self.createFirebaseUser(user.uid, name: user.displayName!, email: user.email!, imageURL: user.photoURL, completion: { (success) in
                         if success == true {
-                            completion(errorString: nil)
+                            completion(nil)
                         } else {
-                            completion(errorString: "Unable to create database reference.")
+                            completion("Unable to create database reference.")
                         }
                     })
                 }
@@ -105,41 +105,41 @@ class UserController {
         })
     }
     
-    func signUpUser(email:String, password:String, completion:(uid:String?, errorString:String?)-> Void){
-        FIRAuth.auth()?.createUserWithEmail(email, password: password, completion: { (user, error) in
+    func signUpUser(_ email:String, password:String, completion:@escaping (_ uid:String?, _ errorString:String?)-> Void){
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             guard let user = user else {
-                completion(uid: nil, errorString: error?.description)
+                completion(nil, error?.localizedDescription)
                 return
             }
-            completion(uid: user.uid, errorString: nil)
+            completion(user.uid, nil)
         })
     }
     
-    func createFirebaseUser(uID: String, name:String, email:String, imageURL:NSURL?, completion:(success:Bool) -> Void) {
+    func createFirebaseUser(_ uID: String, name:String, email:String, imageURL:URL?, completion:@escaping (_ success:Bool) -> Void) {
         let user = User(name: name, email: email, imageURL: imageURL?.absoluteString)
         FirebaseController.userBase.child(uID).setValue(user.jsonValue) { (error, ref) in
             if let error = error {
                 print(error.localizedDescription)
-                completion(success: false)
+                completion(false)
                 return
             } else {
                 UserController.sharedController.currentUser = user
-                completion(success: true)
+                completion(true)
             }
         }
     }
     
-    func fetchUserWithUID(uID: String, completion:(success:Bool) -> Void) {
-        FirebaseController.userBase.child(uID).observeSingleEventOfType(FIRDataEventType.Value) { (snapshot, _) in
+    func fetchUserWithUID(_ uID: String, completion:@escaping (_ success:Bool) -> Void) {
+        FirebaseController.userBase.child(uID).observeSingleEvent(of: FIRDataEventType.value) { (snapshot, _) in
             if let userDictionary = snapshot.value as? [String:AnyObject] {
                 if let user = User(json: userDictionary, uID: snapshot.ref.key) {
                     UserController.sharedController.currentUser = user
-                    completion(success: true)
+                    completion(true)
                 } else {
-                    completion(success: false)
+                    completion(false)
                 }
             } else {
-                completion(success: false)
+                completion(false)
             }
         }
     }
@@ -148,26 +148,26 @@ class UserController {
         try! FIRAuth.auth()?.signOut()
     }
     
-    func checkCurrentUser(completion:(currentUser:Bool) -> Void) {
+    func checkCurrentUser(_ completion:(_ currentUser:Bool) -> Void) {
         if let _ = FIRAuth.auth()?.currentUser {
             // User is signed in.
-           completion(currentUser: true)
+           completion(true)
         } else {
             // No user is signed in.
-           completion(currentUser: false)
+           completion(false)
         }
     }
     
     
     // MARK: - MY LIBRARY
-    func fetchMyBooks(completion:(success:Bool) -> Void) {
+    func fetchMyBooks(_ completion:@escaping (_ success:Bool) -> Void) {
         if let currentUser = UserController.sharedController.currentUser {
-            FirebaseController.bookBase.queryOrderedByChild("ownerID").queryEqualToValue(currentUser.uID).observeEventType(.Value, withBlock: { (snapshot) in
+            FirebaseController.bookBase.queryOrdered(byChild: "ownerID").queryEqual(toValue: currentUser.uID).observe(.value, with: { (snapshot) in
                 if let bookDictionaries = snapshot.value as? [String: AnyObject] {
                     self.myBooks = bookDictionaries.flatMap({Book(json: $0.1 as! [String:AnyObject], identifier: $0.0)})
-                    completion(success: true)
+                    completion(true)
                 } else {
-                    completion(success: false)
+                    completion(false)
                 }
             })
         }
@@ -181,35 +181,35 @@ class UserController {
             }
             
             self.myBids = []
-            let dispatchGroup = dispatch_group_create()
+            let dispatchGroup = DispatchGroup()
             
             for bookID in bookIDs {
-                dispatch_group_enter(dispatchGroup)
+                dispatchGroup.enter()
                 BookController.bookForBookID(bookID, completion: { (book) in
                     if let book = book {
                         UserController.sharedController.myBids?.append(book)
                     }
-                    dispatch_group_leave(dispatchGroup)
+                    dispatchGroup.leave()
                 })
             }
         }
     }
 
     
-    func fetchUserBids(completion:(boookIDs:[String]?) -> Void ){
+    func fetchUserBids(_ completion:@escaping (_ boookIDs:[String]?) -> Void ){
         
         if let user = UserController.sharedController.currentUser {
             
-            FirebaseController.userBase.child(user.uID).child("Bids").observeSingleEventOfType(.Value, withBlock: { (snap) in
+            FirebaseController.userBase.child(user.uID).child("Bids").observeSingleEvent(of: .value, with: { (snap) in
                 
                 var bookIDs:[String] = []
                 if let bidArray = snap.value as? [String:AnyObject]  {
                     for bid in bidArray {
                         bookIDs.append(bid.0)
                     }
-                    completion(boookIDs: bookIDs)
+                    completion(bookIDs)
                 } else {
-                    completion(boookIDs: nil)
+                    completion(nil)
                 }
             })
         }

@@ -16,7 +16,7 @@ class ProfileBookCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     
-    func updateCellForBook(book: Book) {
+    func updateCellForBook(_ book: Book) {
         handleImage(book.image)
         configureShadow()
         titleLabel.text = book.title
@@ -25,24 +25,24 @@ class ProfileBookCollectionViewCell: UICollectionViewCell {
         priceLabel.text = "$\(book.price)"
     }
     
-    func handleImage(imageString: String) {
+    func handleImage(_ imageString: String) {
         bookImageView.image = nil
-        if let url = NSURL(string: imageString) {
+        if let url = URL(string: imageString) {
             ImageController.fetchImageAtURL(url) { (image, error) in
                 guard let image = image else {
                     print("FAILURE LOADING IMAGE: \(error?.description)")
                     return
                 }
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.bookImageView.image = image
-                    self.bookImageView.backgroundColor = UIColor.clearColor()
+                    self.bookImageView.backgroundColor = UIColor.clear
                 })
             }
         }
     }
     
     func configureShadow() {
-        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 2
         layer.cornerRadius = 2

@@ -25,18 +25,18 @@ class BidView: UIView {
     */
     
    
-    @IBAction func cancelTapped(sender: AnyObject) {
+    @IBAction func cancelTapped(_ sender: AnyObject) {
         removeFromSuperview()
     }
     
     
-    func configure(book:Book) {
-        layer.shadowColor = UIColor.blackColor().CGColor
+    func configure(_ book:Book) {
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.shadowRadius = 4
         layer.shadowOpacity = 0.2
         layer.masksToBounds = false
-        confirmButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        confirmButton.setTitleColor(UIColor.gray, for: UIControlState())
         askingPriceLabel.text = "$\(book.price)"
     }
 
@@ -44,8 +44,8 @@ class BidView: UIView {
 
 extension BidView: UITextFieldDelegate {
 
-    func textFieldDidBeginEditing(textField: UITextField) {
-         confirmButton.setTitleColor(UIColor.greenColor(), forState: .Normal)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+         confirmButton.setTitleColor(UIColor.green, for: UIControlState())
     }
     
     

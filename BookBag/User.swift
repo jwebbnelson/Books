@@ -11,9 +11,9 @@ import FirebaseAuth
 
 class User {
     
-    private let kName = "name"
-    private let kPhone = "phone"
-    private let kImage = "image"
+    fileprivate let kName = "name"
+    fileprivate let kPhone = "phone"
+    fileprivate let kImage = "image"
     
     var name:String
     var phoneNumber: Int?
@@ -31,14 +31,14 @@ class User {
     
     var jsonValue: [String:AnyObject] {
         
-        var json: [String:AnyObject] = [kName:name]
+        var json: [String:AnyObject] = [kName:name as AnyObject]
         
         if let phoneNumber = phoneNumber {
-            json[kPhone] = phoneNumber
+            json[kPhone] = phoneNumber as AnyObject?
         }
         
         if let imageURL = imageURL {
-            json[kImage] = imageURL
+            json[kImage] = imageURL as AnyObject?
         }
         
         return json

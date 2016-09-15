@@ -11,22 +11,22 @@ import CoreLocation
 
 
 public enum BookFormat: Int {
-    case Paperback,
-    Hardcover
+    case paperback,
+    hardcover
 }
 
 class Book: Equatable {
     
-    private let kTitle = "title"
-    private let kAuthor = "author"
-    private let kEdition = "edition"
-    private let kPrice = "price"
-    private let kLocation = "location"
-    private let kImage = "image"
-    private let kNotes = "notes"
-    private let kISBN = "isbn"
-    private let kOwnerID = "ownerID"
-    private let kFormat = "format"
+    fileprivate let kTitle = "title"
+    fileprivate let kAuthor = "author"
+    fileprivate let kEdition = "edition"
+    fileprivate let kPrice = "price"
+    fileprivate let kLocation = "location"
+    fileprivate let kImage = "image"
+    fileprivate let kNotes = "notes"
+    fileprivate let kISBN = "isbn"
+    fileprivate let kOwnerID = "ownerID"
+    fileprivate let kFormat = "format"
     
     var title: String
     var author: String
@@ -42,15 +42,16 @@ class Book: Equatable {
     
     var jsonValue: [String: AnyObject] {
     
-        var json: [String: AnyObject] = [kTitle: title, kAuthor: author, kPrice: price, kLocation:kLocation, kISBN: isbn,
-                                         kImage:"", kOwnerID:ownerID, kFormat: format]
+        // FORMAT as ANYOBJECT?
+        var json: [String: AnyObject] = [kTitle: title as AnyObject, kAuthor: author as AnyObject, kPrice: price as AnyObject, kLocation:kLocation as AnyObject, kISBN: isbn as AnyObject,
+                                         kImage:"" as AnyObject, kOwnerID:ownerID as AnyObject, kFormat: format as AnyObject]
         
         if let edition = edition {
-            json[kEdition] = edition
+            json[kEdition] = edition as AnyObject?
         }
         
         if let notes = notes {
-            json[kNotes] = notes
+            json[kNotes] = notes as AnyObject?
         }
         
         return json

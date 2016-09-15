@@ -19,18 +19,18 @@ class HolderViewController: UIViewController {
     }
     
     func listenForNotification() {
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: #selector(HolderViewController.resetTabBar), name: SellDismissedNotification, object: nil)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(HolderViewController.resetTabBar), name: NSNotification.Name(rawValue: SellDismissedNotification), object: nil)
     }
     
     func resetTabBar() {
         tabBarController?.selectedIndex = 0
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        performSegueWithIdentifier("showSellScreenSegue", sender: nil)
+        performSegue(withIdentifier: "showSellScreenSegue", sender: nil)
     }
     
     override func didReceiveMemoryWarning() {

@@ -21,7 +21,7 @@ class SignUpViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        navigationController?.navigationBar.hidden = true
+        navigationController?.navigationBar.isHidden = true
         resetActivityIndicator()
     }
 
@@ -30,7 +30,7 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func signUpTapped(sender: AnyObject) {
+    @IBAction func signUpTapped(_ sender: AnyObject) {
         if let email = emailField.text, let password = passwordField.text, let name = nameField.text {
             UserController.sharedController.signUpUser(email, password: password, completion: { (uid, errorString) in
                 guard let uID = uid else {
@@ -43,9 +43,9 @@ class SignUpViewController: UIViewController {
                         if let error = errorString {
                             print(error)
                         } else {
-                            dispatch_async(dispatch_get_main_queue(), {
+                            DispatchQueue.main.async(execute: {
                                 self.resetActivityIndicator()
-                                self.dismissViewControllerAnimated(true, completion: nil)
+                                self.dismiss(animated: true, completion: nil)
                             })
                         }
                     })
@@ -57,12 +57,12 @@ class SignUpViewController: UIViewController {
     
     func resetActivityIndicator() {
         activityIndicator.layer.transform = CATransform3DMakeScale(0, 0, 0)
-        signUpButton.setTitle("Sign Up", forState: .Normal)
+        signUpButton.setTitle("Sign Up", for: UIControlState())
     }
     
     func beginLoadingAnimation() {
         view.endEditing(true)
-        signUpButton.setTitle(" ", forState: .Normal)
+        signUpButton.setTitle(" ", for: UIControlState())
         activityIndicator.layer.transform = CATransform3DIdentity
         activityIndicator.startAnimating()
     }
@@ -77,8 +77,8 @@ class SignUpViewController: UIViewController {
     }
     */
 
-    @IBAction func returnToSignInTapped(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+    @IBAction func returnToSignInTapped(_ sender: AnyObject) {
+        navigationController?.popViewController(animated: true)
     }
 }
 

@@ -18,17 +18,17 @@ class FormatTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    @IBAction func segmentControlChanged(sender: AnyObject) {
+    @IBAction func segmentControlChanged(_ sender: AnyObject) {
         delegate?.formatSelected(segmentedControl.selectedSegmentIndex)
     }
 }
 
 protocol FormatCellDelegate: class {
-    func formatSelected(format: Int)
+    func formatSelected(_ format: Int)
 }

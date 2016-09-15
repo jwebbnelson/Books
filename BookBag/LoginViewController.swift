@@ -35,36 +35,36 @@ class LoginViewController: UIViewController {
     
     func configureView() {
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         resetActivityIndicator()
-        errorLabel.hidden = true
-        forgotPasswordButton.hidden = true
+        errorLabel.isHidden = true
+        forgotPasswordButton.isHidden = true
         configureGoogle()
     }
     
     func resetActivityIndicator() {
         activityIndicator.layer.transform = CATransform3DMakeScale(0, 0, 0)
-        logInButton.setTitle("Log In", forState: .Normal)
+        logInButton.setTitle("Log In", for: UIControlState())
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationController?.navigationBar.hidden = false
+        navigationController?.navigationBar.isHidden = false
     }
     
-    @IBAction func logInTapped(sender: AnyObject) {
+    @IBAction func logInTapped(_ sender: AnyObject) {
         if let email = emailField.text, let password = passwordField.text {
             UserController.sharedController.logInUser(email, password: password, completion: { (errorString) in
                 if let error = errorString {
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         print(error)
                         self.resetActivityIndicator()
                         self.showErrorLabel(error)
                     })
                 } else {
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.activityIndicator.removeFromSuperview()
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     })
                 }
             })
@@ -75,24 +75,24 @@ class LoginViewController: UIViewController {
     
     func beginLoadingAnimation() {
         view.endEditing(true)
-        logInButton.setTitle(" ", forState: .Normal)
+        logInButton.setTitle(" ", for: UIControlState())
         activityIndicator.layer.transform = CATransform3DIdentity
         activityIndicator.startAnimating()
     }
     
-    func showErrorLabel(errorString:String) {
+    func showErrorLabel(_ errorString:String) {
         self.errorLabel.text = errorString
-        UIView.animateWithDuration(0.3) {
-            self.errorLabel.hidden = false
-        }
+        UIView.animate(withDuration: 0.3, animations: {
+            self.errorLabel.isHidden = false
+        }) 
     }
     
     func hideErrorLabel() {
-        if errorLabel.hidden == false {
-            UIView.animateWithDuration(0.3) {
+        if errorLabel.isHidden == false {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.errorLabel.text = ""
-                self.errorLabel.hidden = true
-            }
+                self.errorLabel.isHidden = true
+            }) 
         }
     }
     
@@ -107,31 +107,31 @@ class LoginViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    @IBAction func forgotPassTapped(sender: AnyObject) {
+    @IBAction func forgotPassTapped(_ sender: AnyObject) {
         
     }
     
-    @IBAction func cancelTapped(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelTapped(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
 
 extension LoginViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         self.hideErrorLabel()
         if textField == passwordField {
-            forgotPasswordButton.hidden = false
+            forgotPasswordButton.isHidden = false
         }
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == passwordField {
-            forgotPasswordButton.hidden = true
+            forgotPasswordButton.isHidden = true
         }
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
 }
@@ -142,10 +142,10 @@ extension LoginViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
-        googleSignInButton.colorScheme = GIDSignInButtonColorScheme.Light
+        googleSignInButton.colorScheme = GIDSignInButtonColorScheme.light
     }
     
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError?) {
+    public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         beginLoadingAnimation()
         if let error = error {
             self.showErrorLabel(error.localizedDescription)
@@ -153,16 +153,16 @@ extension LoginViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
         
         let authentication = user.authentication
-        let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken,
-                                                                     accessToken: authentication.accessToken)
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+                                                                     accessToken: (authentication?.accessToken)!)
         UserController.sharedController.logInWithCredential(credential) { (errorString) in
             if let error = errorString {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.showErrorLabel(error)
                 })
             } else {
                  print("Google Sign In: - \(user.profile.name)")
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }

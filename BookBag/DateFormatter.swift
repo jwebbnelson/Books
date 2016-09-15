@@ -8,17 +8,17 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     
     func amazonFormat() -> String {
         
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
 
         formatter.dateFormat = "yyyy-MM-dd*hh MM ss.000"
         
-        var dateString = formatter.stringFromDate(NSDate())
-        dateString = dateString.stringByReplacingOccurrencesOfString("*", withString: "T")
-        dateString = dateString.stringByReplacingOccurrencesOfString(" ", withString: "%3A")
+        var dateString = formatter.string(from: Date())
+        dateString = dateString.replacingOccurrences(of: "*", with: "T")
+        dateString = dateString.replacingOccurrences(of: " ", with: "%3A")
         //  5:39:00 PM
         // T23%3A39%3A00.000Z
         

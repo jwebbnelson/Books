@@ -11,16 +11,16 @@ import Foundation
 class NetworkController {
     
     // MARK: - dataAtURL
-    static func dataAtURL (url: NSURL, completion:(resultData: NSData?) -> Void) {
+    static func dataAtURL (_ url: URL, completion:@escaping (_ resultData: Data?) -> Void) {
         
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
         
-        let dataTask = session.dataTaskWithURL(url) { (data, _, error) -> Void in
+        let dataTask = session.dataTask(with: url, completionHandler: { (data, _, error) -> Void in
             if let error = error {
                 print(error.localizedDescription)
             }
-            completion(resultData: data)
-        }
+            completion(data)
+        }) 
         dataTask.resume()
     }
     
@@ -28,13 +28,13 @@ class NetworkController {
     
     
     // MARK: - URLs
-    static func createItemLookUpURL(isbn:String) -> NSURL {
+    static func createItemLookUpURL(_ isbn:String) -> URL {
         
         let accessKeyID = "AKIAIDPXJJNQOOS2ED5Q"
         
-        let currentTimeStamp = NSDate().amazonFormat()
+        let currentTimeStamp = Date().amazonFormat()
         
-        let url = NSURL(string:  "http://webservices.amazon.com/onca/xml?AWSAccessKeyId=\(accessKeyID)&AssociateTag=bookbagapp-20&IdType=ISBN&ItemId=\(isbn)=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers&SearchIndex=Books&Service=AWSECommerceService&Timestamp=\(currentTimeStamp)&Signature=upNFspmlD8%2BWNXrAUTR4jdjV48jrdXpXJ8V0W%2BEQwoo%3D")
+        let url = URL(string:  "http://webservices.amazon.com/onca/xml?AWSAccessKeyId=\(accessKeyID)&AssociateTag=bookbagapp-20&IdType=ISBN&ItemId=\(isbn)=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers&SearchIndex=Books&Service=AWSECommerceService&Timestamp=\(currentTimeStamp)&Signature=upNFspmlD8%2BWNXrAUTR4jdjV48jrdXpXJ8V0W%2BEQwoo%3D")
         
         
         return url!

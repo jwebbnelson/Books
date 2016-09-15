@@ -19,23 +19,23 @@ class BasicSellTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
     
-    func setDetails(detail:String, prompt:String) {
+    func setDetails(_ detail:String, prompt:String) {
         detailLabel.text = detail
         entryTextField.placeholder = prompt
-        detailLabel.hidden = true
+        detailLabel.isHidden = true
     }
     
     func updateForError() {
         if entryTextField.text == nil || entryTextField.text == "" {
             entryTextField.text = entryTextField.placeholder
-            entryTextField.textColor = UIColor.redColor()
+            entryTextField.textColor = UIColor.red
         }
     }
     

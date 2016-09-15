@@ -10,10 +10,10 @@ import Foundation
 
 class Bid {
     
-    private let kUID = "userID"
-    private let kBookID = "bookID"
-    private let kPrice = "price"
-    private let kDate = "date"
+    fileprivate let kUID = "userID"
+    fileprivate let kBookID = "bookID"
+    fileprivate let kPrice = "price"
+    fileprivate let kDate = "date"
     
     var userID:String
     var bookID:String
@@ -21,7 +21,7 @@ class Bid {
 //    var date: String
     
     var jsonValue: [String: AnyObject] {
-        return [userID: price]
+        return [userID: price as AnyObject]
     }
     
     init(userID:String, bookID:String, price:Double) {

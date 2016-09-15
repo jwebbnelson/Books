@@ -29,7 +29,7 @@ class SearchResultsTableViewController: UITableViewController {
     }
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         
@@ -48,62 +48,62 @@ class SearchResultsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return books?.count ?? 0
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("searchResultsCell", forIndexPath: indexPath) as! SearchResultsTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath) as! SearchResultsTableViewCell
 
         if let books = books {
-            cell.updateWithBook(books[indexPath.row])
+            cell.updateWithBook(books[(indexPath as NSIndexPath).row])
         }
 
         return cell
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
     // MARK: - TableViewDelegate 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         view.endEditing(true)
         dismissNotification()
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
 //        resignNotification()
     }
     
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         resignNotification()
     }
     
     // MARK: - Notifications
     func dismissNotification() {
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName(DismissSearchNotification, object: nil)
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name(rawValue: DismissSearchNotification), object: nil)
     }
     
     func resignNotification() {
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName(ResignSearchNotification, object: nil)
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name(rawValue: ResignSearchNotification), object: nil)
     }
     
     func restoreNotification() {
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName(RestoreSearchNotification, object: nil)
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name(rawValue: RestoreSearchNotification), object: nil)
     }
     
     /*
@@ -143,12 +143,12 @@ class SearchResultsTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       
-        if let destinationVC = segue.destinationViewController as? BookDetailTableViewController {
+        if let destinationVC = segue.destination as? BookDetailTableViewController {
            
-            if let cell = sender as? SearchResultsTableViewCell, let indexPath = tableView.indexPathForCell(cell), let books = books {
-                destinationVC.book = books[indexPath.row]
+            if let cell = sender as? SearchResultsTableViewCell, let indexPath = tableView.indexPath(for: cell), let books = books {
+                destinationVC.book = books[(indexPath as NSIndexPath).row]
                 if let image = cell.bookImage?.image {
                     destinationVC.loadedImage = image
                 }
