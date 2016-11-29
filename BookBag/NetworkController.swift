@@ -40,4 +40,14 @@ class NetworkController {
         return url!
     }
     
+    // MARK: - GOOGLE BOOKS
+    static func createGoogleBookURL(_ isbn:String) -> URL {
+        
+        let apiKey = "AIzaSyDTKiSX_i8YiShCWUX6g-rskj7Ny_TyLwg"
+        
+        let url = URL(string:"https://www.googleapis.com/books/v1/volumes?q=\(isbn)%2Bisbn&key={\(apiKey)}")
+        
+        return url!
+    }
+    
 }

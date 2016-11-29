@@ -42,7 +42,7 @@ class BookDetailTableViewController: UITableViewController {
         } else if let book = book, let imageURL = URL(string: book.image) {
             ImageController.fetchImageAtURL(imageURL, completion: { (image, error) in
                 guard let image = image else {
-                    print("FAILURE LOADING IMAGE: \(error?.description)")
+                    print("FAILURE LOADING IMAGE: \(error.debugDescription)")
                     return
                 }
                 self.loadedImage = image

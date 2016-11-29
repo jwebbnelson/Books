@@ -11,18 +11,21 @@ import UIKit
 
 class ImageController {
     
-   static func fetchImageAtURL(_ url: URL, completion: @escaping (_ image: UIImage?, _ error: NSError?) -> Void) {
+    static func fetchImageAtURL(_ url: URL, completion: @escaping (_ image: UIImage?, _ error: Error?) -> Void) {
         
-        URLSession.shared.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: NSError?) -> Void in
+        let urlRequest = URLRequest(url: url)
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
             
-            if let data = data, let image = UIImage(data: data){
+            if let data = data, let image = UIImage(data: data) {
                 completion(image, nil)
             } else {
                 completion(nil, error)
             }
-            } as! (Data?, URLResponse?, Error?) -> Void) .resume()
+        })
+        task.resume()
     }
-    
     
     
 }

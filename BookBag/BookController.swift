@@ -143,9 +143,7 @@ class BookController {
         } else {
             completion(nil)
         }
-        
     }
-    
     
     // MARK: - Managing (MY BOOKS)
     static func deleteBook(_ book:Book) {

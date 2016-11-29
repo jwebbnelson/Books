@@ -30,7 +30,7 @@ class ProfileBookCollectionViewCell: UICollectionViewCell {
         if let url = URL(string: imageString) {
             ImageController.fetchImageAtURL(url) { (image, error) in
                 guard let image = image else {
-                    print("FAILURE LOADING IMAGE: \(error?.description)")
+                    print("FAILURE LOADING IMAGE: \(error.debugDescription)")
                     return
                 }
                 DispatchQueue.main.async(execute: {

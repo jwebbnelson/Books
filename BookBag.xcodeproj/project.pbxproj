@@ -35,6 +35,7 @@
 		83A5C0B91D15122200F51D2C /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A5C0B81D15122200F51D2C /* FirebaseController.swift */; };
 		83A9D39A1CD0532B0020E687 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */; };
 		83A9D39D1CD16D480020E687 /* NextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */; };
+		83AB66581D8A3B0D00BC9001 /* GoogleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AB66571D8A3B0D00BC9001 /* GoogleController.swift */; };
 		83AE19511D3E7EC600ABB7FE /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19501D3E7EC600ABB7FE /* ImageController.swift */; };
 		83AE19531D3FCF2200ABB7FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19521D3FCF2200ABB7FE /* ProfileViewController.swift */; };
 		83AE19561D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19551D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift */; };
@@ -110,6 +111,7 @@
 		83A5C0B81D15122200F51D2C /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		83A9D3991CD0532B0020E687 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		83A9D39C1CD16D480020E687 /* NextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextTableViewCell.swift; sourceTree = "<group>"; };
+		83AB66571D8A3B0D00BC9001 /* GoogleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleController.swift; sourceTree = "<group>"; };
 		83AE19501D3E7EC600ABB7FE /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		83AE19521D3FCF2200ABB7FE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		83AE19551D3FD46800ABB7FE /* ProfileBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBookCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				83ECE2931D22A00E00C5824C /* UserController.swift */,
 				83BD936E1CCEB87800E56534 /* LocationController.swift */,
 				833587221D4AD6EC00E79ECD /* NetworkController.swift */,
+				83AB66571D8A3B0D00BC9001 /* GoogleController.swift */,
 				833587241D4AD77C00E79ECD /* AmazonController.swift */,
 				83B61C8A1D4D6DF0007F8C39 /* DateFormatter.swift */,
 				832B5D7D1D37420E00B2BD48 /* Colors.swift */,
@@ -431,6 +434,9 @@
 						DevelopmentTeam = N9YM4MAB27;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -648,6 +654,7 @@
 				832B5D7E1D37420E00B2BD48 /* Colors.swift in Sources */,
 				83D5D0B91D52E7C900E0CD08 /* HolderViewController.swift in Sources */,
 				832B5D7A1D3583B100B2BD48 /* BookHighlightTableViewCell.swift in Sources */,
+				83AB66581D8A3B0D00BC9001 /* GoogleController.swift in Sources */,
 				83AE19511D3E7EC600ABB7FE /* ImageController.swift in Sources */,
 				83ECE2901D229DBA00C5824C /* Bid.swift in Sources */,
 				83ECE28D1D229ABE00C5824C /* SellReviewTableViewController.swift in Sources */,
@@ -807,6 +814,7 @@
 			baseConfigurationReference = 2A79CA61BCB4B152F4FB7DA3 /* Pods-BookBag.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BookBag/BookBag.entitlements;
 				INFOPLIST_FILE = BookBag/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -822,6 +830,7 @@
 			baseConfigurationReference = A07A7D13B376E7E773AB7D0A /* Pods-BookBag.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BookBag/BookBag.entitlements;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = BookBag/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
