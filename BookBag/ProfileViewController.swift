@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var sellView: UIView!
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var sellButton: UIButton!
+    @IBOutlet var signUpView: UIView!
     
     var currentViewState: ProfileState {
         get {
@@ -96,7 +97,7 @@ class ProfileViewController: UIViewController {
         } else {
             // Logged Out
             configureBackGroundButton()
-            topView.alpha = 0
+            
             profileImageView.image = nil
             collectionView.reloadData()
         }
@@ -166,11 +167,10 @@ class ProfileViewController: UIViewController {
     }
     
     func configureBackGroundButton() {
-        let backButton = UIButton()
-        backButton.setTitle("Log In", for: UIControlState())
-        backButton.setTitleColor(UIColor.black, for: UIControlState())
-        backButton.addTarget(self, action: #selector(presentLoginViewController), for: .touchUpInside)
-        collectionView.backgroundView = backButton
+//        collectionView.backgroundView = signUpView
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        signUpView.frame = (self.view.superview?.frame)!
+        view.addSubview(signUpView)
     }
     
     func presentLoginViewController() {
