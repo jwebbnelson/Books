@@ -12,6 +12,10 @@ enum ProfileState {
     case buy, sell, loggedOut
 }
 
+enum LoginState {
+    case signUp, login, emailSignUp
+}
+
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -22,6 +26,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var sellButton: UIButton!
     @IBOutlet var signUpView: UIView!
+    
+    // Login Flow
+    @IBOutlet weak var textStack: UIStackView!
+    @IBOutlet weak var loginSignupToggleButton: UIButton!
+    
+    @IBOutlet weak var topLabelStack: UIStackView!
+    var currentLoginState: LoginState = .signUp
     
     var currentViewState: ProfileState {
         get {
@@ -170,6 +181,7 @@ class ProfileViewController: UIViewController {
 //        collectionView.backgroundView = signUpView
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         signUpView.frame = (self.view.superview?.frame)!
+        updateLoginView(loginState: .signUp)
         view.addSubview(signUpView)
     }
     
@@ -203,6 +215,21 @@ class ProfileViewController: UIViewController {
         DispatchQueue.main.async { 
             self.collectionView.reloadData()
         }
+    }
+    
+    @IBAction func loginSignupToggle(_ sender: Any) {
+        view.endEditing(true)
+        switch currentLoginState {
+        case .signUp:
+            currentLoginState = .login
+            updateLoginView(loginState: .login)
+        case .login:
+            currentLoginState = .signUp
+            updateLoginView(loginState: .signUp)
+        default: // Email Sign-Up
+            updateLoginView(loginState: .emailSignUp)
+        }
+        
     }
     
     
@@ -265,7 +292,61 @@ extension ProfileViewController {
     }
     
     @IBAction func editTapped(_ sender: AnyObject) {
-    
+        
     }
 }
+
+// MARK: - Login Flow
+extension ProfileViewController {
+    
+    func updateLoginView(loginState:LoginState){
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { 
+            switch loginState {
+            case .signUp:
+                print("Current State: SignUp")
+                self.textStack.isHidden = true
+                self.loginSignupToggleButton.setTitle("Log in here", for: .normal)
+                self.loginSignupToggleButton.isHidden = false
+                self.topLabelStack.alpha = 1
+            case .login:
+                print("Current State: Login")
+                self.topLabelStack.alpha = 0
+                self.textStack.isHidden = false
+                self.loginSignupToggleButton.setTitle("Sign up now!", for: .normal)
+                self.loginSignupToggleButton.isHidden = false
+            default:
+                print("Current State: Default - Email Sign-Up")
+                self.textStack.alpha = 0
+                self.loginSignupToggleButton.isHidden = true
+                self.topLabelStack.isHidden = true
+            }
+        }) { (success) in
+            print("Animation complete")
+        }
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
