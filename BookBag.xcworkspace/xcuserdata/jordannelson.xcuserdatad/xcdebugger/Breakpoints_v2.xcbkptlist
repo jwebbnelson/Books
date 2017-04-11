@@ -74,12 +74,12 @@
                   moduleName = "BookBag"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/BookController.swift"
-                  timestampString = "513574023.57231"
+                  timestampString = "513579722.139101"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
                   endingLineNumber = "141"
-                  offsetFromSymbolStart = "997">
+                  offsetFromSymbolStart = "1079">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -89,12 +89,12 @@
                   moduleName = "BookBag"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jordannelson/Desktop/Dev/BookBag/BookBag/BookController.swift"
-                  timestampString = "513574023.5746"
+                  timestampString = "513579722.140694"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
                   endingLineNumber = "141"
-                  offsetFromSymbolStart = "1025">
+                  offsetFromSymbolStart = "1110">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import GoogleSignIn
+import FirebaseAuth
+import Firebase
 
 enum ProfileState {
     case buy, sell, loggedOut
@@ -73,7 +76,12 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        adjustViewForLogin()
+       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+         adjustViewForLogin()
     }
     
     override func didReceiveMemoryWarning() {
@@ -115,6 +123,7 @@ class ProfileViewController: UIViewController {
             }
             topView.alpha = 1
             collectionView.backgroundView = nil
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
             observeMyBooks()
         } else {
             // Logged Out
@@ -194,6 +203,7 @@ class ProfileViewController: UIViewController {
         signUpView.frame = (self.view.superview?.frame)!
         updateLoginView(loginState: .signUp)
         view.addSubview(signUpView)
+        configureGoogle()
     }
     
     func presentLoginViewController() {
@@ -255,7 +265,7 @@ class ProfileViewController: UIViewController {
     
     //MARK: COLORED BUTTONS
     @IBAction func topGoogleButtonTapped(_ sender: Any) {
-        
+        GIDSignIn.sharedInstance().signIn()
     }
     
     @IBAction func bottomEmailButtonTapped(_ sender: Any) {
@@ -429,6 +439,40 @@ extension ProfileViewController {
     }
 }
 
+extension ProfileViewController: GIDSignInUIDelegate, GIDSignInDelegate {
+
+    func configureGoogle() {
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
+//        googleSignInButton.colorScheme = GIDSignInButtonColorScheme.light
+    }
+    
+    public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+//        beginLoadingAnimation()
+        if let error = error {
+//            self.showErrorLabel(error.localizedDescription)
+            return
+        }
+        
+        let authentication = user.authentication
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+                                                          accessToken: (authentication?.accessToken)!)
+        UserController.sharedController.logInWithCredential(credential) { (errorString) in
+            if let error = errorString {
+                DispatchQueue.main.async(execute: {
+//                    self.showErrorLabel(error)
+                })
+            } else {
+                print("Google Sign In: - \(user.profile.name)")
+                DispatchQueue.main.async(execute: { 
+                    self.signUpView.removeFromSuperview()
+                    self.adjustViewForLogin()
+                })
+            }
+        }
+    }
+}
 
 
 
