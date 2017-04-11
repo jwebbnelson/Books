@@ -13,7 +13,7 @@ enum ProfileState {
 }
 
 enum LoginState {
-    case signUp, login, emailSignUp, forgotPassword
+    case signUp, login, emailSignUp, forgotPassword, loggedIn
 }
 
 class ProfileViewController: UIViewController {
@@ -33,8 +33,16 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var accoutToggleLabel: UILabel!
     @IBOutlet weak var accountToggleStack: UIStackView!
     @IBOutlet weak var forgotPasswordStack: UIStackView!
-    
+    @IBOutlet weak var topButtonStack: UIStackView!
+    @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var topLabelStack: UIStackView!
+    @IBOutlet weak var fullNameStack: UIStackView!
+    @IBOutlet weak var topGoogleButton: UIButton!
+    @IBOutlet weak var emailField: UITextField!
+    
+    @IBOutlet weak var termsConditionsStack: UIStackView!
+    
+    
     var currentLoginState: LoginState = .signUp
     
     var currentViewState: ProfileState {
@@ -231,14 +239,18 @@ class ProfileViewController: UIViewController {
             currentLoginState = .signUp
             updateLoginView(loginState: .signUp)
         default: // Email Sign-Up
-            updateLoginView(loginState: .emailSignUp)
+            currentLoginState = .login
+            updateLoginView(loginState: currentLoginState)
         }
     }
     
     @IBAction func forgotPassResetTapped(_ sender: Any) {
-        if self.currentLoginState == .login {
-            currentLoginState = .forgotPassword
+        view.endEditing(true)
+        guard let email = emailField.text, !email.isEmpty else {
+           self.forgottenPasswordAlert(emailEntered: false)
+            return
         }
+        self.forgottenPasswordAlert(emailEntered: true)
     }
     
     //MARK: COLORED BUTTONS
@@ -247,7 +259,10 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func bottomEmailButtonTapped(_ sender: Any) {
-        
+        if self.currentLoginState == .signUp {
+            currentLoginState = .emailSignUp
+            updateLoginView(loginState: currentLoginState)
+        }
     }
 }
 
@@ -327,52 +342,88 @@ extension ProfileViewController {
                 self.loginSignupToggleButton.setTitle("Log in here", for: .normal)
                 self.loginSignupToggleButton.isHidden = false
                 self.topLabelStack.alpha = 1
+                self.topLabelStack.isHidden = false
                 self.accoutToggleLabel.text = "Already have an account?"
                 self.accountToggleStack.isHidden = false
+                self.topButtonStack.isHidden = false
+                // Buttons 
+                self.topGoogleButton.setTitle("  Sign up with Google", for: .normal)
+                self.emailButton.setTitle("E-Mail", for: .normal)
+                self.termsConditionsStack.isHidden = false
+                // Textfields 
+                self.fullNameStack.isHidden = true
             }) { (success) in
                 print("Animation complete")
             }
         case .login:
             print("Current State: Login")
+            self.termsConditionsStack.isHidden = true
+            self.forgotPasswordStack.isHidden = false
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.topLabelStack.alpha = 0
+                self.topLabelStack.isHidden = true
                 self.textStack.isHidden = false
                 self.loginSignupToggleButton.setTitle("Sign up now!", for: .normal)
                 self.loginSignupToggleButton.isHidden = false
                 self.accoutToggleLabel.text = "No account yet?"
                 self.accountToggleStack.isHidden = false
-                self.forgotPasswordStack.isHidden = false
+
                 self.forgotPasswordStack.alpha = 1
-            }) { (success) in
-                print("Animation complete")
-            }
-        case .emailSignUp:
-            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                print("Current State: Email Sign-Up")
-                self.textStack.alpha = 0
-                self.loginSignupToggleButton.isHidden = true
-                self.topLabelStack.isHidden = true
-                self.accountToggleStack.isHidden = true
-                self.forgotPasswordStack.isHidden = true
-                self.forgotPasswordStack.alpha = 1
+                self.topButtonStack.isHidden = false
+                self.topButtonStack.alpha = 1
+                // Buttons
+                self.topGoogleButton.setTitle("  Sign in with Google", for: .normal)
+                self.emailButton.setTitle("Log in", for: .normal)
+                
+                // Textfields
+                self.fullNameStack.isHidden = true
             }) { (success) in
                 print("Animation complete")
             }
         default:
+             self.termsConditionsStack.isHidden = false
+             print("Current State: Email Sign-Up (Default")
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                print("Current State: Default - Forgot Password")
-                self.textStack.alpha = 0
-                self.loginSignupToggleButton.isHidden = true
-                self.topLabelStack.isHidden = true
-                self.accountToggleStack.isHidden = true
+                
+                // Textfields
+                self.textStack.isHidden = false
+                self.fullNameStack.isHidden = false
+                self.textStack.alpha = 1
+              
+                
+                self.topLabelStack.alpha = 0
+                self.accountToggleStack.isHidden = false
                 self.forgotPasswordStack.isHidden = true
-                self.forgotPasswordStack.alpha = 1
+                self.forgotPasswordStack.alpha = 0
+                // Buttons
+                self.topButtonStack.alpha = 0
+                self.topButtonStack.isHidden = true
+                self.emailButton.setTitle("Sign up", for: .normal)
+                self.loginSignupToggleButton.setTitle("Log in here", for: .normal)
+                // Labels
+                self.accoutToggleLabel.text = "Already have an account?"
+                self.topLabelStack.alpha = 0
+                self.topLabelStack.isHidden = true
+               
             }) { (success) in
                 print("Animation complete")
             }
         }
-        
-        
+    }
+    
+    func forgottenPasswordAlert(emailEntered:Bool){
+        if emailEntered == false {
+            let alert = UIAlertController(title: "Enter email or username", message: "Then tap Forgot Password to receive a link to reset your password", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Reset Password Email Sent", message: "Please check your inbox for the email address associated with theis account.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+
+        }
     }
 }
 
