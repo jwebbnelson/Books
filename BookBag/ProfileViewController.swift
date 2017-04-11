@@ -335,9 +335,11 @@ extension ProfileViewController {
         switch loginState {
         case .signUp:
             print("Current State: SignUp")
+            self.forgotPasswordStack.isHidden = true
+            self.fullNameStack.isHidden = true
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.textStack.isHidden = true
-                self.forgotPasswordStack.isHidden = true
+               
                 self.forgotPasswordStack.alpha = 0
                 self.loginSignupToggleButton.setTitle("Log in here", for: .normal)
                 self.loginSignupToggleButton.isHidden = false
@@ -351,7 +353,7 @@ extension ProfileViewController {
                 self.emailButton.setTitle("E-Mail", for: .normal)
                 self.termsConditionsStack.isHidden = false
                 // Textfields 
-                self.fullNameStack.isHidden = true
+                
             }) { (success) in
                 print("Animation complete")
             }

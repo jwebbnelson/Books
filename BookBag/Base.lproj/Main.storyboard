@@ -995,7 +995,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e5v-e6-h1R" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="ADD" id="cHk-Ah-GHS"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GgS-sn-ZkK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GgS-sn-ZkK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1036,7 +1036,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QPj-Rq-Jag" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="BUY" id="cr7-2V-wvl"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wcc-UL-neP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wcc-UL-neP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -1057,7 +1057,7 @@
             <objects>
                 <navigationController storyboardIdentifier="searchTVC" automaticallyAdjustsScrollViewInsets="NO" id="S4u-17-tU3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9vK-Ln-7Do">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9vK-Ln-7Do">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1077,7 +1077,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6lS-aQ-r14" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="PROFILE" id="dLE-oZ-Nu1"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="D3X-aa-6ne">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D3X-aa-6ne">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1623,7 +1623,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CNm-6a-LzG">
-                            <rect key="frame" x="16" y="41" width="337" height="556.5"/>
+                            <rect key="frame" x="16" y="62.5" width="337" height="514"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fgU-ZW-RM1">
                                     <rect key="frame" x="0.0" y="0.0" width="337" height="96"/>
@@ -1643,7 +1643,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="u3y-qz-Qrv">
-                                    <rect key="frame" x="0.0" y="132" width="337" height="55"/>
+                                    <rect key="frame" x="0.0" y="123.5" width="337" height="55"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lW-f5-hFI">
                                             <rect key="frame" x="0.0" y="0.0" width="337" height="44"/>
@@ -1692,22 +1692,10 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ltd-QL-roa" userLabel="Text Stack">
-                                    <rect key="frame" x="0.0" y="218" width="337" height="106"/>
+                                    <rect key="frame" x="0.0" y="201" width="337" height="106"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7z-Hq-biZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="337" height="30"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lxp-To-Gvm">
-                                            <rect key="frame" x="0.0" y="38" width="337" height="30"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                        </textField>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lXf-lp-aPe">
-                                            <rect key="frame" x="0.0" y="76" width="337" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="337" height="30"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V6F-zV-OSm">
                                                     <rect key="frame" x="0.0" y="0.0" width="337" height="30"/>
@@ -1717,10 +1705,22 @@
                                                 </textField>
                                             </subviews>
                                         </stackView>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7z-Hq-biZ">
+                                            <rect key="frame" x="0.0" y="38" width="337" height="30"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lxp-To-Gvm">
+                                            <rect key="frame" x="0.0" y="76" width="337" height="30"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        </textField>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vey-bt-KDy">
-                                    <rect key="frame" x="0.0" y="343.5" width="337" height="78"/>
+                                    <rect key="frame" x="0.0" y="318" width="337" height="78"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09H-dy-oxi">
                                             <rect key="frame" x="0.0" y="0.0" width="337" height="44"/>
@@ -1756,24 +1756,18 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Q3B-Qg-o86">
-                                    <rect key="frame" x="0.0" y="431.5" width="337" height="125"/>
+                                    <rect key="frame" x="0.0" y="406" width="337" height="108"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lXF-T4-GTv">
-                                            <rect key="frame" x="0.0" y="0.0" width="337" height="57"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="337" height="40"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYC-v7-5g6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="337" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KVG-my-COL">
-                                                    <rect key="frame" x="0.0" y="17" width="337" height="40"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="337" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Yr8-Cv-HR7"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <state key="normal" title="Reset here"/>
+                                                    <state key="normal" title="Forgot your password?"/>
                                                     <connections>
                                                         <action selector="forgotPassResetTapped:" destination="ANd-Z2-nz0" eventType="touchUpInside" id="k7h-Xq-lWf"/>
                                                     </connections>
@@ -1781,7 +1775,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fzB-lM-4OG">
-                                            <rect key="frame" x="0.0" y="57" width="337" height="68"/>
+                                            <rect key="frame" x="0.0" y="40" width="337" height="68"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xzB-4T-apf">
                                                     <rect key="frame" x="0.0" y="0.0" width="337" height="1"/>
@@ -1867,7 +1861,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="teH-eW-Wpr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Z4o-ei-3gJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z4o-ei-3gJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1885,7 +1879,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AOL-CC-mBx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o7Q-m6-UXs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o7Q-m6-UXs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
