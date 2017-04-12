@@ -233,7 +233,7 @@ extension SellTableViewController: UITextFieldDelegate {
     func showCellLabel(_ row:Int) {
         if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? BasicSellTableViewCell {
             DispatchQueue.main.async(execute: {
-                cell.detailLabel.isHidden = false
+//                cell.detailLabel.isHidden = false
             })
             
         }
@@ -308,6 +308,7 @@ extension SellTableViewController: UITextFieldDelegate {
     }
 }
 
+
 // MARK: - SellButtonDelegate
 extension SellTableViewController: SellButtonDelegate {
    
@@ -318,6 +319,12 @@ extension SellTableViewController: SellButtonDelegate {
     
     func sellButtonTapped() {
         view.endEditing(true)
+        
+        guard image != nil else {
+            checkRequiredFields()
+            showErrorLabel("Please enter an image to show your book")
+            return
+        }
         
         if let bookTitle = bookTitle, let author = author, let price = price, let isbn = isbn, let formatString = formatString {
             beginLoadingView()
@@ -511,6 +518,15 @@ extension SellTableViewController: UITextViewDelegate {
         if textView.text != "Enter notes here..." {
             notes = notesTextView.text
         }
+    }
+}
+// MARK: - Error Handling
+extension SellTableViewController {
+    func showErrorLabel(_ errorString:String) {
+        let alert = UIAlertController(title: "Error", message: errorString, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
 }
 

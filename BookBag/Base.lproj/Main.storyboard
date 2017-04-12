@@ -1602,8 +1602,10 @@
                         <outlet property="emailButton" destination="09H-dy-oxi" id="0qp-bE-QPg"/>
                         <outlet property="emailField" destination="d7z-Hq-biZ" id="SyG-kt-1jn"/>
                         <outlet property="forgotPasswordStack" destination="lXF-T4-GTv" id="hfA-co-gcq"/>
+                        <outlet property="fullNameField" destination="V6F-zV-OSm" id="DpR-Oq-W1f"/>
                         <outlet property="fullNameStack" destination="lXf-lp-aPe" id="hpH-cW-Drw"/>
                         <outlet property="loginSignupToggleButton" destination="zcS-SY-VDV" id="OcR-eX-3es"/>
+                        <outlet property="passwordField" destination="lxp-To-Gvm" id="Vai-jL-yiC"/>
                         <outlet property="profileImageView" destination="738-VM-Hnb" id="7vW-Wq-eus"/>
                         <outlet property="sellButton" destination="Lcs-eL-YwJ" id="Imm-86-4uT"/>
                         <outlet property="sellView" destination="8sv-zt-dCd" id="Mal-UD-du2"/>

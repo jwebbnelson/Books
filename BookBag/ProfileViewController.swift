@@ -42,6 +42,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var fullNameStack: UIStackView!
     @IBOutlet weak var topGoogleButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var fullNameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var termsConditionsStack: UIStackView!
     
@@ -263,15 +265,57 @@ class ProfileViewController: UIViewController {
         self.forgottenPasswordAlert(emailEntered: true)
     }
     
-    //MARK: COLORED BUTTONS
+    //MARK: - COLORED BUTTONS
     @IBAction func topGoogleButtonTapped(_ sender: Any) {
         GIDSignIn.sharedInstance().signIn()
     }
     
     @IBAction func bottomEmailButtonTapped(_ sender: Any) {
         if self.currentLoginState == .signUp {
+            // Sign Up
             currentLoginState = .emailSignUp
             updateLoginView(loginState: currentLoginState)
+        } else if self.currentLoginState == .login {
+            // Logiin
+            if let email = emailField.text, let password = passwordField.text {
+                UserController.sharedController.logInUser(email, password: password, completion: { (errorString) in
+                    if let error = errorString {
+                        DispatchQueue.main.async(execute: {
+                            print(error)
+//                            self.resetActivityIndicator()
+                            self.showErrorLabel(error)
+                        })
+                    } else {
+                       self.successfulDismiss()
+                    }
+                })
+//                beginLoadingAnimation()
+//                self.hideErrorLabel()
+            }
+        } else if self.currentLoginState == .emailSignUp {
+            if let email = emailField.text, let password = passwordField.text, let name = fullNameField.text {
+                UserController.sharedController.signUpUser(email, password: password, completion: { (uid, errorString) in
+                    guard let uID = uid else {
+                        print(errorString ?? "Error signing up user, no uID")
+                        return
+                    }
+                    UserController.sharedController.createFirebaseUser(uID, name: name, email: email, imageURL: nil, completion: { (success) in
+                        UserController.sharedController.logInUser(email, password: password, completion: { (errorString) in
+                            
+                            if let error = errorString {
+                                print(error)
+                            } else {
+                                DispatchQueue.main.async(execute: {
+//                                    self.resetActivityIndicator()
+                                   self.successfulDismiss()
+                                })
+                            }
+                        })
+                    })
+                })
+//                beginLoadingAnimation()
+            }
+
         }
     }
 }
@@ -437,6 +481,26 @@ extension ProfileViewController {
 
         }
     }
+    
+    func successfulDismiss () {
+        // Successful Dismissal
+        DispatchQueue.main.async(execute: {
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveEaseIn, animations: { 
+                self.signUpView.alpha = 0
+            }, completion: { (success) in
+                //           self.activityIndicator.removeFromSuperview()
+                self.signUpView.removeFromSuperview()
+                self.adjustViewForLogin()
+            })
+        })
+    }
+    
+    func showErrorLabel(_ errorString:String) {
+        let alert = UIAlertController(title: "Error", message: errorString, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension ProfileViewController: GIDSignInUIDelegate, GIDSignInDelegate {
@@ -451,7 +515,7 @@ extension ProfileViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
 //        beginLoadingAnimation()
         if let error = error {
-//            self.showErrorLabel(error.localizedDescription)
+            self.showErrorLabel(error.localizedDescription)
             return
         }
         
@@ -461,14 +525,11 @@ extension ProfileViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         UserController.sharedController.logInWithCredential(credential) { (errorString) in
             if let error = errorString {
                 DispatchQueue.main.async(execute: {
-//                    self.showErrorLabel(error)
+                    self.showErrorLabel(error)
                 })
             } else {
                 print("Google Sign In: - \(user.profile.name)")
-                DispatchQueue.main.async(execute: { 
-                    self.signUpView.removeFromSuperview()
-                    self.adjustViewForLogin()
-                })
+                self.successfulDismiss()
             }
         }
     }

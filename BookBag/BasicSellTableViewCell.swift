@@ -29,7 +29,7 @@ class BasicSellTableViewCell: UITableViewCell {
     func setDetails(_ detail:String, prompt:String) {
         detailLabel.text = detail
         entryTextField.placeholder = prompt
-        detailLabel.isHidden = true
+        detailLabel.isHidden = false
     }
     
     func updateForError() {
